@@ -71,6 +71,7 @@
                                 <%--<li><a href="#"><i class="fa fa-wrench" style="padding-right: 10px"></i>Configure Email</a></li>--%>
                             </ul>
                         </li>
+                        <li class="active"><a href="#" id="logOutBtn" onserverclick="logout" runat="server"><i class="fa fa-location-arrow" style="padding-right: 10px"></i>Logout</a></li>
                         <%--<li><a href="#" runat="server">Contact</a></li>--%>
                         <li>
                             <!-- add search form -->

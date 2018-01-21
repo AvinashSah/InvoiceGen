@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/InvoiceGen.Master" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="InvoiceGen.Invoice" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="Invoice.aspx.cs" Inherits="InvoiceGen.Invoice" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="padding100" id="blog">
