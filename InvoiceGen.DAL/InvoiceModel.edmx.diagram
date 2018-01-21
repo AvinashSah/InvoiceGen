@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="0f5180a3ecc5453da213c8678f3b6e81" Name="Diagram1">
+        <EntityTypeShape EntityType="InvoiceGenModel.BillMaster" Width="1.5" PointX="3" PointY="4.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.BillProductMapping" Width="1.5" PointX="5.25" PointY="4.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.CustomerProductMapping" Width="1.5" PointX="6" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.Customer" Width="1.5" PointX="0.75" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.OperationMaster" Width="1.5" PointX="7.75" PointY="14.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.Product" Width="1.5" PointX="3.75" PointY="9.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.RoleMaster" Width="1.5" PointX="7.75" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.RoleOperationMapping" Width="1.5" PointX="10" PointY="6.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.UserMaster" Width="1.5" PointX="7.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.UserRoleMapping" Width="1.5" PointX="10" PointY="3.5" IsExpanded="true" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillF__5441852A" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillT__5535A963" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__BillI__59063A47" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__Produ__59FA5E80" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Custo__4F7CD00D" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Produ__4E88ABD4" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__Opera__6477ECF3" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__RoleI__6383C8BA" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__RoleI__6754599E" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__UserI__66603565" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

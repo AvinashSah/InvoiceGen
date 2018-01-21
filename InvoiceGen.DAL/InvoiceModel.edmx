@@ -1,0 +1,865 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="InvoiceGenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="BillMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillNo" Type="nvarchar" MaxLength="500" />
+          <Property Name="PaymentDueDate" Type="datetime" />
+          <Property Name="BillFromCustID" Type="bigint" />
+          <Property Name="BillToCustID" Type="bigint" />
+          <Property Name="ShippAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="BillAddress" Type="nvarchar" MaxLength="1000" />
+          <Property Name="TermsConditions" Type="nvarchar(max)" />
+          <Property Name="NotesForCustomer" Type="nvarchar" MaxLength="1000" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="BillProductMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BillID" Type="bigint" />
+          <Property Name="ProductID" Type="bigint" />
+          <Property Name="RateCharged" Type="nvarchar" MaxLength="100" />
+          <Property Name="Qyantity" Type="nvarchar" MaxLength="100" />
+          <Property Name="TotalAmount" Type="nvarchar" MaxLength="100" />
+          <Property Name="DiscountPerc" Type="nvarchar" MaxLength="100" />
+          <Property Name="CessPerc" Type="nvarchar" MaxLength="100" />
+          <Property Name="IGST" Type="nvarchar" MaxLength="100" />
+          <Property Name="CGST" Type="nvarchar" MaxLength="100" />
+          <Property Name="SGST" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="CustomerProductMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ProductID" Type="bigint" />
+          <Property Name="CustomerID" Type="bigint" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Customers">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
+          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="EmailID" Type="nvarchar" MaxLength="200" />
+          <Property Name="CustomerType" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="ContactName" Type="nvarchar" MaxLength="400" Nullable="false" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="30" />
+          <Property Name="Gstin" Type="nvarchar" MaxLength="40" />
+          <Property Name="PAN" Type="nvarchar" MaxLength="40" />
+          <Property Name="BAddL1" Type="nvarchar" MaxLength="100" />
+          <Property Name="BAddL2" Type="nvarchar" MaxLength="100" />
+          <Property Name="BAddCity" Type="nvarchar" MaxLength="100" />
+          <Property Name="BAddState" Type="nvarchar" MaxLength="100" />
+          <Property Name="BAddZip" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAddL1" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAddL2" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAddCity" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAddState" Type="nvarchar" MaxLength="100" />
+          <Property Name="SAddZip" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="OperationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OperationName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Products">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="HSNCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="SACCode" Type="nvarchar" MaxLength="200" />
+          <Property Name="Description" Type="nvarchar" MaxLength="1000" />
+          <Property Name="UoM" Type="nvarchar" MaxLength="100" />
+          <Property Name="PurchaseRate" Type="nvarchar" MaxLength="100" />
+          <Property Name="CessPercentage" Type="nvarchar" MaxLength="100" />
+          <Property Name="GSTPercentage" Type="nvarchar" MaxLength="100" />
+          <Property Name="SalesRate" Type="nvarchar" MaxLength="100" />
+          <Property Name="IsActive" Type="bit" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="RoleOperationMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleId" Type="bigint" />
+          <Property Name="OperationId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
+          <Property Name="Mobile" Type="int" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="CreatedOn" Type="datetime" />
+          <Property Name="UpdatedOn" Type="datetime" />
+          <Property Name="CreatedBy" Type="bigint" />
+          <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="EmpId" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="UserRoleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserId" Type="bigint" />
+          <Property Name="RoleId" Type="bigint" />
+        </EntityType>
+        <Association Name="FK__BillMaste__BillF__5441852A">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillMaster">
+              <PropertyRef Name="BillFromCustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillMaste__BillT__5535A963">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillMaster">
+              <PropertyRef Name="BillToCustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__BillI__59063A47">
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="0..1" />
+          <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProductMapping">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__Produ__59FA5E80">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProductMapping">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerP__Custo__4F7CD00D">
+          <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
+          <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProductMapping">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerP__Produ__4E88ABD4">
+          <End Role="Products" Type="Self.Products" Multiplicity="0..1" />
+          <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProductMapping">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleOpera__Opera__6477ECF3">
+          <End Role="OperationMaster" Type="Self.OperationMaster" Multiplicity="0..1" />
+          <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RoleOperationMapping">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleOpera__RoleI__6383C8BA">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
+          <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RoleOperationMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoleM__RoleI__6754599E">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
+          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoleM__UserI__66603565">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRoleMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InvoiceGenModelStoreContainer">
+          <EntitySet Name="BillMaster" EntityType="Self.BillMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillProductMapping" EntityType="Self.BillProductMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CustomerProductMapping" EntityType="Self.CustomerProductMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Customers" EntityType="Self.Customers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OperationMaster" EntityType="Self.OperationMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Products" EntityType="Self.Products" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleMaster" EntityType="Self.RoleMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RoleOperationMapping" EntityType="Self.RoleOperationMapping" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserMaster" EntityType="Self.UserMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserRoleMapping" EntityType="Self.UserRoleMapping" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [UserRoleMapping].[Id] AS [Id], 
+    [UserRoleMapping].[UserId] AS [UserId], 
+    [UserRoleMapping].[RoleId] AS [RoleId]
+    FROM [dbo].[UserRoleMapping] AS [UserRoleMapping]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__BillMaste__BillF__5441852A" Association="Self.FK__BillMaste__BillF__5441852A">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BillMaster" EntitySet="BillMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillMaste__BillT__5535A963" Association="Self.FK__BillMaste__BillT__5535A963">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BillMaster" EntitySet="BillMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__BillI__59063A47" Association="Self.FK__BillProdu__BillI__59063A47">
+            <End Role="BillMaster" EntitySet="BillMaster" />
+            <End Role="BillProductMapping" EntitySet="BillProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__Produ__59FA5E80" Association="Self.FK__BillProdu__Produ__59FA5E80">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="BillProductMapping" EntitySet="BillProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerP__Custo__4F7CD00D" Association="Self.FK__CustomerP__Custo__4F7CD00D">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerProductMapping" EntitySet="CustomerProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerP__Produ__4E88ABD4" Association="Self.FK__CustomerP__Produ__4E88ABD4">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="CustomerProductMapping" EntitySet="CustomerProductMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleOpera__Opera__6477ECF3" Association="Self.FK__RoleOpera__Opera__6477ECF3">
+            <End Role="OperationMaster" EntitySet="OperationMaster" />
+            <End Role="RoleOperationMapping" EntitySet="RoleOperationMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleOpera__RoleI__6383C8BA" Association="Self.FK__RoleOpera__RoleI__6383C8BA">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="RoleOperationMapping" EntitySet="RoleOperationMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoleM__RoleI__6754599E" Association="Self.FK__UserRoleM__RoleI__6754599E">
+            <End Role="RoleMaster" EntitySet="RoleMaster" />
+            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoleM__UserI__66603565" Association="Self.FK__UserRoleM__UserI__66603565">
+            <End Role="UserMaster" EntitySet="UserMaster" />
+            <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="InvoiceGenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="BillMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillNo" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PaymentDueDate" Type="DateTime" Precision="3" />
+          <Property Name="BillFromCustID" Type="Int64" />
+          <Property Name="BillToCustID" Type="Int64" />
+          <Property Name="ShippAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="BillAddress" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="TermsConditions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="NotesForCustomer" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__BillMaste__BillF__5441852A" FromRole="BillMaster" ToRole="Customers" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__BillMaste__BillT__5535A963" FromRole="BillMaster" ToRole="Customers" />
+          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__BillI__59063A47" FromRole="BillMaster" ToRole="BillProductMapping" />
+        </EntityType>
+        <EntityType Name="BillProductMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BillID" Type="Int64" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="RateCharged" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Qyantity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="TotalAmount" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="DiscountPerc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CessPerc" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BillMaster" Relationship="Self.FK__BillProdu__BillI__59063A47" FromRole="BillProductMapping" ToRole="BillMaster" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__BillProdu__Produ__59FA5E80" FromRole="BillProductMapping" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="CustomerProductMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ProductID" Type="Int64" />
+          <Property Name="CustomerID" Type="Int64" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerP__Custo__4F7CD00D" FromRole="CustomerProductMapping" ToRole="Customers" />
+          <NavigationProperty Name="Product" Relationship="Self.FK__CustomerP__Produ__4E88ABD4" FromRole="CustomerProductMapping" ToRole="Products" />
+        </EntityType>
+        <EntityType Name="Customer">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ContactNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Gstin" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="PAN" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="BAddL1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BAddL2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BAddCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BAddState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="BAddZip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAddL1" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAddL2" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAddCity" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAddState" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SAddZip" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillF__5441852A" FromRole="Customers" ToRole="BillMaster" />
+          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__BillT__5535A963" FromRole="Customers" ToRole="BillMaster" />
+          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Custo__4F7CD00D" FromRole="Customers" ToRole="CustomerProductMapping" />
+        </EntityType>
+        <EntityType Name="OperationMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OperationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__Opera__6477ECF3" FromRole="OperationMaster" ToRole="RoleOperationMapping" />
+        </EntityType>
+        <EntityType Name="Product">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="HSNCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SACCode" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="UoM" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PurchaseRate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CessPercentage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="GSTPercentage" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="SalesRate" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="IsActive" Type="Boolean" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__Produ__59FA5E80" FromRole="Products" ToRole="BillProductMapping" />
+          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Produ__4E88ABD4" FromRole="Products" ToRole="CustomerProductMapping" />
+        </EntityType>
+        <EntityType Name="RoleMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__RoleI__6383C8BA" FromRole="RoleMaster" ToRole="RoleOperationMapping" />
+          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__RoleI__6754599E" FromRole="RoleMaster" ToRole="UserRoleMapping" />
+        </EntityType>
+        <EntityType Name="RoleOperationMapping">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int64" />
+          <Property Name="OperationId" Type="Int64" />
+          <NavigationProperty Name="OperationMaster" Relationship="Self.FK__RoleOpera__Opera__6477ECF3" FromRole="RoleOperationMapping" ToRole="OperationMaster" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__RoleOpera__RoleI__6383C8BA" FromRole="RoleOperationMapping" ToRole="RoleMaster" />
+        </EntityType>
+        <EntityType Name="UserMaster">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Mobile" Type="Int32" Nullable="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="CreatedOn" Type="DateTime" Precision="3" />
+          <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
+          <Property Name="CreatedBy" Type="Int64" />
+          <Property Name="UpdatedBy" Type="Int64" />
+          <Property Name="EmpId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__UserI__66603565" FromRole="UserMaster" ToRole="UserRoleMapping" />
+        </EntityType>
+        <EntityType Name="UserRoleMapping">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserId" Type="Int64" />
+          <Property Name="RoleId" Type="Int64" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__UserRoleM__RoleI__6754599E" FromRole="UserRoleMapping" ToRole="RoleMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Self.FK__UserRoleM__UserI__66603565" FromRole="UserRoleMapping" ToRole="UserMaster" />
+        </EntityType>
+        <Association Name="FK__BillMaste__BillF__5441852A">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillMaster">
+              <PropertyRef Name="BillFromCustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillMaste__BillT__5535A963">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillMaster">
+              <PropertyRef Name="BillToCustID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__BillI__59063A47">
+          <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="0..1" />
+          <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BillMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProductMapping">
+              <PropertyRef Name="BillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__BillProdu__Produ__59FA5E80">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="BillProductMapping">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerP__Custo__4F7CD00D">
+          <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
+          <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Customers">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProductMapping">
+              <PropertyRef Name="CustomerID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CustomerP__Produ__4E88ABD4">
+          <End Role="Products" Type="Self.Product" Multiplicity="0..1" />
+          <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Products">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="CustomerProductMapping">
+              <PropertyRef Name="ProductID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleOpera__Opera__6477ECF3">
+          <End Role="OperationMaster" Type="Self.OperationMaster" Multiplicity="0..1" />
+          <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OperationMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RoleOperationMapping">
+              <PropertyRef Name="OperationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__RoleOpera__RoleI__6383C8BA">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
+          <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="RoleOperationMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoleM__RoleI__6754599E">
+          <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
+          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RoleMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRoleMapping">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__UserRoleM__UserI__66603565">
+          <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
+          <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserMaster">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="UserRoleMapping">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="InvoiceGenEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="BillMasters" EntityType="Self.BillMaster" />
+          <EntitySet Name="BillProductMappings" EntityType="Self.BillProductMapping" />
+          <EntitySet Name="CustomerProductMappings" EntityType="Self.CustomerProductMapping" />
+          <EntitySet Name="Customers" EntityType="Self.Customer" />
+          <EntitySet Name="OperationMasters" EntityType="Self.OperationMaster" />
+          <EntitySet Name="Products" EntityType="Self.Product" />
+          <EntitySet Name="RoleMasters" EntityType="Self.RoleMaster" />
+          <EntitySet Name="RoleOperationMappings" EntityType="Self.RoleOperationMapping" />
+          <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
+          <EntitySet Name="UserRoleMappings" EntityType="Self.UserRoleMapping" />
+          <AssociationSet Name="FK__BillMaste__BillF__5441852A" Association="Self.FK__BillMaste__BillF__5441852A">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BillMaster" EntitySet="BillMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillMaste__BillT__5535A963" Association="Self.FK__BillMaste__BillT__5535A963">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="BillMaster" EntitySet="BillMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__BillI__59063A47" Association="Self.FK__BillProdu__BillI__59063A47">
+            <End Role="BillMaster" EntitySet="BillMasters" />
+            <End Role="BillProductMapping" EntitySet="BillProductMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__BillProdu__Produ__59FA5E80" Association="Self.FK__BillProdu__Produ__59FA5E80">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="BillProductMapping" EntitySet="BillProductMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerP__Custo__4F7CD00D" Association="Self.FK__CustomerP__Custo__4F7CD00D">
+            <End Role="Customers" EntitySet="Customers" />
+            <End Role="CustomerProductMapping" EntitySet="CustomerProductMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CustomerP__Produ__4E88ABD4" Association="Self.FK__CustomerP__Produ__4E88ABD4">
+            <End Role="Products" EntitySet="Products" />
+            <End Role="CustomerProductMapping" EntitySet="CustomerProductMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleOpera__Opera__6477ECF3" Association="Self.FK__RoleOpera__Opera__6477ECF3">
+            <End Role="OperationMaster" EntitySet="OperationMasters" />
+            <End Role="RoleOperationMapping" EntitySet="RoleOperationMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__RoleOpera__RoleI__6383C8BA" Association="Self.FK__RoleOpera__RoleI__6383C8BA">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="RoleOperationMapping" EntitySet="RoleOperationMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoleM__RoleI__6754599E" Association="Self.FK__UserRoleM__RoleI__6754599E">
+            <End Role="RoleMaster" EntitySet="RoleMasters" />
+            <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+          </AssociationSet>
+          <AssociationSet Name="FK__UserRoleM__UserI__66603565" Association="Self.FK__UserRoleM__UserI__66603565">
+            <End Role="UserMaster" EntitySet="UserMasters" />
+            <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="InvoiceGenModelStoreContainer" CdmEntityContainer="InvoiceGenEntities">
+          <EntitySetMapping Name="BillMasters">
+            <EntityTypeMapping TypeName="InvoiceGenModel.BillMaster">
+              <MappingFragment StoreEntitySet="BillMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BillNo" ColumnName="BillNo" />
+                <ScalarProperty Name="PaymentDueDate" ColumnName="PaymentDueDate" />
+                <ScalarProperty Name="BillFromCustID" ColumnName="BillFromCustID" />
+                <ScalarProperty Name="BillToCustID" ColumnName="BillToCustID" />
+                <ScalarProperty Name="ShippAddress" ColumnName="ShippAddress" />
+                <ScalarProperty Name="BillAddress" ColumnName="BillAddress" />
+                <ScalarProperty Name="TermsConditions" ColumnName="TermsConditions" />
+                <ScalarProperty Name="NotesForCustomer" ColumnName="NotesForCustomer" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BillProductMappings">
+            <EntityTypeMapping TypeName="InvoiceGenModel.BillProductMapping">
+              <MappingFragment StoreEntitySet="BillProductMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="BillID" ColumnName="BillID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="RateCharged" ColumnName="RateCharged" />
+                <ScalarProperty Name="Qyantity" ColumnName="Qyantity" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="DiscountPerc" ColumnName="DiscountPerc" />
+                <ScalarProperty Name="CessPerc" ColumnName="CessPerc" />
+                <ScalarProperty Name="IGST" ColumnName="IGST" />
+                <ScalarProperty Name="CGST" ColumnName="CGST" />
+                <ScalarProperty Name="SGST" ColumnName="SGST" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CustomerProductMappings">
+            <EntityTypeMapping TypeName="InvoiceGenModel.CustomerProductMapping">
+              <MappingFragment StoreEntitySet="CustomerProductMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ProductID" ColumnName="ProductID" />
+                <ScalarProperty Name="CustomerID" ColumnName="CustomerID" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Customers">
+            <EntityTypeMapping TypeName="InvoiceGenModel.Customer">
+              <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
+                <ScalarProperty Name="ContactName" ColumnName="ContactName" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="Gstin" ColumnName="Gstin" />
+                <ScalarProperty Name="PAN" ColumnName="PAN" />
+                <ScalarProperty Name="BAddL1" ColumnName="BAddL1" />
+                <ScalarProperty Name="BAddL2" ColumnName="BAddL2" />
+                <ScalarProperty Name="BAddCity" ColumnName="BAddCity" />
+                <ScalarProperty Name="BAddState" ColumnName="BAddState" />
+                <ScalarProperty Name="BAddZip" ColumnName="BAddZip" />
+                <ScalarProperty Name="SAddL1" ColumnName="SAddL1" />
+                <ScalarProperty Name="SAddL2" ColumnName="SAddL2" />
+                <ScalarProperty Name="SAddCity" ColumnName="SAddCity" />
+                <ScalarProperty Name="SAddState" ColumnName="SAddState" />
+                <ScalarProperty Name="SAddZip" ColumnName="SAddZip" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OperationMasters">
+            <EntityTypeMapping TypeName="InvoiceGenModel.OperationMaster">
+              <MappingFragment StoreEntitySet="OperationMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="OperationName" ColumnName="OperationName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Products">
+            <EntityTypeMapping TypeName="InvoiceGenModel.Product">
+              <MappingFragment StoreEntitySet="Products">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="HSNCode" ColumnName="HSNCode" />
+                <ScalarProperty Name="SACCode" ColumnName="SACCode" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UoM" ColumnName="UoM" />
+                <ScalarProperty Name="PurchaseRate" ColumnName="PurchaseRate" />
+                <ScalarProperty Name="CessPercentage" ColumnName="CessPercentage" />
+                <ScalarProperty Name="GSTPercentage" ColumnName="GSTPercentage" />
+                <ScalarProperty Name="SalesRate" ColumnName="SalesRate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleMasters">
+            <EntityTypeMapping TypeName="InvoiceGenModel.RoleMaster">
+              <MappingFragment StoreEntitySet="RoleMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RoleOperationMappings">
+            <EntityTypeMapping TypeName="InvoiceGenModel.RoleOperationMapping">
+              <MappingFragment StoreEntitySet="RoleOperationMapping">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="OperationId" ColumnName="OperationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserMasters">
+            <EntityTypeMapping TypeName="InvoiceGenModel.UserMaster">
+              <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailId" ColumnName="EmailId" />
+                <ScalarProperty Name="Mobile" ColumnName="Mobile" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="CreatedOn" ColumnName="CreatedOn" />
+                <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
+                <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
+                <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserRoleMappings">
+            <EntityTypeMapping TypeName="InvoiceGenModel.UserRoleMapping">
+              <MappingFragment StoreEntitySet="UserRoleMapping">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
