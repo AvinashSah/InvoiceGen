@@ -49,53 +49,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillMaster.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="BillProductMapping.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Class1.cs" />
-    <Compile Include="Customer.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CustomerProductMapping.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="InvoiceModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InvoiceModel.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="InvoiceModel.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
     </Compile>
     <Compile Include="InvoiceModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="OperationMaster.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="Product.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RoleMaster.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="RoleOperationMapping.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserMaster.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
-    <Compile Include="UserRoleMapping.cs">
-      <DependentUpon>InvoiceModel.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="InvoiceModel.edmx">
@@ -115,11 +79,6 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>InvoiceModel.Context.cs</LastGenOutput>
       <DependentUpon>InvoiceModel.edmx</DependentUpon>
-    </Content>
-    <Content Include="InvoiceModel.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>InvoiceModel.edmx</DependentUpon>
-      <LastGenOutput>InvoiceModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <ItemGroup>

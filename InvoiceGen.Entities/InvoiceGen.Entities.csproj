@@ -30,7 +30,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -40,10 +47,56 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BillMaster.cs" />
-    <Compile Include="Customer.cs" />
+    <Compile Include="BillMaster.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillProductMapping.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Customer.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CustomerProductMapping.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InvoiceModel.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OperationMaster.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Product.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Products.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleMaster.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RoleOperationMapping.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserMaster.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRoleMapping.cs">
+      <DependentUpon>InvoiceModel.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="InvoiceModel.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>InvoiceModel.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

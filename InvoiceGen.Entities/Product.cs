@@ -7,41 +7,30 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InvoiceGen.DAL
+namespace InvoiceGen.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Customer
+    public partial class Product
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Customer()
+        public Product()
         {
-            this.BillMasters = new HashSet<BillMaster>();
-            this.BillMasters1 = new HashSet<BillMaster>();
+            this.BillProductMappings = new HashSet<BillProductMapping>();
             this.CustomerProductMappings = new HashSet<CustomerProductMapping>();
         }
     
         public long ID { get; set; }
-        public string FirstName { get; set; }
-        public string MiddleName { get; set; }
-        public string LastName { get; set; }
-        public string EmailID { get; set; }
-        public string CustomerType { get; set; }
-        public string ContactName { get; set; }
-        public string ContactNumber { get; set; }
-        public string Gstin { get; set; }
-        public string PAN { get; set; }
-        public string BAddL1 { get; set; }
-        public string BAddL2 { get; set; }
-        public string BAddCity { get; set; }
-        public string BAddState { get; set; }
-        public string BAddZip { get; set; }
-        public string SAddL1 { get; set; }
-        public string SAddL2 { get; set; }
-        public string SAddCity { get; set; }
-        public string SAddState { get; set; }
-        public string SAddZip { get; set; }
+        public string Name { get; set; }
+        public string HSNCode { get; set; }
+        public string SACCode { get; set; }
+        public string Description { get; set; }
+        public string UoM { get; set; }
+        public string PurchaseRate { get; set; }
+        public string CessPercentage { get; set; }
+        public string GSTPercentage { get; set; }
+        public string SalesRate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
@@ -49,9 +38,7 @@ namespace InvoiceGen.DAL
         public Nullable<long> UpdatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillMaster> BillMasters { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<BillMaster> BillMasters1 { get; set; }
+        public virtual ICollection<BillProductMapping> BillProductMappings { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerProductMapping> CustomerProductMappings { get; set; }
     }

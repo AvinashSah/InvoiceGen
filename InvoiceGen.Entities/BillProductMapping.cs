@@ -7,23 +7,26 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InvoiceGen.DAL
+namespace InvoiceGen.Entities
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerProductMapping
+    public partial class BillProductMapping
     {
         public long ID { get; set; }
+        public Nullable<long> BillID { get; set; }
         public Nullable<long> ProductID { get; set; }
-        public Nullable<long> CustomerID { get; set; }
-        public Nullable<bool> IsActive { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public Nullable<long> CreatedBy { get; set; }
-        public Nullable<long> UpdatedBy { get; set; }
+        public string RateCharged { get; set; }
+        public string Qyantity { get; set; }
+        public string TotalAmount { get; set; }
+        public string DiscountPerc { get; set; }
+        public string CessPerc { get; set; }
+        public string IGST { get; set; }
+        public string CGST { get; set; }
+        public string SGST { get; set; }
     
-        public virtual Customer Customer { get; set; }
+        public virtual BillMaster BillMaster { get; set; }
         public virtual Product Product { get; set; }
     }
 }

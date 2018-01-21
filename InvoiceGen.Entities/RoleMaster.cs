@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace InvoiceGen.DAL
+namespace InvoiceGen.Entities
 {
     using System;
     using System.Collections.Generic;
