@@ -48,6 +48,7 @@ namespace InvoiceGen
                 Response.Cookies["UserName"].Value = txtUserName.Text.Trim();
                 Response.Cookies["Password"].Value = txtPassword.Text.Trim();
                 Session["user"] = txtUserName.Text.Trim();
+                Session["userID"] = 1;
                 Session["key"] = txtPassword.Text.Trim();
 
                 Response.Redirect("Home.aspx");

@@ -11,5 +11,41 @@ namespace InvoiceGen {
     
     
     public partial class ImportData {
+        
+        /// <summary>
+        /// productsDataFile control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload productsDataFile;
+        
+        /// <summary>
+        /// productsDataFileButton control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button productsDataFileButton;
+        
+        /// <summary>
+        /// productsDataFileLabel control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label productsDataFileLabel;
+        
+        /// <summary>
+        /// uploadedProductsTbody control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.PlaceHolder uploadedProductsTbody;
     }
 }

@@ -52,7 +52,7 @@
                             <ul class="dropdown-menu" data-dropdown-in="fadeInUp" data-dropdown-out="fadeOutDown">
                                 <li><a href="#" runat="server"><i class="fa fa-briefcase" style="padding-right: 10px"></i>Product/Services</a></li>
                                 <li><a href="#" runat="server"><i class="fa fa-user" style="padding-right: 10px"></i>Clients</a></li>
-                                <li><a href="Bill.aspx" runat="server"><i class="fa fa-sticky-note" style="padding-right: 10px"></i>Bills</a></li>
+                                <li><a href="#" runat="server"><i class="fa fa-sticky-note" style="padding-right: 10px"></i>Bills</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -63,7 +63,7 @@
                             <ul class="dropdown-menu" data-dropdown-in="fadeInUp" data-dropdown-out="fadeOutDown">
                                 <%--<li><a href="#"><i class="fa fa-newspaper-o" style="padding-right: 10px"></i>Company details</a></li>--%>
                                 <li><a href="#"><i class="fa fa-wrench" style="padding-right: 10px"></i>Taxe Variants</a></li>
-                                <li><a href="ImportData.aspx"><i class="fa fa-wrench" style="padding-right: 10px"></i>Import Data</a></li>
+                                <li><a href="ImportData.aspx"><i class="fa fa-wrench" style="padding-right: 10px"></i>Import Products</a></li>
                                 <%--<li><a href="#"><i class="fa fa-wrench" style="padding-right: 10px"></i>Configure Email</a></li>--%>
                             </ul>
                         </li>
@@ -102,6 +102,7 @@
         <script type="text/javascript" src="Contents/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="Contents/js/dataTables.bootstrap.min.js"></script>
         <script type="text/javascript" src="Contents/js/HomeGrid.js"></script>
+        <script type="text/javascript" src="Contents/js/ImportProducts.js"></script>
         <!-- SmartMenus jQuery Bootstrap Addon -->
         <script type="text/javascript" src="Contents/js/jquery.smartmenus.bootstrap.js"></script>
     </form>
