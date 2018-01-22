@@ -1,5 +1,5 @@
 ﻿$(document).ready(function () {
-    $('#example').DataTable();
+    $('#productList').DataTable();
     $('#InvoiceList').DataTable();
     $('#BillList').DataTable();
 });

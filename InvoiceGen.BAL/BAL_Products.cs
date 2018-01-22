@@ -41,6 +41,12 @@ namespace InvoiceGen.BAL
             }
             return listProduct;
         }
+
+        public List<Product> GetAllProductList()
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            return dAL_Products.GetAllProductList();
+        }
     }
 }
 

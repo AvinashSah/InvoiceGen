@@ -31,7 +31,13 @@ namespace InvoiceGen
 
                     if (Extension == ".xlsx" || Extension == ".xls")
                     {
-                        string FilePath = Server.MapPath(FolderPath + FileName);
+                        string FilePath = Server.MapPath(FolderPath + Convert.ToString(DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                        if (!Directory.Exists(FilePath))
+                        {
+                            //If Directory (Folder) does not exists. Create it.
+                            Directory.CreateDirectory(FilePath);
+                        }
+                        FilePath += "\\" + FileName;
                         productsDataFile.SaveAs(FilePath);
                         productsDataFileLabel.Text = "File name: " +
                              productsDataFile.PostedFile.FileName + "<br>" +
@@ -119,18 +125,25 @@ namespace InvoiceGen
             string finalstring = "";
             foreach (Product product in productList)
             {
-                string htmlContent = "<tr>";
-                htmlContent += "<th scope=\"row\">" + Convert.ToString(product.ID) + "</th>";
-                htmlContent += "<td>" + Convert.ToString(product.Name) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(string.IsNullOrEmpty(product.HSNCode) ? product.SACCode : product.HSNCode) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.Description) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.UoM) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.PurchaseRate) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.SalesRate) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.CessPercentage) + "</td>";
-                htmlContent += "<td>" + Convert.ToString(product.GSTPercentage) + "</td>";
-                htmlContent += "</tr>";
-                finalstring += htmlContent;
+                if (product.ID > 0)
+                {
+                    string htmlContent = "<tr>";
+                    htmlContent += "<th scope=\"row\">" + Convert.ToString(product.ID) + "</th>";
+                    htmlContent += "<td>" + Convert.ToString(product.Name) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(string.IsNullOrEmpty(product.HSNCode) ? product.SACCode : product.HSNCode) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.Description) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.UoM) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.PurchaseRate) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.SalesRate) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.CessPercentage) + "</td>";
+                    htmlContent += "<td>" + Convert.ToString(product.GSTPercentage) + "</td>";
+                    htmlContent += "</tr>";
+                    finalstring += htmlContent;
+                }
+                else
+                {
+                    continue;
+                }
             }
             uploadedProductsTbody.Controls.Add(new Literal { Text = finalstring.ToString() });
         }
