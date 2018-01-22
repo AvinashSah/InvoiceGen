@@ -70,7 +70,10 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Admin.Master" />
+    <Content Include="Contents\css\animate.min.css" />
     <Content Include="Contents\css\font-awesome-login.css" />
+    <Content Include="Contents\css\Fontsans.css" />
+    <Content Include="Contents\css\FontUbuntu.css" />
     <Content Include="Contents\css\login.css" />
     <Content Include="Contents\fonts\fontawesome-webfont.eot" />
     <Content Include="Contents\fonts\fontawesome-webfont.ttf" />
@@ -83,6 +86,7 @@
     <Content Include="Contents\fonts\glyphicons-halflings-regular.woff2" />
     <Content Include="Default.Master" />
     <None Include="packages.config" />
+    <Content Include="ImportData.aspx" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -174,6 +178,13 @@
     </Compile>
     <Compile Include="Home.aspx.designer.cs">
       <DependentUpon>Home.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ImportData.aspx.cs">
+      <DependentUpon>ImportData.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ImportData.aspx.designer.cs">
+      <DependentUpon>ImportData.aspx</DependentUpon>
     </Compile>
     <Compile Include="Invoice.aspx.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
