@@ -25,8 +25,16 @@ namespace InvoiceGen.Entities
         public Nullable<System.DateTime> PaymentDueDate { get; set; }
         public Nullable<long> BillFromCustID { get; set; }
         public Nullable<long> BillToCustID { get; set; }
-        public string ShippAddress { get; set; }
-        public string BillAddress { get; set; }
+        public string BillAddL1 { get; set; }
+        public string BillAddL2 { get; set; }
+        public Nullable<long> BillAddCityID { get; set; }
+        public Nullable<long> BillStateID { get; set; }
+        public string BillAddZip { get; set; }
+        public string ShipAddL1 { get; set; }
+        public string ShipAddL2 { get; set; }
+        public Nullable<long> ShipAddCityID { get; set; }
+        public Nullable<long> ShipStateID { get; set; }
+        public string ShipAddZip { get; set; }
         public string TermsConditions { get; set; }
         public string NotesForCustomer { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
@@ -34,8 +42,12 @@ namespace InvoiceGen.Entities
         public Nullable<long> CreatedBy { get; set; }
         public Nullable<long> UpdatedBy { get; set; }
     
+        public virtual City City { get; set; }
         public virtual Customer Customer { get; set; }
+        public virtual State State { get; set; }
         public virtual Customer Customer1 { get; set; }
+        public virtual City City1 { get; set; }
+        public virtual State State1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillProductMapping> BillProductMappings { get; set; }
     }

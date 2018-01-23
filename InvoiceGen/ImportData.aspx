@@ -47,9 +47,6 @@
                                         <th scope="col">Product/Services</th>
                                         <th scope="col">HSN/SAC code</th>
                                         <th scope="col">Description</th>
-                                        <th scope="col">UoM</th>
-                                        <th scope="col">Purchase Rate</th>
-                                        <th scope="col">Sales Rate</th>
                                         <th scope="col">Cess %</th>
                                         <th scope="col">GST %</th>
                                     </tr>

@@ -12,7 +12,7 @@ namespace InvoiceGen.DAL
         /// Saves List of Products to Database
         /// </summary>
         /// <param name="listProduct"></param>
-        public List<Product> SaveProductsData(List<Product> listProduct)
+        public List<ProductsMaster> SaveProductsData(List<ProductsMaster> listProduct)
         {
             using (var context = new InvoiceGenEntities())
             {
@@ -20,19 +20,19 @@ namespace InvoiceGen.DAL
                 {
                     foreach (var product in listProduct)
                     {
-                        Product prod = new Product();
+                        ProductsMaster prod = new ProductsMaster();
                         if (product.HSNCode != null)
                         {
-                            prod = context.Products.SqlQuery("Select * from Products where HSNCode=@HSNCode", new SqlParameter("@HSNCode", product.HSNCode)).FirstOrDefault();
+                            prod = context.ProductsMasters.SqlQuery("Select * from ProductsMaster where HSNCode=@HSNCode", new SqlParameter("@HSNCode", product.HSNCode)).FirstOrDefault();
                         }
                         else if (product.SACCode != null)
                         {
-                            prod = context.Products.SqlQuery("Select * from Products where SACCode=@SACCode", new SqlParameter("@SACCode", product.SACCode)).FirstOrDefault();
+                            prod = context.ProductsMasters.SqlQuery("Select * from ProductsMaster where SACCode=@SACCode", new SqlParameter("@SACCode", product.SACCode)).FirstOrDefault();
                         }
 
                         if (prod == null)
                         {
-                            context.Products.Add(product);
+                            context.ProductsMasters.Add(product);
                             context.SaveChanges();
                         }
                     }
@@ -49,12 +49,12 @@ namespace InvoiceGen.DAL
         /// Returns List of all products
         /// </summary>
         /// <returns></returns>
-        public List<Product> GetAllProductList()
+        public List<ProductsMaster> GetAllProductList()
         {
-            List<Product> listProduct = new List<Product>();
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
             using (var context = new InvoiceGenEntities())
             {
-                listProduct = (from a in context.Products
+                listProduct = (from a in context.ProductsMasters
                                where a.Name != null
                                select a).ToList();
             }

@@ -5,9 +5,6 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
 using System.Web.UI.WebControls;
 
 namespace InvoiceGen
@@ -106,7 +103,7 @@ namespace InvoiceGen
             cmdExcel.CommandText = "SELECT * From [" + SheetName + "]";
             oda.SelectCommand = cmdExcel;
             oda.Fill(dt);
-            List<Product> productList = new List<Product>();
+            List<ProductsMaster> productList = new List<ProductsMaster>();
             if (dt != null && dt.Rows.Count > 0)
             {
                 productList = SaveProductsData(dt);
@@ -120,10 +117,10 @@ namespace InvoiceGen
             }
         }
 
-        private void BindDatatoTable(List<Product> productList)
+        private void BindDatatoTable(List<ProductsMaster> productList)
         {
             string finalstring = "";
-            foreach (Product product in productList)
+            foreach (ProductsMaster product in productList)
             {
                 if (product.ID > 0)
                 {
@@ -132,9 +129,6 @@ namespace InvoiceGen
                     htmlContent += "<td>" + Convert.ToString(product.Name) + "</td>";
                     htmlContent += "<td>" + Convert.ToString(string.IsNullOrEmpty(product.HSNCode) ? product.SACCode : product.HSNCode) + "</td>";
                     htmlContent += "<td>" + Convert.ToString(product.Description) + "</td>";
-                    htmlContent += "<td>" + Convert.ToString(product.UoM) + "</td>";
-                    htmlContent += "<td>" + Convert.ToString(product.PurchaseRate) + "</td>";
-                    htmlContent += "<td>" + Convert.ToString(product.SalesRate) + "</td>";
                     htmlContent += "<td>" + Convert.ToString(product.CessPercentage) + "</td>";
                     htmlContent += "<td>" + Convert.ToString(product.GSTPercentage) + "</td>";
                     htmlContent += "</tr>";
@@ -153,7 +147,7 @@ namespace InvoiceGen
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private List<Product> SaveProductsData(DataTable dt)
+        private List<ProductsMaster> SaveProductsData(DataTable dt)
         {
             Requester requester = new Requester();
             requester.Name = Convert.ToString(Session["user"]);

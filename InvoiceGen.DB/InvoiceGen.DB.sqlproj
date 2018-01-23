@@ -67,7 +67,6 @@
     <Build Include="dbo\Tables\States.sql" />
     <Build Include="dbo\Tables\RoleOperationMapping.sql" />
     <Build Include="dbo\Tables\RoleMaster.sql" />
-    <Build Include="dbo\Tables\Products.sql" />
     <Build Include="dbo\Tables\OperationMaster.sql" />
     <Build Include="dbo\Tables\GstStateCodes.sql" />
     <Build Include="dbo\Tables\Customers.sql" />
@@ -76,6 +75,7 @@
     <Build Include="dbo\Tables\Cities.sql" />
     <Build Include="dbo\Tables\BillProductMapping.sql" />
     <Build Include="dbo\Tables\BillMaster.sql" />
+    <Build Include="dbo\Tables\ProductsMaster.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="PostDeploymentScript\MasterData.sql" />

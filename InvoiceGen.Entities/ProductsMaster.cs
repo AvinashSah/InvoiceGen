@@ -12,10 +12,10 @@ namespace InvoiceGen.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Product
+    public partial class ProductsMaster
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Product()
+        public ProductsMaster()
         {
             this.BillProductMappings = new HashSet<BillProductMapping>();
             this.CustomerProductMappings = new HashSet<CustomerProductMapping>();
@@ -26,11 +26,8 @@ namespace InvoiceGen.Entities
         public string HSNCode { get; set; }
         public string SACCode { get; set; }
         public string Description { get; set; }
-        public string UoM { get; set; }
-        public string PurchaseRate { get; set; }
         public string CessPercentage { get; set; }
         public string GSTPercentage { get; set; }
-        public string SalesRate { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }

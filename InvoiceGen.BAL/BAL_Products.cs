@@ -12,22 +12,19 @@ namespace InvoiceGen.BAL
         /// Saves the products data to DB
         /// </summary>
         /// <param name="dt"></param>
-        public List<Product> SaveProductsData(DataTable dt, Requester requester)
+        public List<ProductsMaster> SaveProductsData(DataTable dt, Requester requester)
         {
             DAL_Products dAL_Products = new DAL_Products();
-            List<Product> listProduct = new List<Product>();
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
             if (dt != null & dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
                 {
-                    Product product = new Product();
+                    ProductsMaster product = new ProductsMaster();
                     product.Name = Convert.ToString(row["Name"]);
                     product.HSNCode = Convert.ToString(row["HSNCode"] is DBNull ? DBNull.Value : row["HSNCode"]);
                     product.SACCode = Convert.ToString(row["SACCode"] is DBNull ? DBNull.Value : row["SACCode"]);
                     product.Description = Convert.ToString(row["Description"]);
-                    product.UoM = Convert.ToString(row["UoM"]);
-                    product.PurchaseRate = Convert.ToString(row["PurchaseRate"]);
-                    product.SalesRate = Convert.ToString(row["SalesRate"]);
                     product.CessPercentage = Convert.ToString(row["CessPercentage"]);
                     product.GSTPercentage = Convert.ToString(row["GSTPercentage"]);
                     product.IsActive = true;
@@ -42,7 +39,7 @@ namespace InvoiceGen.BAL
             return listProduct;
         }
 
-        public List<Product> GetAllProductList()
+        public List<ProductsMaster> GetAllProductList()
         {
             DAL_Products dAL_Products = new DAL_Products();
             return dAL_Products.GetAllProductList();

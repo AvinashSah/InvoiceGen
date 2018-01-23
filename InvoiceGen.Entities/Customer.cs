@@ -30,18 +30,18 @@ namespace InvoiceGen.Entities
         public string CustomerType { get; set; }
         public string ContactName { get; set; }
         public string ContactNumber { get; set; }
-        public string Gstin { get; set; }
+        public string GSTIN { get; set; }
         public string PAN { get; set; }
-        public string BAddL1 { get; set; }
-        public string BAddL2 { get; set; }
-        public string BAddCity { get; set; }
-        public string BAddState { get; set; }
-        public string BAddZip { get; set; }
-        public string SAddL1 { get; set; }
-        public string SAddL2 { get; set; }
-        public string SAddCity { get; set; }
-        public string SAddState { get; set; }
-        public string SAddZip { get; set; }
+        public string BillAddL1 { get; set; }
+        public string BillAddL2 { get; set; }
+        public Nullable<long> BillAddCityID { get; set; }
+        public Nullable<long> BillStateID { get; set; }
+        public string BillAddZip { get; set; }
+        public string ShipAddL1 { get; set; }
+        public string ShipAddL2 { get; set; }
+        public Nullable<long> ShipAddCityID { get; set; }
+        public Nullable<long> ShipStateID { get; set; }
+        public string ShipAddZip { get; set; }
         public Nullable<bool> IsActive { get; set; }
         public Nullable<System.DateTime> CreatedOn { get; set; }
         public Nullable<System.DateTime> UpdatedOn { get; set; }
@@ -52,7 +52,11 @@ namespace InvoiceGen.Entities
         public virtual ICollection<BillMaster> BillMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillMaster> BillMasters1 { get; set; }
+        public virtual City City { get; set; }
+        public virtual City City1 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CustomerProductMapping> CustomerProductMappings { get; set; }
+        public virtual State State { get; set; }
+        public virtual State State1 { get; set; }
     }
 }

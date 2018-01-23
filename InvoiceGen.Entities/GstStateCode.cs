@@ -12,20 +12,13 @@ namespace InvoiceGen.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class CustomerProductMapping
+    public partial class GstStateCode
     {
         public long ID { get; set; }
-        public Nullable<long> ProductID { get; set; }
-        public Nullable<long> CustomerID { get; set; }
-        public string SalesRate { get; set; }
-        public string PurchaseRate { get; set; }
+        public string GSTStateCode1 { get; set; }
         public Nullable<bool> IsActive { get; set; }
-        public Nullable<System.DateTime> CreatedOn { get; set; }
-        public Nullable<System.DateTime> UpdatedOn { get; set; }
-        public Nullable<long> CreatedBy { get; set; }
-        public Nullable<long> UpdatedBy { get; set; }
+        public Nullable<long> StateID { get; set; }
     
-        public virtual Customer Customer { get; set; }
-        public virtual ProductsMaster ProductsMaster { get; set; }
+        public virtual State State { get; set; }
     }
 }

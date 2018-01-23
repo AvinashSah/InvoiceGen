@@ -17,7 +17,8 @@ namespace InvoiceGen.Entities
         public long ID { get; set; }
         public Nullable<long> BillID { get; set; }
         public Nullable<long> ProductID { get; set; }
-        public string RateCharged { get; set; }
+        public string PurchaseRate { get; set; }
+        public string SalesRate { get; set; }
         public string Qyantity { get; set; }
         public string TotalAmount { get; set; }
         public string DiscountPerc { get; set; }
@@ -27,6 +28,6 @@ namespace InvoiceGen.Entities
         public string SGST { get; set; }
     
         public virtual BillMaster BillMaster { get; set; }
-        public virtual Product Product { get; set; }
+        public virtual ProductsMaster ProductsMaster { get; set; }
     }
 }

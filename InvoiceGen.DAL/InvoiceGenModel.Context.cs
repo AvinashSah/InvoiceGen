@@ -28,12 +28,16 @@ namespace InvoiceGen.DAL
     
         public virtual DbSet<BillMaster> BillMasters { get; set; }
         public virtual DbSet<BillProductMapping> BillProductMappings { get; set; }
+        public virtual DbSet<City> Cities { get; set; }
+        public virtual DbSet<Country> Countries { get; set; }
         public virtual DbSet<CustomerProductMapping> CustomerProductMappings { get; set; }
         public virtual DbSet<Customer> Customers { get; set; }
+        public virtual DbSet<GstStateCode> GstStateCodes { get; set; }
         public virtual DbSet<OperationMaster> OperationMasters { get; set; }
-        public virtual DbSet<Product> Products { get; set; }
+        public virtual DbSet<ProductsMaster> ProductsMasters { get; set; }
         public virtual DbSet<RoleMaster> RoleMasters { get; set; }
         public virtual DbSet<RoleOperationMapping> RoleOperationMappings { get; set; }
+        public virtual DbSet<State> States { get; set; }
         public virtual DbSet<UserMaster> UserMasters { get; set; }
         public virtual DbSet<UserRoleMapping> UserRoleMappings { get; set; }
     }
