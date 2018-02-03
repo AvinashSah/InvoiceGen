@@ -17,7 +17,7 @@
         htmlContent += "<td>" + "<input type=\"text\" class=\"form-control\" placeholder=\"Item Description\" id=\"itemDescription" + (rowCount + 1) + "\" \>  " + "</td>";
         htmlContent += "<td>" + "<input type=\"text\" autocomplete=\"on\" class=\"HSNCode form-control\" placeholder=\"Item HSN/SAC\" id=\"itemHSNSAC" + (rowCount + 1) + "\" \>  " + " <ul class=\"suggesstion-boxHSN\"></ul> </td>";
         htmlContent += "<td>" + "<input type=\"text\" class=\"form-control\" placeholder=\"Item Qty\" id=\"itemQty" + (rowCount + 1) + "\" \>  " + "</td>";
-        htmlContent += "<td>" + "<input type=\"text\" class=\"form-control\" placeholder=\"Item Rate\" id=\"itemRate" + (rowCount + 1) + "\" \>  " + "</td>";
+        htmlContent += "<td>" + "<input type=\"text\" class=\"itemRate form-control\" placeholder=\"Item Rate\" id=\"itemRate" + (rowCount + 1) + "\" \>  " + "</td>";
         htmlContent += "<td>" + "<input type=\"text\" class=\"form-control\" placeholder=\"Item Total Amount\" id=\"itemAmount" + (rowCount + 1) + "\" \>  " + "</td>";
         htmlContent += "<td>" + "<button type=\"button\" id=\"itemDelete" + (rowCount + 1) + "\" class=\"itemDeleteAddInvoice btn btn-primary\" style=\"float: right\"><i class=\"fa fa-cut\" style=\"padding-right: 10px\"></i></button>" + "</td>";
         htmlContent += "</tr>";
@@ -25,9 +25,19 @@
         $("#itemList tbody").append(htmlContent);
     }
 
-    $("#itemList").on('click', '.itemDeleteAddInvoice', function () {
-        $(this).parents('tr').first().remove();
+    $("#itemList").on('keypress', '.itemRate', function () {
+        var id = this.id;
+        var identifier = id.replace('itemRate', '');
+        var itemAmountTxtBox = document.getElementById("itemAmount" + identifier);
+        var qtyTxtBoxRef = document.getElementById("itemQty" + identifier);
+        var rateTxtBoxRef = document.getElementById("itemRate" + identifier);
+        //calculate amount
+        itemAmountTxtBox.innerText = qtyTxtBoxRef.innerText * rateTxtBoxRef.innerText;
     });
+
+    $("#itemList").on('click', '.itemDeleteAddInvoice', function () {
+            $(this).parents('tr').first().remove();
+        });
 
     //$("#itemList").on('keypress', '.HSNCode', function () {
     //    var id = this.id;

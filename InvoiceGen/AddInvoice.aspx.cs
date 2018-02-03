@@ -116,7 +116,6 @@ namespace InvoiceGen
 
             }
         }
-
         #endregion
 
         #region PDF GEN
@@ -193,12 +192,10 @@ namespace InvoiceGen
             var selectedState = billToClientStateList.SelectedValue;
             BindCityToControl(selectedState, billToClientCityList);
         }
-
         protected void billToClientCityList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         protected void billToClientGSTIN_TextChanged(object sender, EventArgs e)
         {
             BAL_Common bAL_Common = new BAL_Common();
@@ -238,12 +235,10 @@ namespace InvoiceGen
             var selectedState = shipToClientStateList.SelectedValue;
             BindCityToControl(selectedState, shipToClientCityList);
         }
-
         protected void shipToClientCityList_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }
-
         protected void shipToClientGSTIN_TextChanged(object sender, EventArgs e)
         {
             BAL_Common bAL_Common = new BAL_Common();
@@ -265,24 +260,6 @@ namespace InvoiceGen
 
             }
         }
-
-
-        #endregion
-
-        #region CREATE ITEM MODAL 
-        protected void existingListItem_SelectedIndexChanged(object sender, EventArgs e)
-        {
-
-        }
-        protected void AddItemToInvoice_ServerClick(object sender, EventArgs e)
-        {
-            BAL_Products bAL_Products = new BAL_Products();
-            List<ProductsMaster> products = new List<ProductsMaster>();
-            products = bAL_Products.GetAllProductList();
-            //newItem.Controls.Add(new Literal { Text = htmlContent.ToString() });
-        }
-        #endregion
-
         protected void chkSameAsBillAddress_CheckedChanged(object sender, EventArgs e)
         {
             if (chkSameAsBillAddress.Checked)
@@ -335,5 +312,22 @@ namespace InvoiceGen
                 shipToClientCityList.ClearSelection();
             }
         }
+        #endregion
+
+        #region CREATE ITEM MODAL 
+        protected void existingListItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        protected void AddItemToInvoice_ServerClick(object sender, EventArgs e)
+        {
+            BAL_Products bAL_Products = new BAL_Products();
+            List<ProductsMaster> products = new List<ProductsMaster>();
+            products = bAL_Products.GetAllProductList();
+            //newItem.Controls.Add(new Literal { Text = htmlContent.ToString() });
+        }
+        #endregion
+
+        
     }
 }

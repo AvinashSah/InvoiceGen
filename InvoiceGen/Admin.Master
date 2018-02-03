@@ -52,6 +52,7 @@
                             <ul class="dropdown-menu" data-dropdown-in="fadeInUp" data-dropdown-out="fadeOutDown">
                                 <li><a href="#" runat="server"><i class="fa fa-user" style="padding-right: 10px"></i>Clients</a></li>
                                 <li><a href="#" runat="server"><i class="fa fa-sticky-note" style="padding-right: 10px"></i>Bills</a></li>
+                                <li><a href="AddInvoice.aspx" runat="server"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Create Invoice</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">

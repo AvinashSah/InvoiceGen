@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Web.Security;
 using System.Web.UI;
 
 namespace InvoiceGen
@@ -7,46 +8,24 @@ namespace InvoiceGen
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Response.Cookies["UserName"].Value != null && Response.Cookies["Password"].Value != null)
+            if (!Page.IsPostBack)
             {
-                string username = Response.Cookies["UserName"].Value;
-                string passWord = Response.Cookies["Password"].Value;
-                if (ValidateCreds(username, passWord))
-                {
-                    Response.Redirect("Home.aspx");
-                }
+                
             }
         }
-        protected void GuestLoginClick(Object sender, EventArgs e)
-        {
-            Session["loginType"] = "Guest";
-            Response.RedirectPermanent("AddInvoice.aspx", true);
-        }
+        //protected void GuestLoginClick(Object sender, EventArgs e)
+        //{
+        //    Response.RedirectPermanent("AddInvoice.aspx", true);
+        //}
 
         protected void adminLoginClick(Object sender, EventArgs e)
         {
             string username = txtUserName.Text.Trim();
             string passWord = txtPassword.Text.Trim();
+            bool rememberMe = chkRememberMe.Checked;
             if (ValidateCreds(username, passWord))
             {
-                if (chkRememberMe.Checked)
-                {
-                    Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(2);
-                    Response.Cookies["Password"].Expires = DateTime.Now.AddDays(2);
-                }
-                else
-                {
-                    Response.Cookies["UserName"].Expires = DateTime.Now.AddDays(-1);
-                    Response.Cookies["Password"].Expires = DateTime.Now.AddDays(-1);
-
-                }
-                Response.Cookies["UserName"].Value = txtUserName.Text.Trim();
-                Response.Cookies["Password"].Value = txtPassword.Text.Trim();
-                Session["user"] = txtUserName.Text.Trim();
-                Session["userID"] = 1;
-                Session["key"] = txtPassword.Text.Trim();
-
-                Response.Redirect("Home.aspx");
+                FormsAuthentication.RedirectFromLoginPage(username, rememberMe);
             }
             else
             {

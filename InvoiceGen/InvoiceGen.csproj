@@ -84,6 +84,7 @@
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="AutoFillService.asmx" />
+    <Content Include="Bill.aspx" />
     <Content Include="Contents\css\animate.min.css" />
     <Content Include="Contents\css\font-awesome-login.css" />
     <Content Include="Contents\css\Fontsans.css" />
@@ -106,9 +107,14 @@
     <Content Include="Contents\js\jquery-ui.min.js" />
     <Content Include="Default.Master" />
     <None Include="packages.config" />
+    <Content Include="Global.asax" />
+    <Content Include="Home.aspx" />
     <Content Include="ImportData.aspx" />
+    <Content Include="Invoice.aspx" />
+    <Content Include="Login.aspx" />
     <Content Include="Site.Mobile.Master" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\PublishProfiles\FolderProfile1.pubxml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -118,7 +124,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="AddInvoice.aspx" />
-    <Content Include="Bill.aspx" />
     <Content Include="Contents\css\1-col-portfolio.css" />
     <Content Include="Contents\css\bootstrap.css" />
     <Content Include="Contents\css\bootstrap.min.css" />
@@ -160,10 +165,6 @@
     <Content Include="Contents\js\jquery.smartmenus.js" />
     <Content Include="Contents\js\tutorial.js" />
     <Content Include="Contents\js\wow.min.js" />
-    <Content Include="Global.asax" />
-    <Content Include="Home.aspx" />
-    <Content Include="Invoice.aspx" />
-    <Content Include="Login.aspx" />
     <Content Include="UserControls\ItemCRUDControl.ascx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Web.config" />
@@ -176,11 +177,18 @@
     <Compile Include="AddInvoice.aspx.designer.cs">
       <DependentUpon>AddInvoice.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
+    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="AutoFillService.asmx.cs">
       <DependentUpon>AutoFillService.asmx</DependentUpon>
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Bill.aspx.cs">
       <DependentUpon>Bill.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,13 +226,6 @@
     </Compile>
     <Compile Include="Invoice.aspx.designer.cs">
       <DependentUpon>Invoice.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Admin.Master.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Admin.Master.designer.cs">
-      <DependentUpon>Admin.Master</DependentUpon>
     </Compile>
     <Compile Include="Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
