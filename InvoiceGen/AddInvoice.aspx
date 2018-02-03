@@ -124,7 +124,7 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading">
                             <strong>Ship To: </strong>
-                            <asp:CheckBox ID="chkSameAsBillAddress" Text="Same as Bill Address" Style="float: right" TabIndex="17" TextAlign="Right" runat="server" />
+                            <asp:CheckBox ID="chkSameAsBillAddress" OnCheckedChanged="chkSameAsBillAddress_CheckedChanged" Text="Same as Bill Address" Style="float: right" TabIndex="17" TextAlign="Right" runat="server" AutoPostBack="true" />
                         </div>
                         <div class="panel-body">
                             <table class="table-condensed">

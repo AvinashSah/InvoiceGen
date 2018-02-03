@@ -282,5 +282,58 @@ namespace InvoiceGen
             //newItem.Controls.Add(new Literal { Text = htmlContent.ToString() });
         }
         #endregion
+
+        protected void chkSameAsBillAddress_CheckedChanged(object sender, EventArgs e)
+        {
+            if (chkSameAsBillAddress.Checked)
+            {
+                shipToClientName.Value = billToClientName.Value;
+                shipToClientName.Disabled = true;
+                shipToClientGSTIN.Text = billToClientGSTIN.Text;
+                shipToClientGSTIN.ReadOnly = true;
+                shipToClientPAN.Value = billToClientPAN.Value;
+                shipToClientPAN.Disabled = true;
+                shipToClientContactName.Value = billToClientContactName.Value;
+                shipToClientContactName.Disabled = true;
+                shipToClientAddLine1.Value = billToClientAddline1.Value;
+                shipToClientAddLine1.Disabled = true;
+                shipToClientAddLine2.Value = billToClientAddline2.Value;
+                shipToClientAddLine2.Disabled = true;
+
+                var stateID = billToClientStateList.SelectedValue;
+                shipToClientStateList.SelectedValue = stateID;
+                shipToClientStateList.Enabled = false;
+
+                var cityID = billToClientCityList.SelectedValue;
+                BindCityToControl(stateID.ToString(), shipToClientCityList);
+                shipToClientCityList.ClearSelection();
+                ListItem selectedListItem = shipToClientCityList.Items.FindByValue(cityID);
+                if (selectedListItem != null)
+                {
+                    selectedListItem.Selected = true;
+                }
+                //shipToClientCityList.SelectedItem = cityName;
+                shipToClientCityList.Enabled = false;
+            }
+            else
+            {
+                shipToClientName.Disabled = false;
+                shipToClientName.Value = null;
+                shipToClientGSTIN.ReadOnly = false;
+                shipToClientGSTIN.Text = null;
+                shipToClientPAN.Disabled = false;
+                shipToClientPAN.Value = null;
+                shipToClientContactName.Disabled = false;
+                shipToClientContactName.Value = null;
+                shipToClientAddLine1.Disabled = false;
+                shipToClientAddLine1.Value = null;
+                shipToClientAddLine2.Disabled = false;
+                shipToClientAddLine2.Value = null;
+                shipToClientStateList.Enabled = true;
+                shipToClientCityList.Enabled = true;
+                shipToClientStateList.ClearSelection();
+                shipToClientCityList.ClearSelection();
+            }
+        }
     }
 }
