@@ -44,6 +44,22 @@ namespace InvoiceGen.BAL
             DAL_Products dAL_Products = new DAL_Products();
             return dAL_Products.GetAllProductList();
         }
+
+        public List<ProductsMaster> GetProducListByHSNSACCode(string hSNPrefix)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
+            listProduct = dAL_Products.GetProducListByHSNSACCode(hSNPrefix);
+            return listProduct;
+        }
+
+        public List<ProductsMaster> GetProductListByProductName(string hSNPrefix)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
+            listProduct = dAL_Products.GetProductListByProductName(hSNPrefix);
+            return listProduct;
+        }
     }
 }
 

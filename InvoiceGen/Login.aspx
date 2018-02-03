@@ -68,7 +68,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <div class="clear"></div>
             </div>
             <input id="login" type="submit" value="Admin" runat="server" onserverclick="adminLoginClick" form="loginForm" />
-            <asp:Button ID="guestLogin" OnClick="GuestLoginClick" runat="server" Text="Guest" />
+            <input type="button" class="fa-users" value="Guest" id="guestLogin" onserverclick="GuestLoginClick" runat="server" />
+            
         </form>
         <!--// main-w3layouts-form -->
     </div>

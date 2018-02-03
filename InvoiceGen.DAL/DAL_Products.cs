@@ -60,5 +60,29 @@ namespace InvoiceGen.DAL
             }
             return listProduct;
         }
+
+        public List<ProductsMaster> GetProducListByHSNSACCode(string hSNPrefix)
+        {
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
+            using (var context = new InvoiceGenEntities())
+            {
+                listProduct = (from a in context.ProductsMasters
+                               where a.HSNCode.Contains(hSNPrefix) || a.SACCode.Contains(hSNPrefix)
+                               select a).ToList();
+            }
+            return listProduct;
+        }
+
+        public List<ProductsMaster> GetProductListByProductName(string productName)
+        {
+            List<ProductsMaster> listProduct = new List<ProductsMaster>();
+            using (var context = new InvoiceGenEntities())
+            {
+                listProduct = (from a in context.ProductsMasters
+                               where a.Name.Contains(productName)
+                               select a).ToList();
+            }
+            return listProduct;
+        }
     }
 }

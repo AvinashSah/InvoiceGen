@@ -1,5 +1,7 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Admin.Master.cs" Inherits="InvoiceGen.InvoiceGen" %>
 
+
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
@@ -17,6 +19,7 @@
     <link href="Contents/css/owl/owl.theme.css" rel="stylesheet" type="text/css" />
     <link href="Contents/css/owl/owl.transitions.css" rel="stylesheet" type="text/css" />
     <link href="Contents/css/dataTables.bootstrap.min.css" rel="stylesheet" type="text/css" />
+    <link href="Contents/css/jquery-ui.css" rel="stylesheet" type="text/css" />
     <!-- Custom CSS -->
     <link href="Contents/css/1-col-portfolio.css" rel="stylesheet" />
     <link href='https://fonts.googleapis.com/css?family=Ubuntu:300,400,700' rel='stylesheet'
@@ -47,7 +50,7 @@
                 <div class="navbar-collapse collapse">
                     <!-- Left nav -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active"><a href="AddInvoice.aspx" runat="server"><i class="fa fa-plus-square" style="padding-right: 10px"></i>Create Invoice</a></li>
+                        <%--<li class="active"><a href="AddInvoice.aspx" runat="server"><i class="fa fa-plus-square" style="padding-right: 10px"></i>Create Invoice</a></li>--%>
                         <%--<li><a href="#" runat="server">Contact</a></li>--%>
                         <li>
                             <!-- add search form -->
@@ -71,7 +74,9 @@
         </asp:ContentPlaceHolder>
 
         <!-- jQuery -->
-        <script type="text/javascript" src="Contents/js/jquery.js"></script>
+        <script src="Contents/js/jquery-1.9.1.js"></script>
+        <script src="Contents/js/jquery-ui.js"></script>
+        <%--<script src="https://code.jquery.com/jquery-2.1.1.min.js" type="text/javascript"></script>--%>
         <!-- Bootstrap Core JavaScript -->
         <script type="text/javascript" src="Contents/js/bootstrap.min.js"></script>
         <script type="text/javascript" src="Contents/js/wow.min.js"></script>
@@ -81,9 +86,12 @@
         <script type="text/javascript" src="Contents/js/jquery.smartmenus.bootstrap.js"></script>
         <script type="text/javascript" src="Contents/js/jquery.dataTables.min.js"></script>
         <script type="text/javascript" src="Contents/js/dataTables.bootstrap.min.js"></script>
-        <script type="text/javascript" src="Contents/js/HomeGrid.js"></script>
         <!-- SmartMenus jQuery Bootstrap Addon -->
         <script type="text/javascript" src="Contents/js/jquery.smartmenus.bootstrap.js"></script>
+        <!-- Custom JS -->
+        <script type="text/javascript" src="Contents/js/HomeGrid.js"></script>
+
+        <script type="text/javascript" src="Contents/CustomJS/AddInvoice.js"></script>
     </form>
 </body>
 </html>

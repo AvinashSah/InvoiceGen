@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace InvoiceGen
 {
@@ -20,12 +16,11 @@ namespace InvoiceGen
                     Response.Redirect("Home.aspx");
                 }
             }
-
         }
         protected void GuestLoginClick(Object sender, EventArgs e)
         {
             Session["loginType"] = "Guest";
-            Response.RedirectPermanent("AddInvoice.aspx");
+            Response.RedirectPermanent("AddInvoice.aspx", true);
         }
 
         protected void adminLoginClick(Object sender, EventArgs e)
