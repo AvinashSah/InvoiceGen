@@ -220,24 +220,6 @@ namespace InvoiceGen {
         protected global::System.Web.UI.WebControls.CheckBox chkSameAsBillAddress;
         
         /// <summary>
-        /// shipToClientName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText shipToClientName;
-        
-        /// <summary>
-        /// shipToClientContactName control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText shipToClientContactName;
-        
-        /// <summary>
         /// shipToClientAddLine1 control.
         /// </summary>
         /// <remarks>

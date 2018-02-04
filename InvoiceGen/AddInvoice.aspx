@@ -130,7 +130,7 @@
                         <div class="panel-body">
                             <table class="table-condensed">
                                 <tbody>
-                                    <tr>
+                                    <%--<tr>
                                         <th>
                                             <input type="text" class="form-control" placeholder="Your Clien't name" tabindex="18" runat="server" id="shipToClientName" />
                                         </th>
@@ -139,7 +139,7 @@
                                         <th>
                                             <input type="text" class="form-control" placeholder="Your Name" tabindex="21" runat="server" id="shipToClientContactName" />
                                         </th>
-                                    </tr>
+                                    </tr>--%>
                                     <tr>
                                         <th>
                                             <input type="text" class="form-control" placeholder="Address Line 1" tabindex="22" id="shipToClientAddLine1" runat="server" />
@@ -182,11 +182,11 @@
                                         <th scope="col">Product</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">HSN/SAC</th>
+                                        <th scope="col">GST%</th>
                                         <th scope="col">QTY</th>
                                         <th scope="col">Rate</th>
                                         <th scope="col">Total Amount</th>
                                         <th scope="col">Operation</th>
-                                        <th scope="col" style="display: none;">GST%</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -209,20 +209,26 @@
                                 <thead>
                                     <tr>
                                         <th scope="col">Total Cost</th>
-                                        <th scope="col">IGST %</th>
+                                        <th scope="col">IGST</th>
                                         <th scope="col">Final Amount</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+
+                                </tbody>
                             </table>
                             <table id="amoutCalculationIntraState" style="display: none" class="table table-striped" cellspacing="0" width="100%" runat="server">
                                 <thead>
                                     <tr>
                                         <th scope="col">Total Cost</th>
-                                        <th scope="col">CGST %</th>
-                                        <th scope="col">SGST %</th>
+                                        <th scope="col">CGST</th>
+                                        <th scope="col">SGST</th>
                                         <th scope="col">Final Amount</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+
+                                </tbody>
                             </table>
                         </div>
                     </div>
