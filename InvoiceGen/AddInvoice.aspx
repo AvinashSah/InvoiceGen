@@ -2,7 +2,7 @@
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="addInvoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <div class="padding100" id="blog">
+    <div class="padding100" id="blog" runat="server">
         <div class="container">
             <!--  -->
             <div class="row">
@@ -63,6 +63,7 @@
                             <asp:FileUpload ID="comapnyLogoUploadFile" runat="server" CssClass="form-group" TabIndex="7" />
                             <asp:Button ID="btnCompanyLogoUpload" runat="server" Text="Upload" OnClick="btnCompanyLogoUpload_Click" CssClass="form-group" TabIndex="8" />
                         </div>
+                        <label style="display: none" id="companyLogoID" runat="server"></label>
                     </div>
                     <asp:Image ID="companyLogo" runat="server" Style="float: right" />
                 </div>
@@ -136,17 +137,6 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:TextBox ID="shipToClientGSTIN" runat="server" CssClass="form-control" TabIndex="19" placeholder="GSTIN" AutoPostBack="true" OnTextChanged="shipToClientGSTIN_TextChanged"></asp:TextBox>
-                                        </th>
-                                        <td>
-                                            <span>or</span>
-                                        </td>
-                                        <th>
-                                            <input type="text" class="form-control" placeholder="PAN" runat="server" tabindex="20" id="shipToClientPAN" />
-                                        </th>
-                                    </tr>
-                                    <tr>
-                                        <th>
                                             <input type="text" class="form-control" placeholder="Your Name" tabindex="21" runat="server" id="shipToClientContactName" />
                                         </th>
                                     </tr>
@@ -182,13 +172,13 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading">
                             <strong>Item Details</strong>
-                            <button type="button" id="AddItemToInvoice" tabindex="26" class="btn btn-primary mb-2" style="float: right"><i class="fa fa-plus-circle" style="padding-right: 10px"></i></button>
+                            <button type="button" id="AddItemToInvoice" tabindex="26" class="btn btn-primary mb-2" style="float: right; padding: 3px"><i class="fa fa-plus-circle"></i></button>
                         </div>
                         <div class="panel-body">
                             <table id="itemList" class="table table-striped" cellspacing="0" width="100%">
                                 <thead>
                                     <tr>
-                                        <th scope="col">#No</th>
+                                        <%--<th scope="col" style="display: none;">#No</th>--%>
                                         <th scope="col">Product</th>
                                         <th scope="col">Description</th>
                                         <th scope="col">HSN/SAC</th>
@@ -196,6 +186,7 @@
                                         <th scope="col">Rate</th>
                                         <th scope="col">Total Amount</th>
                                         <th scope="col">Operation</th>
+                                        <th scope="col" style="display: none;">GST%</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -214,7 +205,7 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading"><strong>Total Amount</strong></div>
                         <div class="panel-body">
-                            <table id="amoutCalculationInterState" class="table table-striped" cellspacing="0" width="100%" runat="server">
+                            <table id="amoutCalculationInterState" style="display: none" class="table table-striped" cellspacing="0" width="100%" runat="server">
                                 <thead>
                                     <tr>
                                         <th scope="col">Total Cost</th>
@@ -223,7 +214,7 @@
                                     </tr>
                                 </thead>
                             </table>
-                            <table id="amoutCalculationIntraState" class="table table-striped" cellspacing="0" width="100%" runat="server">
+                            <table id="amoutCalculationIntraState" style="display: none" class="table table-striped" cellspacing="0" width="100%" runat="server">
                                 <thead>
                                     <tr>
                                         <th scope="col">Total Cost</th>
@@ -245,7 +236,7 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading"><strong>Terms & Conditions</strong></div>
                         <div class="panel-body">
-                            <asp:TextBox ID="TextBox1" TabIndex="27" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Terms & Conditions for Customer If any" />
+                            <asp:TextBox ID="termsAndCondition" TabIndex="27" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Terms & Conditions for Customer If any" />
                         </div>
                     </div>
                 </div>
@@ -255,22 +246,21 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading"><strong>Notes For Customer</strong></div>
                         <div class="panel-body">
-                            <asp:TextBox ID="TextArea1" TabIndex="28" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Notes For Customer" />
+                            <asp:TextBox ID="notesForCustomer" TabIndex="28" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Notes For Customer" />
                         </div>
                     </div>
                 </div>
             </div>
             <!--  -->
             <div class="row">
-                <div class="form-group col-lg-2">
+                <%--<div class="form-group col-lg-2">
                     <button type="submit" id="generatePDF" tabindex="30" class="btn btn-primary mb-2" runat="server" onserverclick="generateInvoicePDF_ServerClick"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Generate PDF</button>
-                </div>
+                </div>--%>
 
-                <div class="form-group col-lg-2">
-                    <button type="submit" id="CreateBill" tabindex="29" class="btn btn-primary mb-2" runat="server" onserverclick="saveInvoice_ServerClick"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Generate Invoice</button>
+                <div class="form-group col-lg-12">
+                    <button id="CreateBill" tabindex="29" class="btn btn-primary mb-2"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Generate Invoice</button>
                 </div>
             </div>
         </div>
     </div>
-
 </asp:Content>

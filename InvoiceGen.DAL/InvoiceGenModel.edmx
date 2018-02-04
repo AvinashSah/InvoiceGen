@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="InvoiceGenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="InvoiceGenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BillMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -85,9 +85,7 @@
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="FirstName" Type="nvarchar" MaxLength="100" />
-          <Property Name="MiddleName" Type="nvarchar" MaxLength="100" />
-          <Property Name="LastName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="EmailID" Type="nvarchar" MaxLength="200" />
           <Property Name="CustomerType" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="ContactName" Type="nvarchar" MaxLength="400" Nullable="false" />
@@ -109,6 +107,7 @@
           <Property Name="UpdatedOn" Type="datetime" />
           <Property Name="CreatedBy" Type="bigint" />
           <Property Name="UpdatedBy" Type="bigint" />
+          <Property Name="CustomerLogoPath" Type="nvarchar" MaxLength="500" />
         </EntityType>
         <EntityType Name="GstStateCodes">
           <Key>
@@ -554,8 +553,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InvoiceGenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -656,9 +654,6 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CustomerType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
@@ -687,6 +682,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Custo__34C8D9D1" FromRole="Customers" ToRole="CustomerProductMapping" />
           <NavigationProperty Name="State" Relationship="Self.FK__Customers__BillS__29572725" FromRole="Customers" ToRole="States" />
           <NavigationProperty Name="State1" Relationship="Self.FK__Customers__ShipS__2B3F6F97" FromRole="Customers" ToRole="States" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CustomerLogoPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GstStateCode">
           <Key>
@@ -1231,10 +1228,9 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="InvoiceGenModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
+                <ScalarProperty Name="CustomerLogoPath" ColumnName="CustomerLogoPath" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />

@@ -14,6 +14,10 @@ using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using iTextSharp.text.html;
+using iTextSharp.text.xml;
 
 namespace InvoiceGen
 {
@@ -123,8 +127,8 @@ namespace InvoiceGen
         {
             if (startConversion)
             {
-                generatePDF.Visible = false;
-                CreateBill.Visible = false;
+                //generatePDF.Visible = false;
+                //CreateBill.Visible = false;
                 // get html of the page
                 TextWriter myWriter = new StringWriter();
                 HtmlTextWriter htmlWriter = new HtmlTextWriter(myWriter);
@@ -137,7 +141,7 @@ namespace InvoiceGen
                 converter.Options.WebPageHeight = 768;
 
                 // create a new pdf document converting the html string of the page
-                PdfDocument doc = converter.ConvertHtmlString(
+                SelectPdf.PdfDocument doc = converter.ConvertHtmlString(
                     myWriter.ToString(), Request.Url.AbsoluteUri);
 
                 // save pdf document
@@ -145,8 +149,8 @@ namespace InvoiceGen
 
                 // close pdf document
                 doc.Close();
-                generatePDF.Visible = true;
-                CreateBill.Visible = true;
+               // generatePDF.Visible = true;
+                //CreateBill.Visible = true;
             }
             else
             {
@@ -156,20 +160,32 @@ namespace InvoiceGen
         }
         protected void btnCompanyLogoUpload_Click(object sender, EventArgs e)
         {
-            if (comapnyLogoUploadFile.PostedFile != null)
+            if (companyName.Text != null && (compannyGstin.Text != null || companyPan.Value != null))
             {
-                string FileName = Path.GetFileName(comapnyLogoUploadFile.PostedFile.FileName);
-                //Save files to images folder
-                comapnyLogoUploadFile.SaveAs(Server.MapPath("App_Data/Images/" + FileName));
-                System.IO.Stream fs = comapnyLogoUploadFile.PostedFile.InputStream;
-                System.IO.BinaryReader br = new System.IO.BinaryReader(fs);
-                Byte[] bytes = br.ReadBytes((Int32)fs.Length);
-                string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
-                companyLogo.ImageUrl = "data:image/png;base64," + base64String;
-                comapnyLogoUploadFile.Visible = false;
-                comapnyLogoUploadFile.Visible = false;
-                panelLogo.Visible = false;
-                companyLogo.Visible = true;
+                if (comapnyLogoUploadFile.PostedFile != null)
+                {
+                    string FileName = Path.GetFileName(comapnyLogoUploadFile.PostedFile.FileName);
+                    string FolderPath = "Images/" + compannyGstin.Text;
+                    string FilePath = Server.MapPath(FolderPath + Convert.ToString(DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                    if (!Directory.Exists(FilePath))
+                    {
+                        //If Directory (Folder) does not exists. Create it.
+                        Directory.CreateDirectory(FilePath);
+                    }
+                    FilePath += "\\" + FileName;
+                    companyLogoID.InnerText = FilePath;
+                    //Save files to images folder
+                    comapnyLogoUploadFile.SaveAs(FilePath);
+                    Stream fs = comapnyLogoUploadFile.PostedFile.InputStream;
+                    BinaryReader br = new BinaryReader(fs);
+                    Byte[] bytes = br.ReadBytes((Int32)fs.Length);
+                    string base64String = Convert.ToBase64String(bytes, 0, bytes.Length);
+                    companyLogo.ImageUrl = "data:image/png;base64," + base64String;
+                    comapnyLogoUploadFile.Visible = false;
+                    comapnyLogoUploadFile.Visible = false;
+                    panelLogo.Visible = false;
+                    companyLogo.Visible = true;
+                }
             }
         }
         #endregion
@@ -177,6 +193,44 @@ namespace InvoiceGen
         #region PAGE LEVEL OPERATIONS
         protected void saveInvoice_ServerClick(object sender, EventArgs e)
         {
+            //Get Customer Data
+            Customer customer = new Customer();
+            customer.Name = companyName.Text;
+            customer.GSTIN = compannyGstin.Text;
+            customer.PAN = companyPan.Value;
+            customer.IsActive = true;
+            customer.BillAddL1 = companyAddrLine1.Value;
+            customer.BillAddL2 = companyAddrLine2.Value;
+            customer.BillAddCityID = Convert.ToInt64(companyAddrCity.SelectedValue);
+            customer.BillStateID = Convert.ToInt64(companyAddrState.SelectedValue);
+            customer.CustomerLogoPath = companyLogoID.InnerText;
+
+            //Get Client data
+            Customer client = new Customer();
+            client.Name = billToClientName.Value;
+            client.GSTIN = billToClientGSTIN.Text;
+            client.PAN = billToClientPAN.Value;
+            client.IsActive = true;
+            client.BillAddL1 = billToClientAddline1.Value;
+            client.BillAddL2 = billToClientAddline2.Value;
+            client.BillAddCityID = Convert.ToInt64(billToClientCityList.SelectedValue);
+            client.BillStateID = Convert.ToInt64(billToClientStateList.SelectedValue);
+
+            client.ShipAddL1 = shipToClientAddLine1.Value;
+            client.ShipAddL2 = shipToClientAddLine2.Value;
+            client.ShipAddCityID = Convert.ToInt64(shipToClientCityList.SelectedValue);
+            client.ShipStateID = Convert.ToInt64(shipToClientStateList.SelectedValue);
+
+            BillMaster billMaster = new BillMaster();
+            billMaster.NotesForCustomer = notesForCustomer.Text;
+            billMaster.TermsConditions = termsAndCondition.Text;
+
+            List<ProductsMaster> listProducts = new List<ProductsMaster>();
+
+            for (int i = 1; i <= 100; i++)
+            {
+                ProductsMaster productsMaster = new ProductsMaster();
+            }
 
         }
         #endregion
@@ -239,37 +293,12 @@ namespace InvoiceGen
         {
 
         }
-        protected void shipToClientGSTIN_TextChanged(object sender, EventArgs e)
-        {
-            BAL_Common bAL_Common = new BAL_Common();
-            var textValue = shipToClientGSTIN.Text.Substring(0, 2);
-            int number;
-            if (Int32.TryParse(textValue, out number))
-            {
-                if (number >= 10 || number <= 99)
-                {
-                    State state = bAL_Common.GetStateByID(textValue);
-                    string id = Convert.ToString(state.ID);
-                    shipToClientStateList.ClearSelection();
-                    shipToClientStateList.SelectedValue = id;
-                    BindCityToControl(id, shipToClientCityList);
-                }
-            }
-            else
-            {
-
-            }
-        }
         protected void chkSameAsBillAddress_CheckedChanged(object sender, EventArgs e)
         {
             if (chkSameAsBillAddress.Checked)
             {
                 shipToClientName.Value = billToClientName.Value;
                 shipToClientName.Disabled = true;
-                shipToClientGSTIN.Text = billToClientGSTIN.Text;
-                shipToClientGSTIN.ReadOnly = true;
-                shipToClientPAN.Value = billToClientPAN.Value;
-                shipToClientPAN.Disabled = true;
                 shipToClientContactName.Value = billToClientContactName.Value;
                 shipToClientContactName.Disabled = true;
                 shipToClientAddLine1.Value = billToClientAddline1.Value;
@@ -284,7 +313,7 @@ namespace InvoiceGen
                 var cityID = billToClientCityList.SelectedValue;
                 BindCityToControl(stateID.ToString(), shipToClientCityList);
                 shipToClientCityList.ClearSelection();
-                ListItem selectedListItem = shipToClientCityList.Items.FindByValue(cityID);
+                System.Web.UI.WebControls.ListItem selectedListItem = shipToClientCityList.Items.FindByValue(cityID);
                 if (selectedListItem != null)
                 {
                     selectedListItem.Selected = true;
@@ -296,10 +325,6 @@ namespace InvoiceGen
             {
                 shipToClientName.Disabled = false;
                 shipToClientName.Value = null;
-                shipToClientGSTIN.ReadOnly = false;
-                shipToClientGSTIN.Text = null;
-                shipToClientPAN.Disabled = false;
-                shipToClientPAN.Value = null;
                 shipToClientContactName.Disabled = false;
                 shipToClientContactName.Value = null;
                 shipToClientAddLine1.Disabled = false;
@@ -328,6 +353,6 @@ namespace InvoiceGen
         }
         #endregion
 
-        
+
     }
 }

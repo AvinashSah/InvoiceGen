@@ -13,6 +13,15 @@ namespace InvoiceGen {
     public partial class AddInvoice {
         
         /// <summary>
+        /// blog control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl blog;
+        
+        /// <summary>
         /// companyName control.
         /// </summary>
         /// <remarks>
@@ -110,6 +119,15 @@ namespace InvoiceGen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnCompanyLogoUpload;
+        
+        /// <summary>
+        /// companyLogoID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl companyLogoID;
         
         /// <summary>
         /// companyLogo control.
@@ -211,24 +229,6 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlInputText shipToClientName;
         
         /// <summary>
-        /// shipToClientGSTIN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox shipToClientGSTIN;
-        
-        /// <summary>
-        /// shipToClientPAN control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText shipToClientPAN;
-        
-        /// <summary>
         /// shipToClientContactName control.
         /// </summary>
         /// <remarks>
@@ -292,39 +292,21 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlTable amoutCalculationIntraState;
         
         /// <summary>
-        /// TextBox1 control.
+        /// termsAndCondition control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextBox1;
+        protected global::System.Web.UI.WebControls.TextBox termsAndCondition;
         
         /// <summary>
-        /// TextArea1 control.
+        /// notesForCustomer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox TextArea1;
-        
-        /// <summary>
-        /// generatePDF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton generatePDF;
-        
-        /// <summary>
-        /// CreateBill control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlButton CreateBill;
+        protected global::System.Web.UI.WebControls.TextBox notesForCustomer;
     }
 }
