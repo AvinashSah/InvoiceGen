@@ -297,10 +297,10 @@ namespace InvoiceGen
         {
             if (chkSameAsBillAddress.Checked)
             {
-                shipToClientName.Value = billToClientName.Value;
-                shipToClientName.Disabled = true;
-                shipToClientContactName.Value = billToClientContactName.Value;
-                shipToClientContactName.Disabled = true;
+                //shipToClientName.Value = billToClientName.Value;
+                //shipToClientName.Disabled = true;
+                //shipToClientContactName.Value = billToClientContactName.Value;
+                //shipToClientContactName.Disabled = true;
                 shipToClientAddLine1.Value = billToClientAddline1.Value;
                 shipToClientAddLine1.Disabled = true;
                 shipToClientAddLine2.Value = billToClientAddline2.Value;
@@ -323,10 +323,10 @@ namespace InvoiceGen
             }
             else
             {
-                shipToClientName.Disabled = false;
-                shipToClientName.Value = null;
-                shipToClientContactName.Disabled = false;
-                shipToClientContactName.Value = null;
+                //shipToClientName.Disabled = false;
+                //shipToClientName.Value = null;
+                //shipToClientContactName.Disabled = false;
+                //shipToClientContactName.Value = null;
                 shipToClientAddLine1.Disabled = false;
                 shipToClientAddLine1.Value = null;
                 shipToClientAddLine2.Disabled = false;

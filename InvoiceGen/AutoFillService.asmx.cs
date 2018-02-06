@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
 
@@ -103,5 +104,21 @@ namespace InvoiceGen.App_Code
                 return null;
             }
         }
+
+
+        [System.Web.Services.WebMethod]
+        [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
+        public string SubmitAddInvoiceData(Customer Customer, Customer Client, List<ProductsMaster> productList, List<BillProductMapping> productBillMapping)
+        {
+            AddInvoiceResponse addInvoiceResponse = new AddInvoiceResponse();
+            addInvoiceResponse.submited = true;
+
+
+            System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
+            return js.Serialize(addInvoiceResponse);
+
+        }
+
+
     }
 }

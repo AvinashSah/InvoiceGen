@@ -91,15 +91,15 @@
                 }
 
                 var totalCostHtmlContent = "<tr>";
-                totalCostHtmlContent += "<td>" + cumulativeintraStateCost + "</td>";
-                totalCostHtmlContent += "<td>" + cumulativeintraStateCGST + "</td>";
-                totalCostHtmlContent += "<td>" + cumulativeintraStateSGST + "</td>";
-                totalCostHtmlContent += "<td>" + finalintraStateCost + "</td>";
+                totalCostHtmlContent += "<td id=\"intraStateTotalAmount\">" + cumulativeintraStateCost + "</td>";
+                totalCostHtmlContent += "<td id=\"intraStateTotalCGST\">" + cumulativeintraStateCGST + "</td>";
+                totalCostHtmlContent += "<tdid=\"intraStateTotalSGST\">" + cumulativeintraStateSGST + "</td>";
+                totalCostHtmlContent += "<td id=\"intraStateFinalAmount\">" + finalintraStateCost + "</td>";
                 totalCostHtmlContent += "</tr>";
 
                 $("[id$=amoutCalculationInterState]").hide();
                 $("[id$=amoutCalculationIntraState]").show();
-                $("[id$=amoutCalculationIntraState] tbody").remove();
+                $("[id$=amoutCalculationIntraState]").closest('tr').remove();
                 $("[id$=amoutCalculationIntraState] tbody").append(totalCostHtmlContent);
             }
             else {
@@ -116,14 +116,14 @@
                     finalinterStateCost += +(cumulativeinterStateGST + cumulativeinterStateCost);
                 }
                 var totalCostHtmlContent2 = "<tr>";
-                totalCostHtmlContent2 += "<td>" + cumulativeinterStateCost + "</td>";
-                totalCostHtmlContent2 += "<td>" + cumulativeinterStateGST + "</td>";
-                totalCostHtmlContent2 += "<td>" + finalinterStateCost + "</td>";
+                totalCostHtmlContent2 += "<td id=\"interStateTotalAmount\">" + cumulativeinterStateCost + "</td>";
+                totalCostHtmlContent2 += "<td id=\"intraStateTotalGST\">" + cumulativeinterStateGST + "</td>";
+                totalCostHtmlContent2 += "<td id=\"intraStateFinalCost\">" + finalinterStateCost + "</td>";
                 totalCostHtmlContent2 += "</tr>";
 
                 $("[id$=amoutCalculationIntraState]").hide();
                 $("[id$=amoutCalculationInterState]").show();
-                $("[id$=amoutCalculationInterState] tbody").remove();
+                $("[id$=amoutCalculationInterState]").closest('tr').remove();
                 $("[id$=amoutCalculationInterState] tbody").append(totalCostHtmlContent2);
             }
         }
@@ -155,15 +155,15 @@
                     }
 
                     var totalCostHtmlContent_StateCode = "<tr>";
-                    totalCostHtmlContent_StateCode += "<td>" + cumulativeintraStateCost_StateCode + "</td>";
-                    totalCostHtmlContent_StateCode += "<td>" + cumulativeintraStateCGST_StateCode + "</td>";
-                    totalCostHtmlContent_StateCode += "<td>" + cumulativeintraStateSGST_StateCode + "</td>";
-                    totalCostHtmlContent_StateCode += "<td>" + finalintraStateCost_StateCode + "</td>";
+                    totalCostHtmlContent_StateCode += "<td id=\"intraStateTotalAmount\">" + cumulativeintraStateCost_StateCode + "</td>";
+                    totalCostHtmlContent_StateCode += "<td id=\"intraStateTotalCGST\">" + cumulativeintraStateCGST_StateCode + "</td>";
+                    totalCostHtmlContent_StateCode += "<td id=\"intraStateTotalSGST\">" + cumulativeintraStateSGST_StateCode + "</td>";
+                    totalCostHtmlContent_StateCode += "<td id=\"intraStateFinalAmount\">" + finalintraStateCost_StateCode + "</td>";
                     totalCostHtmlContent_StateCode += "</tr>";
 
                     $("[id$=amoutCalculationInterState]").hide();
                     $("[id$=amoutCalculationIntraState]").show();
-                    $("[id$=amoutCalculationIntraState] tbody").remove();
+                    $("[id$=amoutCalculationIntraState]").closest('tr').remove();
                     $("[id$=amoutCalculationIntraState] tbody").append(totalCostHtmlContent_StateCode);
                 }
                 else {
@@ -180,14 +180,14 @@
                         finalinterStateCost_StateCode += +(cumulativeinterStateGST_StateCode + cumulativeinterStateCost_StateCode);
                     }
                     var totalCostHtmlContent2_StateCode = "<tr>";
-                    totalCostHtmlContent2_StateCode += "<td>" + cumulativeinterStateCost_StateCode + "</td>";
-                    totalCostHtmlContent2_StateCode += "<td>" + cumulativeinterStateGST + "</td>";
-                    totalCostHtmlContent2_StateCode += "<td>" + finalinterStateCost_StateCode + "</td>";
+                    totalCostHtmlContent2_StateCode += "<td id=\"interStateTotalAmount\">" + cumulativeinterStateCost_StateCode + "</td>";
+                    totalCostHtmlContent2_StateCode += "<td id=\"intraStateTotalGST\">" + cumulativeinterStateGST + "</td>";
+                    totalCostHtmlContent2_StateCode += "<td id=\"intraStateFinalCost\">" + finalinterStateCost_StateCode + "</td>";
                     totalCostHtmlContent2_StateCode += "</tr>";
 
                     $("[id$=amoutCalculationIntraState]").hide();
                     $("[id$=amoutCalculationInterState]").show();
-                    $("[id$=amoutCalculationInterState] tbody").remove();
+                    $("[id$=amoutCalculationInterState]").closest('tr').remove();
                     $("[id$=amoutCalculationInterState] tbody").append(totalCostHtmlContent2_StateCode);
                 }
             }
@@ -200,9 +200,9 @@
 
     $("#itemList").on('click', '.itemDeleteAddInvoice', function () {
         var confirmation = false;
-        confirm("DO you really want to remove item ?", confirmation);
+        confirm("Do you really want to remove item ?", confirmation);
         if (confirmation) {
-            $(this).parents('tr').first().remove();
+            $(this).parents('tr').remove();
             ReEvaluateItemCost();
         }
     });
@@ -211,6 +211,7 @@
 
     //Function to make parameters and send to asmx service
     function createBill_Click() {
+        ValidateForm();
         var companyName = $("[id$=companyName]").val();
         var companyContactName = $("[id$=companyContactName]").val();
         var compannyGstin = $("[id$=compannyGstin]").val();
@@ -265,20 +266,85 @@
         }
 
         var productList = [];
-
-        var rowCount = $('#itemList').rowCount();
-        var compannyGstin = $("[id$=compannyGstin]").val().substring(1, 2);
-        var billToClientGSTIN = $("[id$=billToClientGSTIN]").val().substring(1, 2);
-
-        if (compannyGstin !== "" && billToClientGSTIN !== "") {
-
-        }
-
-
-        PushDataToService(Customer, Client)
+        var productBillMapping = [];
+        productList = GetProducListFromUI();
+        productBillMapping = GetProductBillMapping();
+        PushInvoiceDataToService(Customer, Client, productList, productBillMapping);
     }
 
+    function ValidateForm() {
 
+    }
+
+    function GetProducListFromUI() {
+        var returnProductList = [];
+
+
+        var rowCount = $('#itemList').rowCount();
+        for (var iProd = 1; iProd <=rowCount; iProd++) {
+            var prod_ID = iProd;
+            var prod_name = $('#itemName' + iProd).val();
+            var prod_HSNCode = $('#itemHSNSAC' + iProd).val();
+            var prod_description = $('#itemDescription' + iProd).val();
+            var prod_Gst = $('#itemGST' + iProd).val();
+            var prod_Rate = $('#itemRate' + iProd).val();
+            var prod_Qty = $('#itemQty' + iProd).val();
+            var prod_TotalAmount = $('#itemAmount' + iProd).val();
+            var product = { Name: prod_name, HSNCode: prod_HSNCode, Description: prod_description, GSTPercentage: prod_Gst, ID: prod_ID }
+            returnProductList.push(product);
+        }
+    }
+
+    function GetProductBillMapping() {
+        var returnproductBillMapping = [];
+
+        var rowCount = $('#itemList').rowCount();
+        for (var iProd = 1; iProd <=rowCount; iProd++) {
+            var prod_ID = iProd;
+            var billProdMapp = {};
+            if ($("[id$=compannyGstin]").val().substring(1, 2) !== "" && $("[id$=billToClientGSTIN]").val().substring(1, 2) !== "") {
+                if ($("[id$=compannyGstin]").val().substring(1, 2) === $("[id$=billToClientGSTIN]").val().substring(1, 2)) {
+                    billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: $('#intraStateFinalAmount').val(), CGST: $('#intraStateTotalCGST').val(), SGST: $('#intraStateTotalSGST').val() }
+                }
+                else {
+                    billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: $('#intraStateFinalCost').val(), IGST: $('#intraStateTotalGST').val() }
+                }
+            }
+            else {
+                if ($("[id$=companyAddrState] option:selected").val() !== "" && $("[id$=billToClientStateList] option:selected").val() !== "") {
+
+                    if ($("[id$=companyAddrState] option:selected").val() === $("[id$=billToClientStateList] option:selected").val()) {
+                        billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: $('#intraStateFinalAmount').val(), CGST: $('#intraStateTotalCGST').val(), SGST: $('#intraStateTotalSGST').val() }
+                    }
+                    else {
+                        //billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: $('#intraStateFinalCost').val(), IGST: $('#intraStateTotalGST').val() }
+                    }
+                }
+            }
+            productBill.push(billProdMapp);
+        }
+    }
+
+    function PushInvoiceDataToService(Customer, Client, productList, productBillMapping) {
+
+        var postData = {
+            Customer: Customer,
+            Client: Client,
+            productList: productList,
+            productBillMapping: productBillMapping
+        };
+
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/SubmitAddInvoiceData",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            data: JSON.stringify(postData),
+            success: function (data) {
+                console.log(data);
+            }
+        });
+    }
 
     //$("#itemList").on('keypress', '.HSNCode', function () {
     //    var id = this.id;

@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AddInvoiceResponse.cs" />
     <Compile Include="BillMaster.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>
