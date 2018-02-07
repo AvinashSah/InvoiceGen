@@ -84,5 +84,54 @@ namespace InvoiceGen.DAL
             }
             return listProduct;
         }
+
+        public long CreateNewProduct(ProductsMaster products)
+        {
+            using (var context = new InvoiceGenEntities())
+            {
+                context.ProductsMasters.Add(products);
+                context.SaveChanges();//this generates the Id for customer
+                return products.ID;
+            }
+        }
+
+        public bool CreateNewProductBillMapping(BillProductMapping productBillMapp)
+        {
+            using (var context = new InvoiceGenEntities())
+            {
+                context.BillProductMappings.Add(productBillMapp);
+                context.SaveChanges();//this generates the Id for customer
+            }
+            if (productBillMapp.ID > 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CheckIfProductExistByHSNCode(string hSNCode, out long productID)
+        {
+            productID = -1;
+            ProductsMaster productsMaster = new ProductsMaster();
+            using (var context = new InvoiceGenEntities())
+            {
+                productsMaster = (from a in context.ProductsMasters
+                                  where a.HSNCode == hSNCode
+                                  select a).FirstOrDefault();
+            }
+            if (productsMaster != null)
+            {
+                productID = productsMaster.ID;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

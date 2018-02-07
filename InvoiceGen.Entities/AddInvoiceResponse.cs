@@ -9,5 +9,6 @@ namespace InvoiceGen.Entities
     public class AddInvoiceResponse
     {
         public bool submited { get; set; }
+        public string message { get; set; }
     }
 }

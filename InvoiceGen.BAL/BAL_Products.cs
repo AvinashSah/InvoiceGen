@@ -60,6 +60,24 @@ namespace InvoiceGen.BAL
             listProduct = dAL_Products.GetProductListByProductName(hSNPrefix);
             return listProduct;
         }
+
+        public bool CheckIfProductExistByHSNCode(string hSNCode, out long productID)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            return dAL_Products.CheckIfProductExistByHSNCode(hSNCode, out productID);
+        }
+
+        public long CreateNewProduct(ProductsMaster products)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            return dAL_Products.CreateNewProduct(products);
+        }
+
+        public bool CreateNewProductBillMapping(BillProductMapping productBillMapp)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            return dAL_Products.CreateNewProductBillMapping(productBillMapp);
+        }
     }
 }
 

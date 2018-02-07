@@ -238,6 +238,9 @@
         var shipToClientCityList = $("[id$=shipToClientCityList] option:selected").val();
         var shipToClientStateList = $("[id$=shipToClientStateList] option:selected").val();
 
+        var notesForCustomer = $("[id$=notesForCustomer]").val();
+        var termsAndCondition = $("[id$=termsAndCondition]").val();
+
         var Customer = {
             Name: companyName,
             ContactName: companyContactName,
@@ -264,12 +267,51 @@
             ShipAddCityID: shipToClientCityList,
             ShipStateID: shipToClientStateList
         }
-
+        var rowCount = $('#itemList').rowCount();
         var productList = [];
         var productBillMapping = [];
-        productList = GetProducListFromUI();
-        productBillMapping = GetProductBillMapping();
-        PushInvoiceDataToService(Customer, Client, productList, productBillMapping);
+        for (var iProd = 1; iProd <= rowCount; iProd++) {
+            var prod_ID = iProd;
+            var prod_name = $('#itemName' + iProd).val();
+            var prod_HSNCode = $('#itemHSNSAC' + iProd).val();
+            var prod_description = $('#itemDescription' + iProd).val();
+            var prod_Gst = $('#itemGST' + iProd).val();
+            var prod_Rate = $('#itemRate' + iProd).val();
+            var prod_Qty = $('#itemQty' + iProd).val();
+            var prod_TotalAmount = $('#itemAmount' + iProd).val();
+            var product = { Name: prod_name, HSNCode: prod_HSNCode, Description: prod_description, GSTPercentage: prod_Gst, ID: prod_ID }
+            productList.push(product);
+
+            var billProdMapp = {};
+            var totalAmount = prod_TotalAmount + ((prod_Gst / 100) * prod_TotalAmount);
+            var cgsttmp = (((prod_Gst / 2) / 100) * prod_TotalAmount);
+            var sgsttmp = (((prod_Gst / 2) / 100) * prod_TotalAmount);
+            var gsttmp = ((prod_Gst / 100) * prod_TotalAmount);
+
+            if ($("[id$=compannyGstin]").val().substring(1, 2) !== "" && $("[id$=billToClientGSTIN]").val().substring(1, 2) !== "") {
+                if ($("[id$=compannyGstin]").val().substring(1, 2) === $("[id$=billToClientGSTIN]").val().substring(1, 2)) {
+                    billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: totalAmount, CGST: cgsttmp, SGST: sgsttmp }
+                }
+                else {
+                    billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: totalAmount, IGST: gsttmp }
+                }
+            }
+            else {
+                if ($("[id$=companyAddrState] option:selected").val() !== "" && $("[id$=billToClientStateList] option:selected").val() !== "") {
+
+                    if ($("[id$=companyAddrState] option:selected").val() === $("[id$=billToClientStateList] option:selected").val()) {
+                        billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: totalAmount, CGST: cgsttmp, SGST: sgsttmp }
+                    }
+                    else {
+                        billProdMapp = { ProductID: prod_ID, SalesRate: prod_Rate, Qyantity: prod_Qty, TotalAmount: totalAmount, IGST: gsttmp }
+                    }
+                }
+            }
+
+            productBillMapping.push(billProdMapp);
+        }
+
+        PushInvoiceDataToService(Customer, Client, productList, productBillMapping, notesForCustomer, termsAndCondition);
     }
 
     function ValidateForm() {
@@ -281,7 +323,7 @@
 
 
         var rowCount = $('#itemList').rowCount();
-        for (var iProd = 1; iProd <=rowCount; iProd++) {
+        for (var iProd = 1; iProd <= rowCount; iProd++) {
             var prod_ID = iProd;
             var prod_name = $('#itemName' + iProd).val();
             var prod_HSNCode = $('#itemHSNSAC' + iProd).val();
@@ -299,7 +341,7 @@
         var returnproductBillMapping = [];
 
         var rowCount = $('#itemList').rowCount();
-        for (var iProd = 1; iProd <=rowCount; iProd++) {
+        for (var iProd = 1; iProd <= rowCount; iProd++) {
             var prod_ID = iProd;
             var billProdMapp = {};
             if ($("[id$=compannyGstin]").val().substring(1, 2) !== "" && $("[id$=billToClientGSTIN]").val().substring(1, 2) !== "") {
@@ -325,13 +367,15 @@
         }
     }
 
-    function PushInvoiceDataToService(Customer, Client, productList, productBillMapping) {
+    function PushInvoiceDataToService(Customer, Client, productList, productBillMapping, notesForCustomer, termsAndCondition) {
 
         var postData = {
             Customer: Customer,
             Client: Client,
             productList: productList,
-            productBillMapping: productBillMapping
+            productBillMapping: productBillMapping,
+            notesForCustomer: notesForCustomer,
+            termsAndCondition: termsAndCondition
         };
 
         $.ajax({
@@ -341,7 +385,12 @@
             dataType: "json",
             data: JSON.stringify(postData),
             success: function (data) {
-                console.log(data);
+                if (data.submited) {
+                    alert(data.message);
+                }
+                else {
+                    alert(data.message);
+                }
             }
         });
     }
