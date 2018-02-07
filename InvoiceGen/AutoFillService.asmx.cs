@@ -1,5 +1,7 @@
 ﻿using InvoiceGen.BAL;
 using InvoiceGen.Entities;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -118,12 +120,14 @@ namespace InvoiceGen.App_Code
             System.Web.Script.Serialization.JavaScriptSerializer js = new System.Web.Script.Serialization.JavaScriptSerializer();
             try
             {
-                if (Customer.GSTIN == null)
+                if (Customer.GSTIN != null)
                 {
+                    Customer.CustomerType = "Company";
                     customerExists = bAL_Customers.CheckIfCustomerExistByGSTIN(Customer.GSTIN, out customerID);
                 }
-                else if (Customer.PAN == null)
+                else if (Customer.PAN != null)
                 {
+                    Customer.CustomerType = "Individual";
                     customerExists = bAL_Customers.CheckIfCustomerExistByPAN(Customer.PAN, out customerID);
                 }
                 else
@@ -132,95 +136,87 @@ namespace InvoiceGen.App_Code
                 }
 
 
-                if (customerExists)
+                if (!customerExists)
                 {
-                    if (Client.GSTIN == null)
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByGSTIN(Client.GSTIN, out clientId);
-                    }
-                    else if (Client.PAN == null)
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByPAN(Client.PAN, out clientId);
-                    }
-                    else
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByName(Client.Name, out clientId);
-                    }
+                    customerID = bAL_Customers.CreateNewCustomer(Customer);
+                }
+
+                if (Client.GSTIN != null)
+                {
+                    Client.CustomerType = "Company";
+                    clientExist = bAL_Customers.CheckIfCustomerExistByGSTIN(Client.GSTIN, out clientId);
+                }
+                else if (Client.PAN != null)
+                {
+                    Client.CustomerType = "Individual";
+                    clientExist = bAL_Customers.CheckIfCustomerExistByPAN(Client.PAN, out clientId);
                 }
                 else
                 {
-                    customerID = bAL_Customers.CreateNewCustomer(Customer);
-                    if (Client.GSTIN == null)
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByGSTIN(Client.GSTIN, out clientId);
-                    }
-                    else if (Client.PAN == null)
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByPAN(Client.PAN, out clientId);
-                    }
-                    else
-                    {
-                        clientExist = bAL_Customers.CheckIfCustomerExistByName(Client.Name, out clientId);
-                    }
+                    clientExist = bAL_Customers.CheckIfCustomerExistByName(Client.Name, out clientId);
                 }
 
 
-                if (clientExist)
+                if (!clientExist)
                 {
-                    BAL_Bill bAL_Bill = new BAL_Bill();
-                    BillMaster billMaster = new BillMaster();
-                    billMaster.BillFromCustID = customerID;
-                    billMaster.BillToCustID = clientId;
-                    billMaster.BillAddL1 = Client.BillAddL1;
-                    billMaster.BillAddL2 = Client.BillAddL2;
-                    billMaster.BillStateID = Client.BillStateID;
-                    billMaster.BillAddCityID = Client.BillAddCityID;
-                    billMaster.NotesForCustomer = notesForCustomer;
-                    billMaster.TermsConditions = termsAndCondition;
-                    billMaster.ShipAddL1 = Client.ShipAddL1;
-                    billMaster.ShipAddL2 = Client.ShipAddL2;
-                    billMaster.ShipStateID = Client.ShipStateID;
-                    billMaster.ShipAddCityID = Client.ShipAddCityID;
-                    billMaster.CreatedBy = 1;
-                    billMaster.CreatedOn = DateTime.Now;
-                    //Create New Bill
-                    billMasterID = bAL_Bill.CreateNewBill(billMaster);
+                    clientId = bAL_Customers.CreateNewCustomer(Client);
+                }
 
-                    foreach (ProductsMaster products in productList)
+                BAL_Bill bAL_Bill = new BAL_Bill();
+                BillMaster billMaster = new BillMaster();
+                billMaster.BillFromCustID = customerID;
+                billMaster.BillToCustID = clientId;
+                billMaster.BillAddL1 = Client.BillAddL1;
+                billMaster.BillAddL2 = Client.BillAddL2;
+                billMaster.BillStateID = Client.BillStateID;
+                billMaster.BillAddCityID = Client.BillAddCityID;
+                billMaster.NotesForCustomer = notesForCustomer;
+                billMaster.TermsConditions = termsAndCondition;
+                billMaster.ShipAddL1 = Client.ShipAddL1;
+                billMaster.ShipAddL2 = Client.ShipAddL2;
+                billMaster.ShipStateID = Client.ShipStateID;
+                billMaster.ShipAddCityID = Client.ShipAddCityID;
+                billMaster.CreatedBy = 1;
+                billMaster.CreatedOn = DateTime.Now;
+                //Create New Bill
+                billMasterID = bAL_Bill.CreateNewBill(billMaster);
+
+                foreach (ProductsMaster products in productList)
+                {
+                    bool productExist = false;
+                    var clientproductID = products.ID;
+                    products.ID = 0;
+                    productExist = bAL_Products.CheckIfProductExistByHSNCode(products.HSNCode, out Int64 productID);
+                    if (productExist)
                     {
-                        bool productExist = false;
-                        var clientproductID = products.ID;
-                        products.ID = 0;
-                        productExist = bAL_Products.CheckIfProductExistByHSNCode(products.HSNCode, out Int64 productID);
-                        if (productExist)
+                        products.ID = productID;
+                    }
+                    else
+                    {
+                        products.ID = bAL_Products.CreateNewProduct(products);
+                    }
+
+                    foreach (BillProductMapping productBillMapp in productBillMapping)
+                    {
+                        if (clientproductID == productBillMapp.ProductID)
                         {
-                            products.ID = productID;
+                            productBillMapp.BillID = billMasterID;
+                            productBillMapp.ProductID = products.ID;
+                            bool created = bAL_Products.CreateNewProductBillMapping(productBillMapp);
+                            //Create Customer Product mapping
+                            CustomerProductMapping customerProductMapping = new CustomerProductMapping();
+                            customerProductMapping.CustomerID = customerID;
+                            customerProductMapping.ProductID = products.ID;
+                            customerProductMapping.IsActive = true;
+                            customerProductMapping.SalesRate = productBillMapp.SalesRate;
+                            Int64 id = bAL_Customers.SaveCustomerProductMapping(customerProductMapping);
+                            break;
                         }
                         else
                         {
-                            products.ID = bAL_Products.CreateNewProduct(products);
+                            continue;
                         }
-
-                        foreach (BillProductMapping productBillMapp in productBillMapping)
-                        {
-                            if (clientproductID == productBillMapp.ProductID)
-                            {
-                                productBillMapp.BillID = billMasterID;
-                                productBillMapp.ProductID = products.ID;
-                                bool created = bAL_Products.CreateNewProductBillMapping(productBillMapp);
-                                break;
-                            }
-                            else
-                            {
-                                continue;
-                            }
-                        }
-
                     }
-                }
-                else
-                {
-                    clientId = bAL_Customers.CreateNewCustomer(Client);
                 }
                 addInvoiceResponse.submited = true;
                 addInvoiceResponse.message = string.Format("Bill generated with BillNO#:{0}", billMasterID);
@@ -232,8 +228,31 @@ namespace InvoiceGen.App_Code
                 addInvoiceResponse.message = string.Format("Error occured while generating Bill with message:{0}", ex.Message);
                 return js.Serialize(addInvoiceResponse);
             }
+        }
 
+        public void GenerateReport(Customer Customer, Customer Client, List<ProductsMaster> productList, List<BillProductMapping> productBillMapping, string notesForCustomer, string termsAndCondition)
+        {
+            PDFGenerator pDFGenerator = new PDFGenerator();
+            Document document = new Document(PageSize.A4, 88f, 88f, 10f, 10f);
+            Font NormalFont = FontFactory.GetFont("Arial", 12, Font.NORMAL, Color.BLACK);
+            using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
+            {
+                PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
+                Phrase phrase = null;
+                PdfPCell cell = null;
+                PdfPTable table = null;
+                Color color = null;
 
+                document.Open();
+
+                table = new PdfPTable(2);
+                table.TotalWidth = 500f;
+                table.LockedWidth = true;
+                table.SetWidths(new float[] { 0.3f, 0.7f });
+
+                cell = pDFGenerator.ImageCell(Server.MapPath(Customer.CustomerLogoPath), 30f, PdfPCell.ALIGN_CENTER);
+                table.AddCell(cell);
+            }
         }
 
 

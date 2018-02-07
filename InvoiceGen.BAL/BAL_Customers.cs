@@ -39,5 +39,11 @@ namespace InvoiceGen.BAL
             DAL_Customers dL_Customers = new DAL_Customers();
             return dL_Customers.CreateNewCustomer(customer);
         }
+
+        public long SaveCustomerProductMapping(CustomerProductMapping customerProductMapping)
+        {
+            DAL_Customers dL_Customers = new DAL_Customers();
+            return dL_Customers.SaveCustomerProductMapping(customerProductMapping);
+        }
     }
 }

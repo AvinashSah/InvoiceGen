@@ -46,8 +46,7 @@
             htmlContent += "</tr>";
             $("#itemList tbody").append(htmlContent);
         }
-
-
+        return false;
     }
 
     //Event on Item Rate Change
@@ -59,6 +58,7 @@
         //calculate amount
         $('#itemAmount' + identifier).val(itemRate * qty);
         ReEvaluateItemCost();
+        return false;
     });
 
     //function to evaluate item cost
@@ -205,6 +205,7 @@
             $(this).parents('tr').remove();
             ReEvaluateItemCost();
         }
+        return false;
     });
 
 
@@ -221,6 +222,7 @@
         var companyAddrCity = $("[id$=companyAddrCity] option:selected").val();
         var companyAddrState = $("[id$=companyAddrState] option:selected").val();
         var companyLogoID = $("[id$=companyLogoID]").val();
+        //console.log($('#companyLogo').attr('src'));
 
         var billToClientName = $("[id$=billToClientName]").val();
         var billToClientContactName = $("[id$=billToClientContactName]").val();
@@ -283,7 +285,7 @@
             productList.push(product);
 
             var billProdMapp = {};
-            var totalAmount = prod_TotalAmount + ((prod_Gst / 100) * prod_TotalAmount);
+            var totalAmount = +prod_TotalAmount + +((prod_Gst / 100) * prod_TotalAmount);
             var cgsttmp = (((prod_Gst / 2) / 100) * prod_TotalAmount);
             var sgsttmp = (((prod_Gst / 2) / 100) * prod_TotalAmount);
             var gsttmp = ((prod_Gst / 100) * prod_TotalAmount);
@@ -307,14 +309,35 @@
                     }
                 }
             }
-
             productBillMapping.push(billProdMapp);
         }
 
         PushInvoiceDataToService(Customer, Client, productList, productBillMapping, notesForCustomer, termsAndCondition);
+
+        return false;
     }
 
     function ValidateForm() {
+        if ($("[id$=compannyGstin]").val() !== "") {
+            var compannyGstinlength = $("[id$=compannyGstin]").val().length;
+            if (compannyGstinlength !== 16) {
+                alert("Company GSTIN should of 16 characters !");
+                return false;
+            }
+        }
+
+        if ($("[id$=billToClientGSTIN]").val() !== "") {
+            var billToClientGSTINLength = $("[id$=billToClientGSTIN]").val().length;
+            if (billToClientGSTINLength !== 16) {
+                alert("Client's GSTIN should of 16 characters !");
+                return false;
+            }
+        }
+
+        if ($("[id$=billToClientGSTIN]").val() !== "" && $("[id$=compannyGstin]").val() !== "") {
+            alert("You need to provide eiether PAN/GSTIN !")
+            return false;
+        }
 
     }
 
@@ -385,11 +408,12 @@
             dataType: "json",
             data: JSON.stringify(postData),
             success: function (data) {
-                if (data.submited) {
-                    alert(data.message);
+                var json = JSON.parse(data);
+                if (json.submited) {
+                    alert(json.message);
                 }
                 else {
-                    alert(data.message);
+                    alert(json.message);
                 }
             }
         });

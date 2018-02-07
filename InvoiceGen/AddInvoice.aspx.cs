@@ -122,7 +122,7 @@ namespace InvoiceGen
         }
         #endregion
 
-        #region PDF GEN
+        #region UPLOAD LOGO
         protected override void Render(HtmlTextWriter writer)
         {
             if (startConversion)
@@ -149,7 +149,7 @@ namespace InvoiceGen
 
                 // close pdf document
                 doc.Close();
-               // generatePDF.Visible = true;
+                // generatePDF.Visible = true;
                 //CreateBill.Visible = true;
             }
             else
@@ -165,15 +165,28 @@ namespace InvoiceGen
                 if (comapnyLogoUploadFile.PostedFile != null)
                 {
                     string FileName = Path.GetFileName(comapnyLogoUploadFile.PostedFile.FileName);
-                    string FolderPath = "Images/" + compannyGstin.Text;
-                    string FilePath = Server.MapPath(FolderPath + Convert.ToString(DateTime.Now.ToString("yyyyMMddHHmmssfff")));
+                    string FolderPath = null;
+                    if (string.IsNullOrEmpty(compannyGstin.Text))
+                    {
+                        FolderPath = "Images/" + companyPan.Value;
+                    }
+                    else if (string.IsNullOrEmpty(companyPan.Value))
+                    {
+                        FolderPath = "Images/" + compannyGstin.Text;
+                    }
+                    else
+                    {
+                        FolderPath = "Images/" + companyName.Text;
+                    }
+                    FolderPath += FolderPath + Convert.ToString(DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+                    string FilePath = Server.MapPath(FolderPath);
                     if (!Directory.Exists(FilePath))
                     {
                         //If Directory (Folder) does not exists. Create it.
                         Directory.CreateDirectory(FilePath);
                     }
                     FilePath += "\\" + FileName;
-                    companyLogoID.InnerText = FilePath;
+                    companyLogoID.Value = FolderPath;
                     //Save files to images folder
                     comapnyLogoUploadFile.SaveAs(FilePath);
                     Stream fs = comapnyLogoUploadFile.PostedFile.InputStream;
@@ -203,7 +216,7 @@ namespace InvoiceGen
             customer.BillAddL2 = companyAddrLine2.Value;
             customer.BillAddCityID = Convert.ToInt64(companyAddrCity.SelectedValue);
             customer.BillStateID = Convert.ToInt64(companyAddrState.SelectedValue);
-            customer.CustomerLogoPath = companyLogoID.InnerText;
+            //customer.CustomerLogoPath = companyLogoID.Value;
 
             //Get Client data
             Customer client = new Customer();

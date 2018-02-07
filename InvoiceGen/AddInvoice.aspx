@@ -63,8 +63,9 @@
                             <asp:FileUpload ID="comapnyLogoUploadFile" runat="server" CssClass="form-group" TabIndex="7" />
                             <asp:Button ID="btnCompanyLogoUpload" runat="server" Text="Upload" OnClick="btnCompanyLogoUpload_Click" CssClass="form-group" TabIndex="8" />
                         </div>
-                        <label style="display: none" id="companyLogoID" runat="server"></label>
                     </div>
+                    <input type="text" class="form-control" runat="server" id="companyLogoID" style="display: none" />
+
                     <asp:Image ID="companyLogo" runat="server" Style="float: right" />
                 </div>
             </div>
@@ -214,7 +215,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                             <table id="amoutCalculationIntraState" style="display: none" class="table table-striped" cellspacing="0" width="100%" runat="server">
@@ -227,7 +227,6 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
                                 </tbody>
                             </table>
                         </div>

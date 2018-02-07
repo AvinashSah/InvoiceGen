@@ -53,6 +53,16 @@ namespace InvoiceGen.DAL
             }
         }
 
+        public long SaveCustomerProductMapping(CustomerProductMapping customerProductMapping)
+        {
+            using (var context = new InvoiceGenEntities())
+            {
+
+                context.CustomerProductMappings.Add(customerProductMapping);
+                context.SaveChanges();//this generates the Id for customer
+                return customerProductMapping.ID;
+            }
+        }
 
         public long CreateNewCustomer(Customer customer)
         {
