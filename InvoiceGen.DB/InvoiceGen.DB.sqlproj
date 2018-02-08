@@ -80,4 +80,7 @@
   <ItemGroup>
     <None Include="PostDeploymentScript\MasterData.sql" />
   </ItemGroup>
+  <ItemGroup>
+    <PostDeploy Include="PostDeploymentScript\Script.PostDeployment.sql" />
+  </ItemGroup>
 </Project>

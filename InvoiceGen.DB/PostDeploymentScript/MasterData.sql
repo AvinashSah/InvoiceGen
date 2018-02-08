@@ -5841,3 +5841,34 @@ INSERT INTO GstStateCodes (GSTStateCode,IsActive,StateID) VALUES
 ('35',1,1),
 ('36',1,36);
 
+set identity_insert OperationMaster on
+Insert into OperationMaster values(1,'ImportProducts','Operation defined to Import Products to Product Master')
+Insert into OperationMaster values(2,'GenerateInvoice','Operation defined to generate invoice')
+set identity_insert OperationMaster on
+
+set identity_insert RoleMaster on
+Insert into RoleMaster
+values(1,'SysAdmin','Access to all roads')
+,(2,'Admin','Admin having access to operations defined by SysAdmin')
+,(3,'EndUser','Can generate and view bills')
+
+set identity_insert RoleMaster on
+
+insert into RoleOperationMapping
+values 
+(1,1),
+(2,1),
+(1,2),
+(2,2),
+(3,2)
+
+set identity_insert UserMaster on
+Insert into UserMaster
+values(1,'SysAdmin','Sys','Admin','','',1,GETDATE(),GETDATE(),NULL,NULL,NUll,'8V/mNuXxvB/P69tO3HNQ36PPlctB3tMG8sF3btvQwCsyfmG5zDjZjGnRJEVJT+BL'),
+(2,'GSTSevaAdmin','GSTSeva','Admin','','',1,GETDATE(),GETDATE(),1,NULL,NUll,'8V/mNuXxvB/P69tO3HNQ36PPlctB3tMG8sF3btvQwCsyfmG5zDjZjGnRJEVJT+BL')
+,(3,'TestUser1','Test','User1','','',1,GETDATE(),GETDATE(),1,NULL,NUll,'jAmDbTYloMK3+qnNF+meSw==')
+
+set identity_insert UserMaster on
+
+Insert into UserRoleMapping
+values(1,1),(2,2),(3,3)
