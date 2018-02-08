@@ -23,7 +23,6 @@ namespace InvoiceGen.Entities
         }
     
         public long ID { get; set; }
-        public string Name { get; set; }
         public string EmailID { get; set; }
         public string CustomerType { get; set; }
         public string ContactName { get; set; }
@@ -45,8 +44,9 @@ namespace InvoiceGen.Entities
         public Nullable<System.DateTime> UpdatedOn { get; set; }
         public Nullable<long> CreatedBy { get; set; }
         public Nullable<long> UpdatedBy { get; set; }
+        public string Name { get; set; }
         public string CustomerLogoPath { get; set; }
-
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<BillMaster> BillMasters { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

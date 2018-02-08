@@ -42,7 +42,7 @@ namespace InvoiceGen.DAL
             using (var context = new InvoiceGenEntities())
             {
                 userMaster = (from a in context.UserMasters
-                              where a.UserName == username && a.Password == passWord
+                              where a.UserName == username && a.password == passWord
                               select a).FirstOrDefault();
             }
             return userMaster;

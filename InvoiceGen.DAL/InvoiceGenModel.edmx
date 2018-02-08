@@ -173,7 +173,6 @@
           </Key>
           <Property Name="ID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="50" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="EmailId" Type="nvarchar" MaxLength="50" />
@@ -184,6 +183,7 @@
           <Property Name="CreatedBy" Type="bigint" />
           <Property Name="UpdatedBy" Type="bigint" />
           <Property Name="EmpId" Type="nvarchar" MaxLength="50" />
+          <Property Name="password" Type="nvarchar(max)" />
         </EntityType>
         <!--Errors Found During Generation:
 warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
@@ -764,7 +764,6 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -776,6 +775,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UpdatedBy" Type="Int64" />
           <Property Name="EmpId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__UserI__1A14E395" FromRole="UserMaster" ToRole="UserRoleMapping" />
+          <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="UserRoleMapping">
           <Key>
@@ -1322,9 +1322,9 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="InvoiceGenModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
+                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="LastName" ColumnName="LastName" />
                 <ScalarProperty Name="EmailId" ColumnName="EmailId" />
