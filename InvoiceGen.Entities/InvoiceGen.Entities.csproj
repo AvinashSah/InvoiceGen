@@ -66,6 +66,8 @@
     <Compile Include="CustomerProductMapping.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="DropDownCity.cs" />
+    <Compile Include="DropDownState.cs" />
     <Compile Include="GstStateCode.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>
@@ -88,6 +90,7 @@
     <Compile Include="RoleOperationMapping.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="RoleTypeConstant.cs" />
     <Compile Include="State.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>

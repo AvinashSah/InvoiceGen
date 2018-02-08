@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Default.Master" AutoEventWireup="true" CodeBehind="AddInvoice.aspx.cs" Inherits="InvoiceGen.AddInvoice" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="AddInvoice.aspx.cs" Inherits="InvoiceGen.AddInvoice" %>
 
 <%@ Register Assembly="AjaxControlToolkit" Namespace="AjaxControlToolkit" TagPrefix="addInvoice" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -14,12 +14,12 @@
                                 <tbody>
                                     <tr>
                                         <th>
-                                            <asp:TextBox ID="companyName" runat="server" CssClass="form-control" placeholder="Company Name" AutoPostBack="true" TabIndex="0"></asp:TextBox>
+                                            <input type="text" class="form-control" placeholder="Company Name" id="companyName" runat="server" tabindex="0" />
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:TextBox ID="compannyGstin" runat="server" CssClass="form-control" placeholder="GSTIN" AutoPostBack="true" OnTextChanged="compannyGstin_TextChanged" TabIndex="1"></asp:TextBox>
+                                            <input type="text" class="form-control" placeholder="GSTIN" id="compannyGstin" runat="server" tabindex="1" />
                                         </th>
                                         <th>
                                             <span>or</span>
@@ -43,12 +43,13 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:DropDownList ID="companyAddrState" runat="server" CssClass="form-control" TabIndex="5" OnSelectedIndexChanged="companyAddrState_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="companyAddrState" tabindex="5">
+                                            </select>
                                         </th>
                                         <th>
-                                            <asp:DropDownList ID="companyAddrCity" runat="server" CssClass="form-control" TabIndex="6" OnSelectedIndexChanged="companyAddrCity_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="companyAddrCity" tabindex="6">
+                                                <option value="0">--Select City--</option>
+                                            </select>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -66,7 +67,7 @@
                     </div>
                     <input type="text" class="form-control" runat="server" id="companyLogoID" style="display: none" />
 
-                    <asp:Image ID="companyLogo" runat="server" Style="float: right" />
+                    <asp:Image ID="companyLogo" runat="server" Style="float: right; width: 200px; height: 55px" />
                 </div>
             </div>
             <!--  -->
@@ -85,7 +86,7 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:TextBox ID="billToClientGSTIN" runat="server" TabIndex="10" CssClass="form-control" placeholder="GSTIN" AutoPostBack="true" OnTextChanged="billToClientGSTIN_TextChanged"></asp:TextBox>
+                                            <input type="text" class="form-control" runat="server" placeholder="GSTIN" id="billToClientGSTIN" tabindex="10" />
                                         </th>
                                         <th>
                                             <span>or</span>
@@ -109,12 +110,13 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:DropDownList ID="billToClientStateList" runat="server" CssClass="form-control" TabIndex="15" OnSelectedIndexChanged="billToClientStateList_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="billToClientStateList" tabindex="15">
+                                            </select>
                                         </th>
                                         <th>
-                                            <asp:DropDownList ID="billToClientCityList" runat="server" CssClass="form-control" TabIndex="16" OnSelectedIndexChanged="billToClientCityList_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="billToClientCityList" tabindex="16">
+                                                <option value="0">--Select City--</option>
+                                            </select>
                                         </th>
                                     </tr>
                                 </tbody>
@@ -126,7 +128,8 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading">
                             <strong>Ship To: </strong>
-                            <asp:CheckBox ID="chkSameAsBillAddress" OnCheckedChanged="chkSameAsBillAddress_CheckedChanged" Text="Same as Bill Address" Style="float: right" TabIndex="17" TextAlign="Right" runat="server" AutoPostBack="true" />
+                            <label for="chkSameAsBillAddress" style="float: right">Same as Bill Address</label>
+                            <input type="checkbox" class="form-group" id="chkSameAsBillAddress" runat="server" tabindex="17" style="float: right" />
                         </div>
                         <div class="panel-body">
                             <table class="table-condensed">
@@ -151,12 +154,13 @@
                                     </tr>
                                     <tr>
                                         <th>
-                                            <asp:DropDownList ID="shipToClientStateList" runat="server" CssClass="form-control" TabIndex="24" OnSelectedIndexChanged="shipToClientStateList_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="shipToClientStateList" tabindex="24">
+                                            </select>
                                         </th>
                                         <th>
-                                            <asp:DropDownList ID="shipToClientCityList" runat="server" CssClass="form-control" TabIndex="25" OnSelectedIndexChanged="shipToClientCityList_SelectedIndexChanged" AutoPostBack="true">
-                                            </asp:DropDownList>
+                                            <select class="form-control" id="shipToClientCityList" tabindex="25">
+                                                <option value="0">--Select City--</option>
+                                            </select>
                                         </th>
                                     </tr>
                                 </tbody>

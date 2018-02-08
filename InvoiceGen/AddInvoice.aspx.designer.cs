@@ -28,7 +28,7 @@ namespace InvoiceGen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox companyName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText companyName;
         
         /// <summary>
         /// compannyGstin control.
@@ -37,7 +37,7 @@ namespace InvoiceGen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox compannyGstin;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText compannyGstin;
         
         /// <summary>
         /// companyPan control.
@@ -74,24 +74,6 @@ namespace InvoiceGen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText companyAddrLine2;
-        
-        /// <summary>
-        /// companyAddrState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList companyAddrState;
-        
-        /// <summary>
-        /// companyAddrCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList companyAddrCity;
         
         /// <summary>
         /// panelLogo control.
@@ -154,7 +136,7 @@ namespace InvoiceGen {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox billToClientGSTIN;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText billToClientGSTIN;
         
         /// <summary>
         /// billToClientPAN control.
@@ -193,31 +175,13 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlInputText billToClientAddline2;
         
         /// <summary>
-        /// billToClientStateList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList billToClientStateList;
-        
-        /// <summary>
-        /// billToClientCityList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList billToClientCityList;
-        
-        /// <summary>
         /// chkSameAsBillAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.CheckBox chkSameAsBillAddress;
+        protected global::System.Web.UI.HtmlControls.HtmlInputCheckBox chkSameAsBillAddress;
         
         /// <summary>
         /// shipToClientAddLine1 control.
@@ -236,24 +200,6 @@ namespace InvoiceGen {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.HtmlControls.HtmlInputText shipToClientAddLine2;
-        
-        /// <summary>
-        /// shipToClientStateList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList shipToClientStateList;
-        
-        /// <summary>
-        /// shipToClientCityList control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DropDownList shipToClientCityList;
         
         /// <summary>
         /// amoutCalculationInterState control.

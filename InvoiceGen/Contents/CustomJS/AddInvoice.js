@@ -1,8 +1,11 @@
 ﻿$(document).ready(function () {
 
+    BindStateListToControls();
+
     AddNewItemInputRow(0);
 
     $("#AddItemToInvoice").click(function () {
+        ValidateForm();
         var rowCount = $('#itemList').rowCount();
         AddNewItemInputRow(rowCount);
     });
@@ -14,6 +17,147 @@
     $.fn.rowCount = function () {
         return $('tr', $(this).find('tbody')).length;
     };
+
+    $("#companyAddrState").change(function () {
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected = optionSelected.val();
+        var textSelected = optionSelected.text();
+        BindCityListForCompanyAddress(valueSelected);
+    });
+
+    $("#billToClientStateList").change(function () {
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected = optionSelected.val();
+        var textSelected = optionSelected.text();
+        BindCityListForClientStateList(valueSelected);
+    });
+
+    $("#shipToClientStateList").change(function () {
+        var optionSelected = $(this).find("option:selected");
+        var valueSelected = optionSelected.val();
+        var textSelected = optionSelected.text();
+        BindCityListForShipToClientStateList(valueSelected);
+    });
+
+    function BindCityListForShipToClientStateList(valueSelected) {
+        var cityList = [];
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetListOfCitiesByStates",
+            data: JSON.stringify({ valueSelected: valueSelected }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownCity = r.d[key];
+                        var cityOption = { value: DropDownCity.Value, text: DropDownCity.text }
+                        cityList.push(cityOption);
+                    }
+                }
+                BindCityListForClientShip(cityList);
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    function BindCityListForClientShip(cityList) {
+        $("#shipToClientCityList").html('');
+
+        var selectStatement = "<option Value=\"0\" selected>--Select City--</option>";
+        $("#shipToClientCityList").append(selectStatement);
+
+        for (var i = 0; i < cityList.length; i++) {
+            var cityListHtml = "<option Value=\"" + cityList[i].value + "\">" + cityList[i].text + "</option>";
+            $("#shipToClientCityList").append(cityListHtml);
+        }
+        return false;
+    }
+
+    function BindCityListForClientStateList(valueSelected) {
+        var cityList = [];
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetListOfCitiesByStates",
+            data: JSON.stringify({ valueSelected: valueSelected }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownCity = r.d[key];
+                        var cityOption = { value: DropDownCity.Value, text: DropDownCity.text }
+                        cityList.push(cityOption);
+                    }
+                }
+                BindCityListForClient(cityList);
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    function BindCityListForClient(cityList) {
+        $("#billToClientCityList").html('');
+
+        var selectStatement = "<option Value=\"0\" selected>--Select City--</option>";
+        $("#billToClientCityList").append(selectStatement);
+
+        for (var i = 0; i < cityList.length; i++) {
+            var cityListHtml = "<option Value=\"" + cityList[i].value + "\">" + cityList[i].text + "</option>";
+            $("#billToClientCityList").append(cityListHtml);
+        }
+        return false;
+    }
+
+    function BindCityListForCompanyAddress(valueSelected) {
+        var cityList = [];
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetListOfCitiesByStates",
+            data: JSON.stringify({ valueSelected: valueSelected }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownCity = r.d[key];
+                        var cityOption = { value: DropDownCity.Value, text: DropDownCity.text }
+                        cityList.push(cityOption);
+                    }
+                }
+                BindCityListForComanyAddress(cityList);
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    function BindCityListForComanyAddress(cityList) {
+        $("#companyAddrCity").html('');
+
+        var selectStatement = "<option Value=\"0\" selected>--Select City--</option>";
+        $("#companyAddrCity").append(selectStatement);
+
+        for (var i = 0; i < cityList.length; i++) {
+            var cityListHtml = "<option Value=\"" + cityList[i].value + "\">" + cityList[i].text + "</option>";
+            $("#companyAddrCity").append(cityListHtml);
+        }
+        return false;
+    }
 
     //Add new Row on add item click button
     function AddNewItemInputRow(rowCount) {
@@ -49,6 +193,165 @@
         return false;
     }
 
+    //Gets state list from DB through ajax to bind on state controls
+    function BindStateListToControls() {
+        var stateList = [];
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetListOfStates",
+            data: "",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownState = r.d[key];
+                        var stateOption = { value: DropDownState.Value, text: DropDownState.text }
+                        stateList.push(stateOption);
+                    }
+                }
+                BindStateList(stateList);
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    //Binds State list to state controls on page load
+    function BindStateList(stateList) {
+        $("#companyAddrState").empty();
+        $("#billToClientStateList").empty();
+        $("#shipToClientStateList").empty();
+
+        var selectStatement = "<option Value=\"0\" selected>--Select State--</option>";
+        $("#companyAddrState").append(selectStatement);
+        $("#billToClientStateList").append(selectStatement);
+        $("#shipToClientStateList").append(selectStatement);
+        for (var i = 0; i < stateList.length; i++) {
+            var stateListHtml = "<option Value=\"" + stateList[i].value + "\">" + stateList[i].text + "</option>";
+            $("#companyAddrState").append(stateListHtml);
+            $("#billToClientStateList").append(stateListHtml);
+            $("#shipToClientStateList").append(stateListHtml);
+        }
+        return false;
+    }
+
+    //Company GSTIN Change Event
+    $("[id$=compannyGstin]").on('change', function () {
+        if ($("[id$=compannyGstin]").val() !== "") {
+            var compannyGstinlength = $("[id$=compannyGstin]").val().length;
+            if (compannyGstinlength > 0 && compannyGstinlength !== 15) {
+                alert("Company GSTIN should of 15 characters !");
+                event.preventDefault();
+                return false;
+            }
+            else {
+                var gstinStateCode = $("[id$=compannyGstin]").val().substring(0, 2);
+                BindStateForCompanyBasedOnGstinSelected(gstinStateCode);
+            }
+        }
+    });
+    //Company GSTIN Change Event helper
+    function BindStateForCompanyBasedOnGstinSelected(gstinStateCode) {
+        var gstinstateID = "";
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetStateIDByGSTIN",
+            data: JSON.stringify({ gstin: gstinStateCode }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownState = r.d;
+                        gstinstateID = DropDownState.Value;
+                    }
+                }
+                $("#companyAddrState").val(gstinstateID);
+                BindCityListForCompanyAddress(gstinstateID);
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    //Client GSTIN Change Event
+    $("[id$=billToClientGSTIN]").on('change', function () {
+        if ($("[id$=billToClientGSTIN]").val() !== "") {
+            var compannyGstinlength = $("[id$=billToClientGSTIN]").val().length;
+            if (compannyGstinlength > 0 && compannyGstinlength !== 15) {
+                alert("Client's GSTIN should of 15 characters !");
+                event.preventDefault();
+                return false;
+            }
+            else {
+                var gstinStateCode = $("[id$=billToClientGSTIN]").val().substring(0, 2);
+                BindStateForClientBasedOnGstinSelected(gstinStateCode);
+            }
+        }
+    });
+
+    function BindStateForClientBasedOnGstinSelected(gstinStateCode) {
+        var gstinstateID = "";
+        $.ajax({
+            type: "POST",
+            url: "AutoFillService.asmx/GetStateIDByGSTIN",
+            data: JSON.stringify({ gstin: gstinStateCode }),
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (r) {
+                for (var key in r.d) {
+                    if (r.d.hasOwnProperty(key)) {
+                        var DropDownState = r.d;
+                        gstinstateID = DropDownState.Value;
+                    }
+                }
+                $("#billToClientStateList").val(gstinstateID);
+                BindCityListForClientStateList(gstinstateID);
+                if ($('#chkSameAsBillAddress').is(':checked')) {
+                    $("#shipToClientStateList").val(gstinstateID);
+                    BindCityListForShipToClientStateList(gstinstateID);
+                }
+            },
+            error: function (r) {
+                alert(r.responseText);
+            },
+            failure: function (r) {
+                alert(r.responseText);
+            }
+        });
+    }
+
+    $("[id$=chkSameAsBillAddress]").on('change', function () {
+        if (!this.checked) {
+            var sure = confirm("Are you sure?");
+            event.preventDefault();
+            $('#shipToClientCityList option[value!="0"]').remove();
+            $("#shipToClientStateList").val(0);
+            $("#shipToClientCityList").val(0);
+        }
+
+        if ($("[id$=chkSameAsBillAddress]").is(':checked')) {
+            var selectedAddStateClientBill = $("#billToClientStateList").find("option:selected").val();
+            var selectedAddCityClientBill = $("#billToClientCityList").find("option:selected").val();
+            $("#shipToClientStateList").val(selectedAddStateClientBill);
+            BindCityListForShipToClientStateList(selectedAddStateClientBill);
+            $("#shipToClientCityList").val(selectedAddCityClientBill);
+            $("[id$=shipToClientAddLine1]").val($("[id$=billToClientAddline1]").val());
+            $("[id$=shipToClientAddLine2]").val($("[id$=billToClientAddline2]").val());
+        }
+
+    });
+
+
     //Event on Item Rate Change
     $("#itemList").on('change', '.itemRate', function () {
         var id = this.id;
@@ -60,7 +363,6 @@
         ReEvaluateItemCost();
         return false;
     });
-
     //function to evaluate item cost
     function ReEvaluateItemCost() {
 
@@ -196,8 +498,7 @@
             }
         }
     }
-
-
+    //Deletes item from item list
     $("#itemList").on('click', '.itemDeleteAddInvoice', function () {
         var confirmation = false;
         confirm("Do you really want to remove item ?", confirmation);
@@ -207,9 +508,6 @@
         }
         return false;
     });
-
-
-
     //Function to make parameters and send to asmx service
     function createBill_Click() {
         ValidateForm();
@@ -316,13 +614,13 @@
 
         return false;
     }
-
+    //Validate Form Function
     function ValidateForm() {
         if ($("[id$=compannyGstin]").val() !== "") {
             var compannyGstinlength = $("[id$=compannyGstin]").val().length;
-            if (compannyGstinlength !== 16) {
-                alert("Company GSTIN should of 16 characters !");
-                return false;
+            if (compannyGstinlength !== 15) {
+                alert("Company GSTIN should of 15 characters !");
+                event.preventDefault();
             }
         }
 
@@ -330,17 +628,17 @@
             var billToClientGSTINLength = $("[id$=billToClientGSTIN]").val().length;
             if (billToClientGSTINLength !== 16) {
                 alert("Client's GSTIN should of 16 characters !");
-                return false;
+                event.preventDefault();;
             }
         }
 
-        if ($("[id$=billToClientGSTIN]").val() !== "" && $("[id$=compannyGstin]").val() !== "") {
+        if ($("[id$=billToClientGSTIN]").val() === "" && $("[id$=compannyGstin]").val() === "") {
             alert("You need to provide eiether PAN/GSTIN !")
-            return false;
+            event.preventDefault();
         }
 
     }
-
+    //Get Product List from UI and prepare aJSon object
     function GetProducListFromUI() {
         var returnProductList = [];
 
@@ -359,7 +657,7 @@
             returnProductList.push(product);
         }
     }
-
+    //Get product bill mapping
     function GetProductBillMapping() {
         var returnproductBillMapping = [];
 
@@ -390,6 +688,7 @@
         }
     }
 
+    //pushes create invoice data to server
     function PushInvoiceDataToService(Customer, Client, productList, productBillMapping, notesForCustomer, termsAndCondition) {
 
         var postData = {
@@ -418,46 +717,4 @@
             }
         });
     }
-
-    //$("#itemList").on('keypress', '.HSNCode', function () {
-    //    var id = this.id;
-    //    var prefixText = document.getElementById(id).innerText;
-    //    var byClass = document.getElementById(id).getElementsByClassName(".suggesstion-boxHSN");
-    //    var count = prefixText.length;
-
-    //    $.ajax({
-    //        type: "POST",
-    //        url: "AutoFillService.asmx/GetProductListByHSNSACCode",
-    //        data: "{ prefixText: '" + prefixText + "', count: " + count + "}",
-    //        contentType: "application/json; charset=utf-8",
-    //        dataType: "json",
-    //        success: function (r) {
-    //            var data = [];
-    //            for (var key in r.d) {
-    //                if (r.d.hasOwnProperty(key)) {
-    //                    var product = r.d[key];
-    //                    for (var propertyName in product) {
-    //                        if (propertyName = "Name") {
-    //                            data.push = { "productName": product.Name };
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //            $(byClass).show();
-    //            $(byClass).html(data);
-    //            $(id).css("background", "#FFF");
-    //        },
-    //        error: function (r) {
-    //            alert(r.responseText);
-    //        },
-    //        failure: function (r) {
-    //            alert(r.responseText);
-    //        }
-    //    });
-    //});
-
-    //$("#itemList").on('productName', '.HSNCode', function () {
-    //    alert(this.id)
-    //});
-
 });

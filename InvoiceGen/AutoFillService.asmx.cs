@@ -9,6 +9,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
+using System.Web.Script.Serialization;
 
 namespace InvoiceGen.App_Code
 {
@@ -105,6 +106,60 @@ namespace InvoiceGen.App_Code
             {
                 return null;
             }
+        }
+
+        [ScriptMethod()]
+        [WebMethod]
+        public List<DropDownState> GetListOfStates()
+        {
+            BAL_Common bAL_Common = new BAL_Common();
+            List<State> stateList = new List<State>();
+            stateList = bAL_Common.GetStateListForDropDown();
+            List<DropDownState> dropDownStateList = new List<DropDownState>();
+            foreach (State state in stateList)
+            {
+                DropDownState dropDownState = new DropDownState();
+                dropDownState.text = state.Name;
+                dropDownState.Value = state.ID;
+                dropDownStateList.Add(dropDownState);
+            }
+            return dropDownStateList;
+        }
+
+        [ScriptMethod()]
+        [WebMethod]
+        public List<DropDownCity> GetListOfCitiesByStates(string valueSelected)
+        {
+            List<DropDownCity> listDropDownCisty = new List<DropDownCity>();
+            BAL_Common bAL_Common = new BAL_Common();
+            List<City> cityList = new List<City>();
+            cityList = bAL_Common.GetCityByStateIDForDropDown(valueSelected);
+
+            foreach (City city in cityList)
+            {
+                DropDownCity dropDownCity = new DropDownCity();
+                dropDownCity.StateID = city.StateID;
+                dropDownCity.text = city.Name;
+                dropDownCity.Value = city.ID;
+                listDropDownCisty.Add(dropDownCity);
+            }
+            return listDropDownCisty;
+        }
+
+        [WebMethod]
+        [ScriptMethod()]
+        public DropDownState GetStateIDByGSTIN(string gstin)
+        {
+            DropDownState dropDownState = new DropDownState();
+            BAL_Common bAL_Common = new BAL_Common();
+            State state = new State();
+            state = bAL_Common.GetStateByGSTIN(gstin);
+            if (state != null)
+            {
+                dropDownState.text = state.Name;
+                dropDownState.Value = state.ID;
+            }
+            return dropDownState;
         }
 
 

@@ -5,6 +5,8 @@ using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
 using System.IO;
+using System.Web;
+using System.Web.Security;
 using System.Web.UI.WebControls;
 
 namespace InvoiceGen
@@ -13,7 +15,14 @@ namespace InvoiceGen
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (HttpContext.Current.User != null)
+            {
+                if (!HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    FormsAuthentication.SignOut();
+                    Response.Redirect("~/Login.aspx");
+                }
+            }
         }
 
         protected void productsDataFileButton_Click(object sender, EventArgs e)
