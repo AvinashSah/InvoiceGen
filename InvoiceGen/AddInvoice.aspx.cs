@@ -24,8 +24,6 @@ namespace InvoiceGen
 {
     public partial class AddInvoice : System.Web.UI.Page
     {
-        private bool startConversion = false;
-
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.User != null)
@@ -41,7 +39,7 @@ namespace InvoiceGen
         #region COMMON METHODS
         protected void generateInvoicePDF_ServerClick(object sender, EventArgs e)
         {
-            startConversion = true;
+            //startConversion = true;
         }
         #endregion
 

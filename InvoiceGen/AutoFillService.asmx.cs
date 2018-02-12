@@ -10,6 +10,7 @@ using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
 using System.Web.Script.Serialization;
+using System.IO;
 
 namespace InvoiceGen.App_Code
 {
@@ -241,7 +242,16 @@ namespace InvoiceGen.App_Code
                     bool productExist = false;
                     var clientproductID = products.ID;
                     products.ID = 0;
-                    productExist = bAL_Products.CheckIfProductExistByHSNCode(products.HSNCode, out Int64 productID);
+                    Int64 productID = -1;
+                    if (!string.IsNullOrEmpty(products.HSNCode))
+                    {
+                        productExist = bAL_Products.CheckIfProductExistByHSNCode(products.HSNCode, out productID);
+                    }
+                    else if (!string.IsNullOrEmpty(products.SACCode))
+                    {
+                        productExist = bAL_Products.CheckIfProductExistBySACCode(products.SACCode, out productID);
+                    }
+
                     if (productExist)
                     {
                         products.ID = productID;
@@ -287,9 +297,15 @@ namespace InvoiceGen.App_Code
 
         public void GenerateReport(Customer Customer, Customer Client, List<ProductsMaster> productList, List<BillProductMapping> productBillMapping, string notesForCustomer, string termsAndCondition)
         {
+            BAL_Common bAL_Common = new BAL_Common();
             PDFGenerator pDFGenerator = new PDFGenerator();
             Document document = new Document(PageSize.A4, 88f, 88f, 10f, 10f);
             Font NormalFont = FontFactory.GetFont("Arial", 12, Font.NORMAL, Color.BLACK);
+            document.AddTitle("Invoice");
+            document.AddSubject("This is Invoice against your Items ");
+            document.AddKeywords("GSTSeva");
+            document.AddCreator("GSTSeva");
+            document.AddAuthor("GSTSeva");
             using (System.IO.MemoryStream memoryStream = new System.IO.MemoryStream())
             {
                 PdfWriter writer = PdfWriter.GetInstance(document, memoryStream);
@@ -297,16 +313,6 @@ namespace InvoiceGen.App_Code
                 PdfPCell cell = null;
                 PdfPTable table = null;
                 Color color = null;
-
-                document.Open();
-
-                table = new PdfPTable(2);
-                table.TotalWidth = 500f;
-                table.LockedWidth = true;
-                table.SetWidths(new float[] { 0.3f, 0.7f });
-
-                cell = pDFGenerator.ImageCell(Server.MapPath(Customer.CustomerLogoPath), 30f, PdfPCell.ALIGN_CENTER);
-                table.AddCell(cell);
             }
         }
 

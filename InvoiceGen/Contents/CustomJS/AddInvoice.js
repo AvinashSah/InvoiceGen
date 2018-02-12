@@ -351,7 +351,6 @@
 
     });
 
-
     //Event on Item Rate Change
     $("#itemList").on('change', '.itemRate', function () {
         var id = this.id;
@@ -579,7 +578,13 @@
             var prod_Rate = $('#itemRate' + iProd).val();
             var prod_Qty = $('#itemQty' + iProd).val();
             var prod_TotalAmount = $('#itemAmount' + iProd).val();
-            var product = { Name: prod_name, HSNCode: prod_HSNCode, Description: prod_description, GSTPercentage: prod_Gst, ID: prod_ID }
+            var product = {};
+            if (prod_HSNCode.substring(0, 2) === "99") {
+                product = { Name: prod_name, SACCode: prod_HSNCode, Description: prod_description, GSTPercentage: prod_Gst, ID: prod_ID }
+            }
+            else {
+                product = { Name: prod_name, HSNCode: prod_HSNCode, Description: prod_description, GSTPercentage: prod_Gst, ID: prod_ID }
+            }
             productList.push(product);
 
             var billProdMapp = {};

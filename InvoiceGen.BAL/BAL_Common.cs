@@ -118,5 +118,41 @@ namespace InvoiceGen.BAL
             }
             return cipherText;
         }
+
+        public string GetStateNameByID(long? stateID)
+        {
+            DAL_Common dAL_Common = new DAL_Common();
+            return dAL_Common.GetStateNameByID(stateID);
+        }
+
+        public string GetCityNameByID(long? cityID)
+        {
+            DAL_Common dAL_Common = new DAL_Common();
+            return dAL_Common.GetCityNameByID(cityID);
+        }
+
+        public UserOpMap GetUserOperationMapping(string name, string userRole)
+        {
+            UserOpMap userOpMap = new UserOpMap();
+            UserMaster userMaster = new UserMaster();
+            DAL_Common dAL_Common = new DAL_Common();
+            userMaster = dAL_Common.GetUserdetailsByUsernameAndRole(name, userRole);
+            if (userMaster != null)
+            {
+                List<Operations> operations = new List<Operations>();
+                operations = dAL_Common.GetOperationListForUser(userMaster.ID);
+                if (operations != null)
+                {
+                    userOpMap.Username = userMaster.UserName;
+                    userOpMap.UserID = Convert.ToString(userMaster.ID);
+                    userOpMap.UserRoleName = userRole;
+                    foreach (Operations op in operations)
+                    {
+                        userOpMap.OperationsList = operations;
+                    }
+                }
+            }
+            return userOpMap;
+        }
     }
 }

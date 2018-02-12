@@ -133,5 +133,26 @@ namespace InvoiceGen.DAL
             }
         }
 
+        public bool CheckIfProductExistBySACode(string sACCode, out long productID)
+        {
+            productID = -1;
+            ProductsMaster productsMaster = new ProductsMaster();
+            using (var context = new InvoiceGenEntities())
+            {
+                productsMaster = (from a in context.ProductsMasters
+                                  where a.SACCode == sACCode
+                                  select a).FirstOrDefault();
+            }
+            if (productsMaster != null)
+            {
+                productID = productsMaster.ID;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
     }
 }

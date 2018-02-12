@@ -97,6 +97,7 @@
     <Compile Include="UserMaster.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="UserOpMap.cs" />
     <Compile Include="UserRoleMapping.cs">
       <DependentUpon>InvoiceGenModel.tt</DependentUpon>
     </Compile>

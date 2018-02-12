@@ -31,6 +31,15 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl homeMenu;
         
         /// <summary>
+        /// servicesMainli control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl servicesMainli;
+        
+        /// <summary>
         /// ViewClient control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,13 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl GenerateInvoice;
         
         /// <summary>
-        /// settingsMenu control.
+        /// settingsMainli control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settingsMenu;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl settingsMainli;
         
         /// <summary>
         /// ImportProducts control.

@@ -9,3 +9,8 @@ Post-Deployment Script Template
                SELECT * FROM [$(TableName)]					
 --------------------------------------------------------------------------------------
 */
+USE [$(DatabaseName)];
+IF(LOWER('$(DeployNewDatabase)') = 'true')
+BEGIN
+	:r .\MasterData.sql
+END

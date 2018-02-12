@@ -1,52 +1,52 @@
 ﻿INSERT INTO Countries (ShortName, Name, Phonecode) VALUES
 ('IN', 'India', 91)
 
+set identity_insert [dbo].[States] on
+INSERT INTO States (ID,Name, country_id) VALUES
+(1,'Andaman and Nicobar Islands', 1),
+(2,'Andhra Pradesh', 1),
+(3,'Arunachal Pradesh', 1),
+(4,'Assam', 1),
+(5,'Bihar', 1),
+(6,'Chandigarh', 1),
+(7,'Chhattisgarh', 1),
+(8,'Dadra and Nagar Haveli', 1),
+(9,'Daman and Diu', 1),
+(10,'Delhi', 1),
+(11,'Goa', 1),
+(12,'Gujarat', 1),
+(13,'Haryana', 1),
+(14,'Himachal Pradesh', 1),
+(15,'Jammu and Kashmir', 1),
+(16,'Jharkhand', 1),
+(17,'Karnataka', 1),
+(18,'Kenmore', 1),
+(19,'Kerala', 1),
+(20,'Lakshadweep', 1),
+(21,'Madhya Pradesh', 1),
+(22,'Maharashtra', 1),
+(23,'Manipur', 1),
+(24,'Meghalaya', 1),
+(25,'Mizoram', 1),
+(26,'Nagaland', 1),
+(27,'Narora', 1),
+(28,'Natwar', 1),
+(29,'Odisha', 1),
+(30,'Paschim Medinipur', 1),
+(31,'Pondicherry', 1),
+(32,'Punjab', 1),
+(33,'Rajasthan', 1),
+(34,'Sikkim', 1),
+(35,'Tamil Nadu', 1),
+(36,'Telangana', 1),
+(37,'Tripura', 1),
+(38,'Uttar Pradesh', 1),
+(39,'Uttarakhand', 1),
+(40,'Vaishali', 1),
+(41,'West Bengal', 1)
+set identity_insert [dbo].[States] off
 
-INSERT INTO States (Name, country_id) VALUES
-('Andaman and Nicobar Islands', 1),
-('Andhra Pradesh', 1),
-('Arunachal Pradesh', 1),
-('Assam', 1),
-('Bihar', 1),
-('Chandigarh', 1),
-('Chhattisgarh', 1),
-('Dadra and Nagar Haveli', 1),
-('Daman and Diu', 1),
-('Delhi', 1),
-('Goa', 1),
-('Gujarat', 1),
-('Haryana', 1),
-('Himachal Pradesh', 1),
-('Jammu and Kashmir', 1),
-('Jharkhand', 1),
-('Karnataka', 1),
-('Kenmore', 1),
-('Kerala', 1),
-('Lakshadweep', 1),
-('Madhya Pradesh', 1),
-('Maharashtra', 1),
-('Manipur', 1),
-('Meghalaya', 1),
-('Mizoram', 1),
-('Nagaland', 1),
-('Narora', 1),
-('Natwar', 1),
-('Odisha', 1),
-('Paschim Medinipur', 1),
-('Pondicherry', 1),
-('Punjab', 1),
-('Rajasthan', 1),
-('Sikkim', 1),
-('Tamil Nadu', 1),
-('Telangana', 1),
-('Tripura', 1),
-('Uttar Pradesh', 1),
-('Uttarakhand', 1),
-('Vaishali', 1),
-('West Bengal', 1)
-
-
-set identity_insert Cities on
+set identity_insert [dbo].[Cities] on
 
 INSERT INTO Cities (ID, Name, StateID) VALUES
 (1, 'Bombuflat', 1),
@@ -5799,7 +5799,7 @@ INSERT INTO Cities (ID, Name, StateID) VALUES
 (5741, 'Uttarpara-Kotrung', 41)
 
 
-set identity_insert Cities off
+set identity_insert [dbo].[Cities] off
 
 
 
@@ -5841,34 +5841,45 @@ INSERT INTO GstStateCodes (GSTStateCode,IsActive,StateID) VALUES
 ('35',1,1),
 ('36',1,36);
 
-set identity_insert OperationMaster on
-Insert into OperationMaster values(1,'ImportProducts','Operation defined to Import Products to Product Master')
-Insert into OperationMaster values(2,'GenerateInvoice','Operation defined to generate invoice')
-set identity_insert OperationMaster on
+set identity_insert [dbo].[OperationMaster] on
+Insert into OperationMaster ([ID],[OperationName],[Description]) values(1,'ImportProducts','Operation defined to Import Products to Product Master')
+Insert into OperationMaster ([ID],[OperationName],[Description]) values(2,'GenerateInvoice','Operation defined to generate invoice')
+Insert into OperationMaster ([ID],[OperationName],[Description]) values(3,'Dashboard','Operation defined to view home page')
+Insert into OperationMaster ([ID],[OperationName],[Description]) values(4,'ManageBills','Operation defined to view Customer Invoices')
+Insert into OperationMaster ([ID],[OperationName],[Description]) values(5,'ManageClient','Operation defined to view Clients Information')
+set identity_insert [dbo].[OperationMaster] off
 
-set identity_insert RoleMaster on
-Insert into RoleMaster
+set identity_insert [dbo].[RoleMaster] on
+Insert into RoleMaster ([ID],[RoleName],[Description])
 values(1,'SysAdmin','Access to all roads')
 ,(2,'Admin','Admin having access to operations defined by SysAdmin')
 ,(3,'EndUser','Can generate and view bills')
 
-set identity_insert RoleMaster on
+set identity_insert [dbo].[RoleMaster] off
 
 insert into RoleOperationMapping
 values 
-(1,1),
-(2,1),
-(1,2),
-(2,2),
-(3,2)
+(1,1),(1,2),(1,3),(1,4),(1,5),
+(2,1),(2,2),(2,3),(2,4),(2,5),
+(3,2),(3,3)
 
-set identity_insert UserMaster on
-Insert into UserMaster
+set identity_insert [dbo].[UserMaster] on
+Insert into UserMaster ([ID], [UserName],[FirstName],[LastName],[EmailId],[Mobile],[IsActive],[CreatedOn],[UpdatedOn],[CreatedBy],[UpdatedBy],[EmpId],[password])
 values(1,'SysAdmin','Sys','Admin','','',1,GETDATE(),GETDATE(),NULL,NULL,NUll,'8V/mNuXxvB/P69tO3HNQ36PPlctB3tMG8sF3btvQwCsyfmG5zDjZjGnRJEVJT+BL'),
 (2,'GSTSevaAdmin','GSTSeva','Admin','','',1,GETDATE(),GETDATE(),1,NULL,NUll,'8V/mNuXxvB/P69tO3HNQ36PPlctB3tMG8sF3btvQwCsyfmG5zDjZjGnRJEVJT+BL')
 ,(3,'TestUser1','Test','User1','','',1,GETDATE(),GETDATE(),1,NULL,NUll,'jAmDbTYloMK3+qnNF+meSw==')
 
-set identity_insert UserMaster on
+set identity_insert [dbo].[UserMaster] off
 
 Insert into UserRoleMapping
 values(1,1),(2,2),(3,3)
+
+
+insert into Customers	
+([Name],[EmailID],[CustomerType],[ContactName],[ContactNumber],[GSTIN],[PAN],[BillAddL1],[BillAddL2],[BillAddCityID],[BillStateID]
+           ,[BillAddZip],[ShipAddL1],[ShipAddL2],[ShipAddCityID],[ShipStateID],[ShipAddZip],[IsActive],[CreatedOn],[UpdatedOn],[CreatedBy],[UpdatedBy],[CustomerLogoPath])
+values ('TC1Name','TC1@testmail.com','Company','TC1',
+'9977293273','07TINTest123456','ABCDEFG','L96 2nd floor','Lajpat Nagar 2',707,10,110022,
+'368B','Karol Bagh',707,10,110021,1,GETDATE(),GETDATE(),1,1,'')
+
+

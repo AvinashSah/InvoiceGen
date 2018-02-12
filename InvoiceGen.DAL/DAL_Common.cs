@@ -36,6 +36,18 @@ namespace InvoiceGen.DAL
             return listCity;
         }
 
+        public UserMaster GetUserdetailsByUsername(string name)
+        {
+            UserMaster userMaster = new UserMaster();
+            using (var context = new InvoiceGenEntities())
+            {
+                userMaster = (from a in context.UserMasters
+                              where a.UserName == name
+                              select a).FirstOrDefault();
+            }
+            return userMaster;
+        }
+
         public UserMaster GetUserdetailsByUsernamePass(string username, string passWord)
         {
             UserMaster userMaster = new UserMaster();
@@ -94,6 +106,109 @@ namespace InvoiceGen.DAL
                         .FirstOrDefault();
             }
             return state;
+        }
+
+        public string GetStateNameByID(long? stateID)
+        {
+            State state = new State();
+            using (var context = new InvoiceGenEntities())
+            {
+                state = (from a in context.States
+                         where a.ID == stateID
+                         select a).FirstOrDefault();
+            }
+            if (state != null)
+            {
+                return state.Name;
+            }
+            else
+            {
+                return string.Format("State with ID:{0} Not Found !", stateID);
+            }
+        }
+
+        public string GetCityNameByID(long? cityID)
+        {
+            City city = new City();
+            using (var context = new InvoiceGenEntities())
+            {
+                city = (from a in context.Cities
+                        where a.ID == cityID
+                        select a).FirstOrDefault();
+            }
+            if (city != null)
+            {
+                return city.Name;
+            }
+            else
+            {
+                return string.Format("City with ID:{0} Not Found !", cityID);
+            }
+        }
+
+        public UserMaster GetUserdetailsByUsernameAndRole(string name, string userRole)
+        {
+            UserMaster userMaster = new UserMaster();
+            using (var context = new InvoiceGenEntities())
+            {
+                userMaster = (from a in context.UserMasters
+                              where a.UserName == name
+                              select a).FirstOrDefault();
+
+                var userRoleMapping = (from a in context.UserRoleMappings
+                                       where a.UserId == userMaster.ID
+                                       select a).FirstOrDefault();
+
+
+                var rolemaster = (from a in context.RoleMasters
+                                  where a.ID == userRoleMapping.RoleId
+                                  select a).FirstOrDefault();
+
+                if (string.Equals(rolemaster.RoleName, userRole, StringComparison.InvariantCultureIgnoreCase))
+                {
+                    return userMaster;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+
+        }
+
+        public List<Operations> GetOperationListForUser(long userId)
+        {
+            List<Operations> opList = new List<Operations>();
+            using (var context = new InvoiceGenEntities())
+            {
+                var userRoleMapping = (from a in context.UserRoleMappings
+                                       where a.UserId == userId
+                                       select a).FirstOrDefault();
+
+                var rolemaster = (from a in context.RoleMasters
+                                  where a.ID == userRoleMapping.RoleId
+                                  select a).FirstOrDefault();
+                List<RoleOperationMapping> roleOpMapping = new List<RoleOperationMapping>();
+                roleOpMapping = (from a in context.RoleOperationMappings
+                                 where a.RoleId == userRoleMapping.RoleId
+                                 select a).ToList();
+                foreach (RoleOperationMapping opMapp in roleOpMapping)
+                {
+                    Operations op = new Operations();
+                    OperationMaster opm = new OperationMaster();
+                    opm = (from a in context.OperationMasters
+                           where a.ID == opMapp.OperationId
+                           select a).FirstOrDefault();
+
+                    if (opm != null)
+                    {
+                        op.OperationName = opm.OperationName;
+                        opList.Add(op);
+                    }
+                }
+
+            }
+            return opList;
         }
     }
 }

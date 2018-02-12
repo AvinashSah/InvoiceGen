@@ -15,23 +15,36 @@ namespace InvoiceGen.BAL
         public List<ProductsMaster> SaveProductsData(DataTable dt, Requester requester)
         {
             DAL_Products dAL_Products = new DAL_Products();
+            DAL_Common dAL_Common = new DAL_Common();
             List<ProductsMaster> listProduct = new List<ProductsMaster>();
+            UserMaster userMaster = new UserMaster();
+
+            userMaster = dAL_Common.GetUserdetailsByUsername(requester.Name);
             if (dt != null & dt.Rows.Count > 0)
             {
                 foreach (DataRow row in dt.Rows)
                 {
+
                     ProductsMaster product = new ProductsMaster();
                     product.Name = Convert.ToString(row["Name"]);
                     product.HSNCode = Convert.ToString(row["HSNCode"] is DBNull ? DBNull.Value : row["HSNCode"]);
                     product.SACCode = Convert.ToString(row["SACCode"] is DBNull ? DBNull.Value : row["SACCode"]);
                     product.Description = Convert.ToString(row["Description"]);
                     product.CessPercentage = Convert.ToString(row["CessPercentage"]);
-                    product.GSTPercentage = Convert.ToString(row["GSTPercentage"]);
+                    product.GSTPercentage = Convert.ToString(row["GSTPercentage"]).Equals("NIL", StringComparison.InvariantCultureIgnoreCase) ? null : Convert.ToString(row["GSTPercentage"]);
                     product.IsActive = true;
-                    product.CreatedBy = requester.ID;
                     product.CreatedOn = DateTime.Now;
-                    product.UpdatedBy = requester.ID;
                     product.UpdatedOn = DateTime.Now;
+                    if (userMaster != null)
+                    {
+                        product.CreatedBy = userMaster.ID;
+                        product.UpdatedBy = userMaster.ID;
+                    }
+                    else
+                    {
+                        product.CreatedBy = 1;
+                        product.UpdatedBy = 1;
+                    }
                     listProduct.Add(product);
                 }
                 return dAL_Products.SaveProductsData(listProduct);
@@ -65,6 +78,12 @@ namespace InvoiceGen.BAL
         {
             DAL_Products dAL_Products = new DAL_Products();
             return dAL_Products.CheckIfProductExistByHSNCode(hSNCode, out productID);
+        }
+
+        public bool CheckIfProductExistBySACCode(string sACCode, out long productID)
+        {
+            DAL_Products dAL_Products = new DAL_Products();
+            return dAL_Products.CheckIfProductExistBySACode(sACCode, out productID);
         }
 
         public long CreateNewProduct(ProductsMaster products)

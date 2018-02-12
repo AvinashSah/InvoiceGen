@@ -108,7 +108,6 @@
   <ItemGroup>
     <Content Include="Admin.Master" />
     <Content Include="AutoFillService.asmx" />
-    <Content Include="Bill.aspx" />
     <Content Include="Contents\css\animate.min.css" />
     <Content Include="Contents\css\font-awesome-login.css" />
     <Content Include="Contents\css\Fontsans.css" />
@@ -212,13 +211,6 @@
     <Compile Include="AutoFillService.asmx.cs">
       <DependentUpon>AutoFillService.asmx</DependentUpon>
       <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Bill.aspx.cs">
-      <DependentUpon>Bill.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Bill.aspx.designer.cs">
-      <DependentUpon>Bill.aspx</DependentUpon>
     </Compile>
     <Compile Include="Default.Master.cs">
       <DependentUpon>Default.Master</DependentUpon>

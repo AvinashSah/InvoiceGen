@@ -159,8 +159,7 @@ namespace InvoiceGen
         private List<ProductsMaster> SaveProductsData(DataTable dt)
         {
             Requester requester = new Requester();
-            requester.Name = Convert.ToString(Session["user"]);
-            requester.ID = Convert.ToInt64(Session["userID"]);
+            requester.Name = Convert.ToString(HttpContext.Current.User.Identity.Name);
             BAL.BAL_Products bAL_Products = new BAL.BAL_Products();
             return bAL_Products.SaveProductsData(dt, requester);
         }
