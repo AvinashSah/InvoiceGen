@@ -4,42 +4,42 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="11ae50ed1ea1417e87c93dace0d86abc" Name="Diagram1" ZoomLevel="81">
-        <EntityTypeShape EntityType="InvoiceGenModel.BillMaster" Width="1.5" PointX="7.5" PointY="11.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.BillProductMapping" Width="1.5" PointX="12.75" PointY="12.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.City" Width="1.5" PointX="5.25" PointY="16" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.Country" Width="1.5" PointX="0.75" PointY="10.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.CustomerProductMapping" Width="1.5" PointX="15.75" PointY="12.625" IsExpanded="true" />
+      <Diagram DiagramId="8fcdeb1d12394f26a797854ac0ed4b8d" Name="Diagram1">
+        <EntityTypeShape EntityType="InvoiceGenModel.BillMaster" Width="1.5" PointX="7.5" PointY="11" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.BillProductMapping" Width="1.5" PointX="12.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.City" Width="1.5" PointX="5.25" PointY="15.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.Country" Width="1.5" PointX="0.75" PointY="10.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.CustomerProductMapping" Width="1.5" PointX="15.75" PointY="12.5" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.Customer" Width="1.5" PointX="10.5" PointY="10.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.GstStateCode" Width="1.5" PointX="5.25" PointY="19.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.GstStateCode" Width="1.5" PointX="5.25" PointY="19.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.OperationMaster" Width="1.5" PointX="0.75" PointY="0.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="InvoiceGenModel.ProductsMaster" Width="1.5" PointX="10.5" PointY="5.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="InvoiceGenModel.ProductsMaster" Width="1.5" PointX="10.5" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.RoleMaster" Width="1.5" PointX="0.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.RoleOperationMapping" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.State" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.UserMaster" Width="1.5" PointX="0.75" PointY="14.25" IsExpanded="true" />
         <EntityTypeShape EntityType="InvoiceGenModel.UserRoleMapping" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillA__3B75D760" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillF__398D8EEE" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillS__3C69FB99" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillT__3A81B327" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__ShipA__3D5E1FD2" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__ShipS__3E52440B" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__BillI__4222D4EF" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__Produ__4316F928" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__Cities__StateID__22AA2996" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__Customers__BillA__286302EC" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__Customers__ShipA__2A4B4B5E" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__States__country___1FCDBCEB" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Custo__34C8D9D1" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Produ__33D4B598" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__Customers__BillS__29572725" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__Customers__ShipS__2B3F6F97" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__GstStateC__State__25869641" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__Opera__182C9B23" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__RoleI__173876EA" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__RoleI__1B0907CE" ManuallyRouted="false" />
-        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__UserI__1A14E395" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillA__300424B4" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillF__30F848ED" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillS__31EC6D26" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__BillT__32E0915F" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__ShipA__33D4B598" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillMaste__ShipS__34C8D9D1" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__BillI__35BCFE0A" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__BillProdu__Produ__36B12243" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__Cities__StateID__37A5467C" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__Customers__BillA__3A81B327" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__Customers__ShipA__3C69FB99" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__States__country___412EB0B6" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Custo__38996AB5" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__CustomerP__Produ__398D8EEE" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__Customers__BillS__3B75D760" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__Customers__ShipS__3D5E1FD2" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__GstStateC__State__3E52440B" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__Opera__3F466844" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__RoleOpera__RoleI__403A8C7D" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__RoleI__4222D4EF" ManuallyRouted="false" />
+        <AssociationConnector Association="InvoiceGenModel.FK__UserRoleM__UserI__4316F928" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

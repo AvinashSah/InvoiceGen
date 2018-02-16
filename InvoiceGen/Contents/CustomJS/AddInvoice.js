@@ -631,8 +631,8 @@
 
         if ($("[id$=billToClientGSTIN]").val() !== "") {
             var billToClientGSTINLength = $("[id$=billToClientGSTIN]").val().length;
-            if (billToClientGSTINLength !== 16) {
-                alert("Client's GSTIN should of 16 characters !");
+            if (billToClientGSTINLength !== 15) {
+                alert("Client's GSTIN should of 15 characters !");
                 event.preventDefault();;
             }
         }

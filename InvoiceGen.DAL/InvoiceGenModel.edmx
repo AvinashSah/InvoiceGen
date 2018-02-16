@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="InvoiceGenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="InvoiceGenModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="BillMaster">
           <Key>
             <PropertyRef Name="ID" />
@@ -195,7 +195,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UserId" Type="bigint" />
           <Property Name="RoleId" Type="bigint" />
         </EntityType>
-        <Association Name="FK__BillMaste__BillA__3B75D760">
+        <Association Name="FK__BillMaste__BillA__300424B4">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -207,7 +207,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillF__398D8EEE">
+        <Association Name="FK__BillMaste__BillF__30F848ED">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -219,7 +219,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillS__3C69FB99">
+        <Association Name="FK__BillMaste__BillS__31EC6D26">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -231,7 +231,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillT__3A81B327">
+        <Association Name="FK__BillMaste__BillT__32E0915F">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -243,7 +243,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__ShipA__3D5E1FD2">
+        <Association Name="FK__BillMaste__ShipA__33D4B598">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,7 +255,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__ShipS__3E52440B">
+        <Association Name="FK__BillMaste__ShipS__34C8D9D1">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -267,7 +267,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillProdu__BillI__4222D4EF">
+        <Association Name="FK__BillProdu__BillI__35BCFE0A">
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="0..1" />
           <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -279,7 +279,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillProdu__Produ__4316F928">
+        <Association Name="FK__BillProdu__Produ__36B12243">
           <End Role="ProductsMaster" Type="Self.ProductsMaster" Multiplicity="0..1" />
           <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -291,7 +291,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cities__StateID__22AA2996">
+        <Association Name="FK__Cities__StateID__37A5467C">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="Cities" Type="Self.Cities" Multiplicity="*" />
           <ReferentialConstraint>
@@ -303,7 +303,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerP__Custo__34C8D9D1">
+        <Association Name="FK__CustomerP__Custo__38996AB5">
           <End Role="Customers" Type="Self.Customers" Multiplicity="0..1" />
           <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -315,7 +315,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerP__Produ__33D4B598">
+        <Association Name="FK__CustomerP__Produ__398D8EEE">
           <End Role="ProductsMaster" Type="Self.ProductsMaster" Multiplicity="0..1" />
           <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -327,7 +327,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__BillA__286302EC">
+        <Association Name="FK__Customers__BillA__3A81B327">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -339,7 +339,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__BillS__29572725">
+        <Association Name="FK__Customers__BillS__3B75D760">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -351,7 +351,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__ShipA__2A4B4B5E">
+        <Association Name="FK__Customers__ShipA__3C69FB99">
           <End Role="Cities" Type="Self.Cities" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -363,7 +363,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__ShipS__2B3F6F97">
+        <Association Name="FK__Customers__ShipS__3D5E1FD2">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customers" Multiplicity="*" />
           <ReferentialConstraint>
@@ -375,7 +375,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GstStateC__State__25869641">
+        <Association Name="FK__GstStateC__State__3E52440B">
           <End Role="States" Type="Self.States" Multiplicity="0..1" />
           <End Role="GstStateCodes" Type="Self.GstStateCodes" Multiplicity="*" />
           <ReferentialConstraint>
@@ -387,7 +387,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoleOpera__Opera__182C9B23">
+        <Association Name="FK__RoleOpera__Opera__3F466844">
           <End Role="OperationMaster" Type="Self.OperationMaster" Multiplicity="0..1" />
           <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -399,7 +399,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoleOpera__RoleI__173876EA">
+        <Association Name="FK__RoleOpera__RoleI__403A8C7D">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
           <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -411,7 +411,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__States__country___1FCDBCEB">
+        <Association Name="FK__States__country___412EB0B6">
           <End Role="Countries" Type="Self.Countries" Multiplicity="0..1" />
           <End Role="States" Type="Self.States" Multiplicity="*" />
           <ReferentialConstraint>
@@ -423,7 +423,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoleM__RoleI__1B0907CE">
+        <Association Name="FK__UserRoleM__RoleI__4222D4EF">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
           <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -435,7 +435,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoleM__UserI__1A14E395">
+        <Association Name="FK__UserRoleM__UserI__4316F928">
           <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
           <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -468,92 +468,93 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
     [UserRoleMapping].[RoleId] AS [RoleId]
     FROM [dbo].[UserRoleMapping] AS [UserRoleMapping]</DefiningQuery>
           </EntitySet>
-          <AssociationSet Name="FK__BillMaste__BillA__3B75D760" Association="Self.FK__BillMaste__BillA__3B75D760">
+          <AssociationSet Name="FK__BillMaste__BillA__300424B4" Association="Self.FK__BillMaste__BillA__300424B4">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillF__398D8EEE" Association="Self.FK__BillMaste__BillF__398D8EEE">
+          <AssociationSet Name="FK__BillMaste__BillF__30F848ED" Association="Self.FK__BillMaste__BillF__30F848ED">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillS__3C69FB99" Association="Self.FK__BillMaste__BillS__3C69FB99">
+          <AssociationSet Name="FK__BillMaste__BillS__31EC6D26" Association="Self.FK__BillMaste__BillS__31EC6D26">
             <End Role="States" EntitySet="States" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillT__3A81B327" Association="Self.FK__BillMaste__BillT__3A81B327">
+          <AssociationSet Name="FK__BillMaste__BillT__32E0915F" Association="Self.FK__BillMaste__BillT__32E0915F">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__ShipA__3D5E1FD2" Association="Self.FK__BillMaste__ShipA__3D5E1FD2">
+          <AssociationSet Name="FK__BillMaste__ShipA__33D4B598" Association="Self.FK__BillMaste__ShipA__33D4B598">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__ShipS__3E52440B" Association="Self.FK__BillMaste__ShipS__3E52440B">
+          <AssociationSet Name="FK__BillMaste__ShipS__34C8D9D1" Association="Self.FK__BillMaste__ShipS__34C8D9D1">
             <End Role="States" EntitySet="States" />
             <End Role="BillMaster" EntitySet="BillMaster" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillProdu__BillI__4222D4EF" Association="Self.FK__BillProdu__BillI__4222D4EF">
+          <AssociationSet Name="FK__BillProdu__BillI__35BCFE0A" Association="Self.FK__BillProdu__BillI__35BCFE0A">
             <End Role="BillMaster" EntitySet="BillMaster" />
             <End Role="BillProductMapping" EntitySet="BillProductMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillProdu__Produ__4316F928" Association="Self.FK__BillProdu__Produ__4316F928">
+          <AssociationSet Name="FK__BillProdu__Produ__36B12243" Association="Self.FK__BillProdu__Produ__36B12243">
             <End Role="ProductsMaster" EntitySet="ProductsMaster" />
             <End Role="BillProductMapping" EntitySet="BillProductMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cities__StateID__22AA2996" Association="Self.FK__Cities__StateID__22AA2996">
+          <AssociationSet Name="FK__Cities__StateID__37A5467C" Association="Self.FK__Cities__StateID__37A5467C">
             <End Role="States" EntitySet="States" />
             <End Role="Cities" EntitySet="Cities" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerP__Custo__34C8D9D1" Association="Self.FK__CustomerP__Custo__34C8D9D1">
+          <AssociationSet Name="FK__CustomerP__Custo__38996AB5" Association="Self.FK__CustomerP__Custo__38996AB5">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="CustomerProductMapping" EntitySet="CustomerProductMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerP__Produ__33D4B598" Association="Self.FK__CustomerP__Produ__33D4B598">
+          <AssociationSet Name="FK__CustomerP__Produ__398D8EEE" Association="Self.FK__CustomerP__Produ__398D8EEE">
             <End Role="ProductsMaster" EntitySet="ProductsMaster" />
             <End Role="CustomerProductMapping" EntitySet="CustomerProductMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__BillA__286302EC" Association="Self.FK__Customers__BillA__286302EC">
+          <AssociationSet Name="FK__Customers__BillA__3A81B327" Association="Self.FK__Customers__BillA__3A81B327">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__BillS__29572725" Association="Self.FK__Customers__BillS__29572725">
+          <AssociationSet Name="FK__Customers__BillS__3B75D760" Association="Self.FK__Customers__BillS__3B75D760">
             <End Role="States" EntitySet="States" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__ShipA__2A4B4B5E" Association="Self.FK__Customers__ShipA__2A4B4B5E">
+          <AssociationSet Name="FK__Customers__ShipA__3C69FB99" Association="Self.FK__Customers__ShipA__3C69FB99">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__ShipS__2B3F6F97" Association="Self.FK__Customers__ShipS__2B3F6F97">
+          <AssociationSet Name="FK__Customers__ShipS__3D5E1FD2" Association="Self.FK__Customers__ShipS__3D5E1FD2">
             <End Role="States" EntitySet="States" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__GstStateC__State__25869641" Association="Self.FK__GstStateC__State__25869641">
+          <AssociationSet Name="FK__GstStateC__State__3E52440B" Association="Self.FK__GstStateC__State__3E52440B">
             <End Role="States" EntitySet="States" />
             <End Role="GstStateCodes" EntitySet="GstStateCodes" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoleOpera__Opera__182C9B23" Association="Self.FK__RoleOpera__Opera__182C9B23">
+          <AssociationSet Name="FK__RoleOpera__Opera__3F466844" Association="Self.FK__RoleOpera__Opera__3F466844">
             <End Role="OperationMaster" EntitySet="OperationMaster" />
             <End Role="RoleOperationMapping" EntitySet="RoleOperationMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoleOpera__RoleI__173876EA" Association="Self.FK__RoleOpera__RoleI__173876EA">
+          <AssociationSet Name="FK__RoleOpera__RoleI__403A8C7D" Association="Self.FK__RoleOpera__RoleI__403A8C7D">
             <End Role="RoleMaster" EntitySet="RoleMaster" />
             <End Role="RoleOperationMapping" EntitySet="RoleOperationMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__States__country___1FCDBCEB" Association="Self.FK__States__country___1FCDBCEB">
+          <AssociationSet Name="FK__States__country___412EB0B6" Association="Self.FK__States__country___412EB0B6">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="States" EntitySet="States" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__RoleI__1B0907CE" Association="Self.FK__UserRoleM__RoleI__1B0907CE">
+          <AssociationSet Name="FK__UserRoleM__RoleI__4222D4EF" Association="Self.FK__UserRoleM__RoleI__4222D4EF">
             <End Role="RoleMaster" EntitySet="RoleMaster" />
             <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__UserI__1A14E395" Association="Self.FK__UserRoleM__UserI__1A14E395">
+          <AssociationSet Name="FK__UserRoleM__UserI__4316F928" Association="Self.FK__UserRoleM__UserI__4316F928">
             <End Role="UserMaster" EntitySet="UserMaster" />
             <End Role="UserRoleMapping" EntitySet="UserRoleMapping" />
           </AssociationSet>
         </EntityContainer>
-      </Schema></edmx:StorageModels>
+      </Schema>
+    </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="InvoiceGenModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -582,13 +583,13 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="UpdatedBy" Type="Int64" />
-          <NavigationProperty Name="City" Relationship="Self.FK__BillMaste__BillA__3B75D760" FromRole="BillMaster" ToRole="Cities" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__BillMaste__BillF__398D8EEE" FromRole="BillMaster" ToRole="Customers" />
-          <NavigationProperty Name="State" Relationship="Self.FK__BillMaste__BillS__3C69FB99" FromRole="BillMaster" ToRole="States" />
-          <NavigationProperty Name="Customer1" Relationship="Self.FK__BillMaste__BillT__3A81B327" FromRole="BillMaster" ToRole="Customers" />
-          <NavigationProperty Name="City1" Relationship="Self.FK__BillMaste__ShipA__3D5E1FD2" FromRole="BillMaster" ToRole="Cities" />
-          <NavigationProperty Name="State1" Relationship="Self.FK__BillMaste__ShipS__3E52440B" FromRole="BillMaster" ToRole="States" />
-          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__BillI__4222D4EF" FromRole="BillMaster" ToRole="BillProductMapping" />
+          <NavigationProperty Name="City" Relationship="Self.FK__BillMaste__BillA__300424B4" FromRole="BillMaster" ToRole="Cities" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__BillMaste__BillF__30F848ED" FromRole="BillMaster" ToRole="Customers" />
+          <NavigationProperty Name="State" Relationship="Self.FK__BillMaste__BillS__31EC6D26" FromRole="BillMaster" ToRole="States" />
+          <NavigationProperty Name="Customer1" Relationship="Self.FK__BillMaste__BillT__32E0915F" FromRole="BillMaster" ToRole="Customers" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__BillMaste__ShipA__33D4B598" FromRole="BillMaster" ToRole="Cities" />
+          <NavigationProperty Name="State1" Relationship="Self.FK__BillMaste__ShipS__34C8D9D1" FromRole="BillMaster" ToRole="States" />
+          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__BillI__35BCFE0A" FromRole="BillMaster" ToRole="BillProductMapping" />
         </EntityType>
         <EntityType Name="BillProductMapping">
           <Key>
@@ -606,8 +607,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="IGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="SGST" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="BillMaster" Relationship="Self.FK__BillProdu__BillI__4222D4EF" FromRole="BillProductMapping" ToRole="BillMaster" />
-          <NavigationProperty Name="ProductsMaster" Relationship="Self.FK__BillProdu__Produ__4316F928" FromRole="BillProductMapping" ToRole="ProductsMaster" />
+          <NavigationProperty Name="BillMaster" Relationship="Self.FK__BillProdu__BillI__35BCFE0A" FromRole="BillProductMapping" ToRole="BillMaster" />
+          <NavigationProperty Name="ProductsMaster" Relationship="Self.FK__BillProdu__Produ__36B12243" FromRole="BillProductMapping" ToRole="ProductsMaster" />
         </EntityType>
         <EntityType Name="City">
           <Key>
@@ -616,11 +617,11 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="30" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="StateID" Type="Int64" />
-          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillA__3B75D760" FromRole="Cities" ToRole="BillMaster" />
-          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__ShipA__3D5E1FD2" FromRole="Cities" ToRole="BillMaster" />
-          <NavigationProperty Name="State" Relationship="Self.FK__Cities__StateID__22AA2996" FromRole="Cities" ToRole="States" />
-          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__BillA__286302EC" FromRole="Cities" ToRole="Customers" />
-          <NavigationProperty Name="Customers1" Relationship="Self.FK__Customers__ShipA__2A4B4B5E" FromRole="Cities" ToRole="Customers" />
+          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillA__300424B4" FromRole="Cities" ToRole="BillMaster" />
+          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__ShipA__33D4B598" FromRole="Cities" ToRole="BillMaster" />
+          <NavigationProperty Name="State" Relationship="Self.FK__Cities__StateID__37A5467C" FromRole="Cities" ToRole="States" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__BillA__3A81B327" FromRole="Cities" ToRole="Customers" />
+          <NavigationProperty Name="Customers1" Relationship="Self.FK__Customers__ShipA__3C69FB99" FromRole="Cities" ToRole="Customers" />
         </EntityType>
         <EntityType Name="Country">
           <Key>
@@ -630,7 +631,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ShortName" Type="String" MaxLength="3" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Name" Type="String" MaxLength="150" FixedLength="false" Unicode="false" Nullable="false" />
           <Property Name="Phonecode" Type="Int64" Nullable="false" />
-          <NavigationProperty Name="States" Relationship="Self.FK__States__country___1FCDBCEB" FromRole="Countries" ToRole="States" />
+          <NavigationProperty Name="States" Relationship="Self.FK__States__country___412EB0B6" FromRole="Countries" ToRole="States" />
         </EntityType>
         <EntityType Name="CustomerProductMapping">
           <Key>
@@ -646,14 +647,15 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="UpdatedBy" Type="Int64" />
-          <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerP__Custo__34C8D9D1" FromRole="CustomerProductMapping" ToRole="Customers" />
-          <NavigationProperty Name="ProductsMaster" Relationship="Self.FK__CustomerP__Produ__33D4B598" FromRole="CustomerProductMapping" ToRole="ProductsMaster" />
+          <NavigationProperty Name="Customer" Relationship="Self.FK__CustomerP__Custo__38996AB5" FromRole="CustomerProductMapping" ToRole="Customers" />
+          <NavigationProperty Name="ProductsMaster" Relationship="Self.FK__CustomerP__Produ__398D8EEE" FromRole="CustomerProductMapping" ToRole="ProductsMaster" />
         </EntityType>
         <EntityType Name="Customer">
           <Key>
             <PropertyRef Name="ID" />
           </Key>
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EmailID" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CustomerType" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="ContactName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" Nullable="false" />
@@ -675,15 +677,14 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="UpdatedBy" Type="Int64" />
-          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillF__398D8EEE" FromRole="Customers" ToRole="BillMaster" />
-          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__BillT__3A81B327" FromRole="Customers" ToRole="BillMaster" />
-          <NavigationProperty Name="City" Relationship="Self.FK__Customers__BillA__286302EC" FromRole="Customers" ToRole="Cities" />
-          <NavigationProperty Name="City1" Relationship="Self.FK__Customers__ShipA__2A4B4B5E" FromRole="Customers" ToRole="Cities" />
-          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Custo__34C8D9D1" FromRole="Customers" ToRole="CustomerProductMapping" />
-          <NavigationProperty Name="State" Relationship="Self.FK__Customers__BillS__29572725" FromRole="Customers" ToRole="States" />
-          <NavigationProperty Name="State1" Relationship="Self.FK__Customers__ShipS__2B3F6F97" FromRole="Customers" ToRole="States" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CustomerLogoPath" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillF__30F848ED" FromRole="Customers" ToRole="BillMaster" />
+          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__BillT__32E0915F" FromRole="Customers" ToRole="BillMaster" />
+          <NavigationProperty Name="City" Relationship="Self.FK__Customers__BillA__3A81B327" FromRole="Customers" ToRole="Cities" />
+          <NavigationProperty Name="City1" Relationship="Self.FK__Customers__ShipA__3C69FB99" FromRole="Customers" ToRole="Cities" />
+          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Custo__38996AB5" FromRole="Customers" ToRole="CustomerProductMapping" />
+          <NavigationProperty Name="State" Relationship="Self.FK__Customers__BillS__3B75D760" FromRole="Customers" ToRole="States" />
+          <NavigationProperty Name="State1" Relationship="Self.FK__Customers__ShipS__3D5E1FD2" FromRole="Customers" ToRole="States" />
         </EntityType>
         <EntityType Name="GstStateCode">
           <Key>
@@ -693,7 +694,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="GSTStateCode1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="IsActive" Type="Boolean" />
           <Property Name="StateID" Type="Int64" />
-          <NavigationProperty Name="State" Relationship="Self.FK__GstStateC__State__25869641" FromRole="GstStateCodes" ToRole="States" />
+          <NavigationProperty Name="State" Relationship="Self.FK__GstStateC__State__3E52440B" FromRole="GstStateCodes" ToRole="States" />
         </EntityType>
         <EntityType Name="OperationMaster">
           <Key>
@@ -702,7 +703,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OperationName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__Opera__182C9B23" FromRole="OperationMaster" ToRole="RoleOperationMapping" />
+          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__Opera__3F466844" FromRole="OperationMaster" ToRole="RoleOperationMapping" />
         </EntityType>
         <EntityType Name="ProductsMaster">
           <Key>
@@ -720,8 +721,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="UpdatedOn" Type="DateTime" Precision="3" />
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="UpdatedBy" Type="Int64" />
-          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__Produ__4316F928" FromRole="ProductsMaster" ToRole="BillProductMapping" />
-          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Produ__33D4B598" FromRole="ProductsMaster" ToRole="CustomerProductMapping" />
+          <NavigationProperty Name="BillProductMappings" Relationship="Self.FK__BillProdu__Produ__36B12243" FromRole="ProductsMaster" ToRole="BillProductMapping" />
+          <NavigationProperty Name="CustomerProductMappings" Relationship="Self.FK__CustomerP__Produ__398D8EEE" FromRole="ProductsMaster" ToRole="CustomerProductMapping" />
         </EntityType>
         <EntityType Name="RoleMaster">
           <Key>
@@ -730,8 +731,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__RoleI__173876EA" FromRole="RoleMaster" ToRole="RoleOperationMapping" />
-          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__RoleI__1B0907CE" FromRole="RoleMaster" ToRole="UserRoleMapping" />
+          <NavigationProperty Name="RoleOperationMappings" Relationship="Self.FK__RoleOpera__RoleI__403A8C7D" FromRole="RoleMaster" ToRole="RoleOperationMapping" />
+          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__RoleI__4222D4EF" FromRole="RoleMaster" ToRole="UserRoleMapping" />
         </EntityType>
         <EntityType Name="RoleOperationMapping">
           <Key>
@@ -740,8 +741,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleId" Type="Int64" />
           <Property Name="OperationId" Type="Int64" />
-          <NavigationProperty Name="OperationMaster" Relationship="Self.FK__RoleOpera__Opera__182C9B23" FromRole="RoleOperationMapping" ToRole="OperationMaster" />
-          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__RoleOpera__RoleI__173876EA" FromRole="RoleOperationMapping" ToRole="RoleMaster" />
+          <NavigationProperty Name="OperationMaster" Relationship="Self.FK__RoleOpera__Opera__3F466844" FromRole="RoleOperationMapping" ToRole="OperationMaster" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__RoleOpera__RoleI__403A8C7D" FromRole="RoleOperationMapping" ToRole="RoleMaster" />
         </EntityType>
         <EntityType Name="State">
           <Key>
@@ -750,13 +751,13 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="ID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="country_id" Type="Int64" />
-          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillS__3C69FB99" FromRole="States" ToRole="BillMaster" />
-          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__ShipS__3E52440B" FromRole="States" ToRole="BillMaster" />
-          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__StateID__22AA2996" FromRole="States" ToRole="Cities" />
-          <NavigationProperty Name="Country" Relationship="Self.FK__States__country___1FCDBCEB" FromRole="States" ToRole="Countries" />
-          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__BillS__29572725" FromRole="States" ToRole="Customers" />
-          <NavigationProperty Name="Customers1" Relationship="Self.FK__Customers__ShipS__2B3F6F97" FromRole="States" ToRole="Customers" />
-          <NavigationProperty Name="GstStateCodes" Relationship="Self.FK__GstStateC__State__25869641" FromRole="States" ToRole="GstStateCodes" />
+          <NavigationProperty Name="BillMasters" Relationship="Self.FK__BillMaste__BillS__31EC6D26" FromRole="States" ToRole="BillMaster" />
+          <NavigationProperty Name="BillMasters1" Relationship="Self.FK__BillMaste__ShipS__34C8D9D1" FromRole="States" ToRole="BillMaster" />
+          <NavigationProperty Name="Cities" Relationship="Self.FK__Cities__StateID__37A5467C" FromRole="States" ToRole="Cities" />
+          <NavigationProperty Name="Country" Relationship="Self.FK__States__country___412EB0B6" FromRole="States" ToRole="Countries" />
+          <NavigationProperty Name="Customers" Relationship="Self.FK__Customers__BillS__3B75D760" FromRole="States" ToRole="Customers" />
+          <NavigationProperty Name="Customers1" Relationship="Self.FK__Customers__ShipS__3D5E1FD2" FromRole="States" ToRole="Customers" />
+          <NavigationProperty Name="GstStateCodes" Relationship="Self.FK__GstStateC__State__3E52440B" FromRole="States" ToRole="GstStateCodes" />
         </EntityType>
         <EntityType Name="UserMaster">
           <Key>
@@ -774,8 +775,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="CreatedBy" Type="Int64" />
           <Property Name="UpdatedBy" Type="Int64" />
           <Property Name="EmpId" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__UserI__1A14E395" FromRole="UserMaster" ToRole="UserRoleMapping" />
           <Property Name="password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserRoleMappings" Relationship="Self.FK__UserRoleM__UserI__4316F928" FromRole="UserMaster" ToRole="UserRoleMapping" />
         </EntityType>
         <EntityType Name="UserRoleMapping">
           <Key>
@@ -784,10 +785,10 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="UserId" Type="Int64" />
           <Property Name="RoleId" Type="Int64" />
-          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__UserRoleM__RoleI__1B0907CE" FromRole="UserRoleMapping" ToRole="RoleMaster" />
-          <NavigationProperty Name="UserMaster" Relationship="Self.FK__UserRoleM__UserI__1A14E395" FromRole="UserRoleMapping" ToRole="UserMaster" />
+          <NavigationProperty Name="RoleMaster" Relationship="Self.FK__UserRoleM__RoleI__4222D4EF" FromRole="UserRoleMapping" ToRole="RoleMaster" />
+          <NavigationProperty Name="UserMaster" Relationship="Self.FK__UserRoleM__UserI__4316F928" FromRole="UserRoleMapping" ToRole="UserMaster" />
         </EntityType>
-        <Association Name="FK__BillMaste__BillA__3B75D760">
+        <Association Name="FK__BillMaste__BillA__300424B4">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -799,7 +800,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillF__398D8EEE">
+        <Association Name="FK__BillMaste__BillF__30F848ED">
           <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -811,7 +812,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillS__3C69FB99">
+        <Association Name="FK__BillMaste__BillS__31EC6D26">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -823,7 +824,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__BillT__3A81B327">
+        <Association Name="FK__BillMaste__BillT__32E0915F">
           <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -835,7 +836,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__ShipA__3D5E1FD2">
+        <Association Name="FK__BillMaste__ShipA__33D4B598">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -847,7 +848,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillMaste__ShipS__3E52440B">
+        <Association Name="FK__BillMaste__ShipS__34C8D9D1">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="*" />
           <ReferentialConstraint>
@@ -859,7 +860,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillProdu__BillI__4222D4EF">
+        <Association Name="FK__BillProdu__BillI__35BCFE0A">
           <End Role="BillMaster" Type="Self.BillMaster" Multiplicity="0..1" />
           <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -871,7 +872,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__BillProdu__Produ__4316F928">
+        <Association Name="FK__BillProdu__Produ__36B12243">
           <End Role="ProductsMaster" Type="Self.ProductsMaster" Multiplicity="0..1" />
           <End Role="BillProductMapping" Type="Self.BillProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -883,7 +884,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Cities__StateID__22AA2996">
+        <Association Name="FK__Cities__StateID__37A5467C">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="Cities" Type="Self.City" Multiplicity="*" />
           <ReferentialConstraint>
@@ -895,7 +896,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__BillA__286302EC">
+        <Association Name="FK__Customers__BillA__3A81B327">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -907,7 +908,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__ShipA__2A4B4B5E">
+        <Association Name="FK__Customers__ShipA__3C69FB99">
           <End Role="Cities" Type="Self.City" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -919,7 +920,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__States__country___1FCDBCEB">
+        <Association Name="FK__States__country___412EB0B6">
           <End Role="Countries" Type="Self.Country" Multiplicity="0..1" />
           <End Role="States" Type="Self.State" Multiplicity="*" />
           <ReferentialConstraint>
@@ -931,7 +932,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerP__Custo__34C8D9D1">
+        <Association Name="FK__CustomerP__Custo__38996AB5">
           <End Role="Customers" Type="Self.Customer" Multiplicity="0..1" />
           <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -943,7 +944,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CustomerP__Produ__33D4B598">
+        <Association Name="FK__CustomerP__Produ__398D8EEE">
           <End Role="ProductsMaster" Type="Self.ProductsMaster" Multiplicity="0..1" />
           <End Role="CustomerProductMapping" Type="Self.CustomerProductMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -955,7 +956,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__BillS__29572725">
+        <Association Name="FK__Customers__BillS__3B75D760">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -967,7 +968,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Customers__ShipS__2B3F6F97">
+        <Association Name="FK__Customers__ShipS__3D5E1FD2">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="Customers" Type="Self.Customer" Multiplicity="*" />
           <ReferentialConstraint>
@@ -979,7 +980,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__GstStateC__State__25869641">
+        <Association Name="FK__GstStateC__State__3E52440B">
           <End Role="States" Type="Self.State" Multiplicity="0..1" />
           <End Role="GstStateCodes" Type="Self.GstStateCode" Multiplicity="*" />
           <ReferentialConstraint>
@@ -991,7 +992,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoleOpera__Opera__182C9B23">
+        <Association Name="FK__RoleOpera__Opera__3F466844">
           <End Role="OperationMaster" Type="Self.OperationMaster" Multiplicity="0..1" />
           <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1003,7 +1004,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__RoleOpera__RoleI__173876EA">
+        <Association Name="FK__RoleOpera__RoleI__403A8C7D">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
           <End Role="RoleOperationMapping" Type="Self.RoleOperationMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1015,7 +1016,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoleM__RoleI__1B0907CE">
+        <Association Name="FK__UserRoleM__RoleI__4222D4EF">
           <End Role="RoleMaster" Type="Self.RoleMaster" Multiplicity="0..1" />
           <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1027,7 +1028,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__UserRoleM__UserI__1A14E395">
+        <Association Name="FK__UserRoleM__UserI__4316F928">
           <End Role="UserMaster" Type="Self.UserMaster" Multiplicity="0..1" />
           <End Role="UserRoleMapping" Type="Self.UserRoleMapping" Multiplicity="*" />
           <ReferentialConstraint>
@@ -1054,87 +1055,87 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <EntitySet Name="States" EntityType="Self.State" />
           <EntitySet Name="UserMasters" EntityType="Self.UserMaster" />
           <EntitySet Name="UserRoleMappings" EntityType="Self.UserRoleMapping" />
-          <AssociationSet Name="FK__BillMaste__BillA__3B75D760" Association="Self.FK__BillMaste__BillA__3B75D760">
+          <AssociationSet Name="FK__BillMaste__BillA__300424B4" Association="Self.FK__BillMaste__BillA__300424B4">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillF__398D8EEE" Association="Self.FK__BillMaste__BillF__398D8EEE">
+          <AssociationSet Name="FK__BillMaste__BillF__30F848ED" Association="Self.FK__BillMaste__BillF__30F848ED">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillS__3C69FB99" Association="Self.FK__BillMaste__BillS__3C69FB99">
+          <AssociationSet Name="FK__BillMaste__BillS__31EC6D26" Association="Self.FK__BillMaste__BillS__31EC6D26">
             <End Role="States" EntitySet="States" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__BillT__3A81B327" Association="Self.FK__BillMaste__BillT__3A81B327">
+          <AssociationSet Name="FK__BillMaste__BillT__32E0915F" Association="Self.FK__BillMaste__BillT__32E0915F">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__ShipA__3D5E1FD2" Association="Self.FK__BillMaste__ShipA__3D5E1FD2">
+          <AssociationSet Name="FK__BillMaste__ShipA__33D4B598" Association="Self.FK__BillMaste__ShipA__33D4B598">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillMaste__ShipS__3E52440B" Association="Self.FK__BillMaste__ShipS__3E52440B">
+          <AssociationSet Name="FK__BillMaste__ShipS__34C8D9D1" Association="Self.FK__BillMaste__ShipS__34C8D9D1">
             <End Role="States" EntitySet="States" />
             <End Role="BillMaster" EntitySet="BillMasters" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillProdu__BillI__4222D4EF" Association="Self.FK__BillProdu__BillI__4222D4EF">
+          <AssociationSet Name="FK__BillProdu__BillI__35BCFE0A" Association="Self.FK__BillProdu__BillI__35BCFE0A">
             <End Role="BillMaster" EntitySet="BillMasters" />
             <End Role="BillProductMapping" EntitySet="BillProductMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__BillProdu__Produ__4316F928" Association="Self.FK__BillProdu__Produ__4316F928">
+          <AssociationSet Name="FK__BillProdu__Produ__36B12243" Association="Self.FK__BillProdu__Produ__36B12243">
             <End Role="ProductsMaster" EntitySet="ProductsMasters" />
             <End Role="BillProductMapping" EntitySet="BillProductMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Cities__StateID__22AA2996" Association="Self.FK__Cities__StateID__22AA2996">
+          <AssociationSet Name="FK__Cities__StateID__37A5467C" Association="Self.FK__Cities__StateID__37A5467C">
             <End Role="States" EntitySet="States" />
             <End Role="Cities" EntitySet="Cities" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__BillA__286302EC" Association="Self.FK__Customers__BillA__286302EC">
+          <AssociationSet Name="FK__Customers__BillA__3A81B327" Association="Self.FK__Customers__BillA__3A81B327">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__ShipA__2A4B4B5E" Association="Self.FK__Customers__ShipA__2A4B4B5E">
+          <AssociationSet Name="FK__Customers__ShipA__3C69FB99" Association="Self.FK__Customers__ShipA__3C69FB99">
             <End Role="Cities" EntitySet="Cities" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__States__country___1FCDBCEB" Association="Self.FK__States__country___1FCDBCEB">
+          <AssociationSet Name="FK__States__country___412EB0B6" Association="Self.FK__States__country___412EB0B6">
             <End Role="Countries" EntitySet="Countries" />
             <End Role="States" EntitySet="States" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerP__Custo__34C8D9D1" Association="Self.FK__CustomerP__Custo__34C8D9D1">
+          <AssociationSet Name="FK__CustomerP__Custo__38996AB5" Association="Self.FK__CustomerP__Custo__38996AB5">
             <End Role="Customers" EntitySet="Customers" />
             <End Role="CustomerProductMapping" EntitySet="CustomerProductMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__CustomerP__Produ__33D4B598" Association="Self.FK__CustomerP__Produ__33D4B598">
+          <AssociationSet Name="FK__CustomerP__Produ__398D8EEE" Association="Self.FK__CustomerP__Produ__398D8EEE">
             <End Role="ProductsMaster" EntitySet="ProductsMasters" />
             <End Role="CustomerProductMapping" EntitySet="CustomerProductMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__BillS__29572725" Association="Self.FK__Customers__BillS__29572725">
+          <AssociationSet Name="FK__Customers__BillS__3B75D760" Association="Self.FK__Customers__BillS__3B75D760">
             <End Role="States" EntitySet="States" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__Customers__ShipS__2B3F6F97" Association="Self.FK__Customers__ShipS__2B3F6F97">
+          <AssociationSet Name="FK__Customers__ShipS__3D5E1FD2" Association="Self.FK__Customers__ShipS__3D5E1FD2">
             <End Role="States" EntitySet="States" />
             <End Role="Customers" EntitySet="Customers" />
           </AssociationSet>
-          <AssociationSet Name="FK__GstStateC__State__25869641" Association="Self.FK__GstStateC__State__25869641">
+          <AssociationSet Name="FK__GstStateC__State__3E52440B" Association="Self.FK__GstStateC__State__3E52440B">
             <End Role="States" EntitySet="States" />
             <End Role="GstStateCodes" EntitySet="GstStateCodes" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoleOpera__Opera__182C9B23" Association="Self.FK__RoleOpera__Opera__182C9B23">
+          <AssociationSet Name="FK__RoleOpera__Opera__3F466844" Association="Self.FK__RoleOpera__Opera__3F466844">
             <End Role="OperationMaster" EntitySet="OperationMasters" />
             <End Role="RoleOperationMapping" EntitySet="RoleOperationMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__RoleOpera__RoleI__173876EA" Association="Self.FK__RoleOpera__RoleI__173876EA">
+          <AssociationSet Name="FK__RoleOpera__RoleI__403A8C7D" Association="Self.FK__RoleOpera__RoleI__403A8C7D">
             <End Role="RoleMaster" EntitySet="RoleMasters" />
             <End Role="RoleOperationMapping" EntitySet="RoleOperationMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__RoleI__1B0907CE" Association="Self.FK__UserRoleM__RoleI__1B0907CE">
+          <AssociationSet Name="FK__UserRoleM__RoleI__4222D4EF" Association="Self.FK__UserRoleM__RoleI__4222D4EF">
             <End Role="RoleMaster" EntitySet="RoleMasters" />
             <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
           </AssociationSet>
-          <AssociationSet Name="FK__UserRoleM__UserI__1A14E395" Association="Self.FK__UserRoleM__UserI__1A14E395">
+          <AssociationSet Name="FK__UserRoleM__UserI__4316F928" Association="Self.FK__UserRoleM__UserI__4316F928">
             <End Role="UserMaster" EntitySet="UserMasters" />
             <End Role="UserRoleMapping" EntitySet="UserRoleMappings" />
           </AssociationSet>
@@ -1228,9 +1229,8 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <EntitySetMapping Name="Customers">
             <EntityTypeMapping TypeName="InvoiceGenModel.Customer">
               <MappingFragment StoreEntitySet="Customers">
-                <ScalarProperty Name="CustomerLogoPath" ColumnName="CustomerLogoPath" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="CustomerType" ColumnName="CustomerType" />
                 <ScalarProperty Name="ContactName" ColumnName="ContactName" />
@@ -1252,6 +1252,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
                 <ScalarProperty Name="UpdatedOn" ColumnName="UpdatedOn" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
+                <ScalarProperty Name="CustomerLogoPath" ColumnName="CustomerLogoPath" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -1322,7 +1323,6 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
           <EntitySetMapping Name="UserMasters">
             <EntityTypeMapping TypeName="InvoiceGenModel.UserMaster">
               <MappingFragment StoreEntitySet="UserMaster">
-                <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="ID" ColumnName="ID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -1335,6 +1335,7 @@ warning 6002: The table/view 'InvoiceGen.dbo.UserRoleMapping' does not have a pr
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="UpdatedBy" ColumnName="UpdatedBy" />
                 <ScalarProperty Name="EmpId" ColumnName="EmpId" />
+                <ScalarProperty Name="password" ColumnName="password" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

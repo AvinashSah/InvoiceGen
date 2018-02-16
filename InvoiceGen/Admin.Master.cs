@@ -84,6 +84,13 @@ namespace InvoiceGen
                                 settingsMainli.Attributes.Add("class", "dropdown active");
                                 break;
                             case "AddInvoice":
+                                GenerateInvoice.Attributes.Add("class", "active");
+                                ViewClient.Attributes["class"].Replace("active", "");
+                                homeMenu.Attributes["class"].Replace("active", "");
+                                ImportProducts.Attributes["class"].Replace("active", "");
+                                ViewBills.Attributes["class"].Replace("active", "");
+                                servicesMainli.Attributes["class"].Replace("active", "dropdown");
+                                settingsMainli.Attributes.Add("class", "dropdown active");
                                 break;
                             //case "Clients":
                             //    break;
