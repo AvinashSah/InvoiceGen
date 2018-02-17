@@ -13,27 +13,13 @@ namespace InvoiceGen
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            LoadAllProducts();
             if (HttpContext.Current.User != null)
             {
                 if (HttpContext.Current.User.Identity.IsAuthenticated)
                 {
                     if (HttpContext.Current.User.Identity is FormsIdentity)
                     {
-                        FormsIdentity id = (FormsIdentity)HttpContext.Current.User.Identity;
-                        FormsAuthenticationTicket ticket = id.Ticket;
-                        string userData = ticket.UserData;
-                        string[] roles = userData.Split(',');
-                        HttpContext.Current.User = new GenericPrincipal(id, roles);
-                        string userRole = roles[0];
-                        if (string.Equals(userRole, RoleTypeConstant.EndUser, StringComparison.InvariantCultureIgnoreCase))
-                        {
-                            Response.Redirect("AddInvoice.aspx");
-                        }
-                        else
-                        {
-                            Response.Redirect("AddInvoice.aspx");
-                        }
+                        LoadAllProducts();
 
                     }
                 }

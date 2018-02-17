@@ -146,19 +146,19 @@
                                     </tr>--%>
                                     <tr>
                                         <th>
-                                            <input type="text" class="form-control" placeholder="Address Line 1" tabindex="22" id="shipToClientAddLine1" runat="server" />
+                                            <input type="text" class="form-control" placeholder="Address Line 1" tabindex="18" id="shipToClientAddLine1" runat="server" />
                                         </th>
                                         <th>
-                                            <input type="text" class="form-control" placeholder="Address Line 2" tabindex="23" id="shipToClientAddLine2" runat="server" />
+                                            <input type="text" class="form-control" placeholder="Address Line 2" tabindex="19" id="shipToClientAddLine2" runat="server" />
                                         </th>
                                     </tr>
                                     <tr>
                                         <th>
-                                            <select class="form-control" id="shipToClientStateList" tabindex="24">
+                                            <select class="form-control" id="shipToClientStateList" tabindex="20">
                                             </select>
                                         </th>
                                         <th>
-                                            <select class="form-control" id="shipToClientCityList" tabindex="25">
+                                            <select class="form-control" id="shipToClientCityList" tabindex="21">
                                                 <option value="0">--Select City--</option>
                                             </select>
                                         </th>
@@ -245,7 +245,7 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading"><strong>Terms & Conditions</strong></div>
                         <div class="panel-body">
-                            <asp:TextBox ID="termsAndCondition" TabIndex="27" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Terms & Conditions for Customer If any" />
+                            <asp:TextBox ID="termsAndCondition" TabIndex="22" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Terms & Conditions for Customer If any" />
                         </div>
                     </div>
                 </div>
@@ -255,7 +255,7 @@
                     <div class="panel panel-default height">
                         <div class="panel-heading"><strong>Notes For Customer</strong></div>
                         <div class="panel-body">
-                            <asp:TextBox ID="notesForCustomer" TabIndex="28" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Notes For Customer" />
+                            <asp:TextBox ID="notesForCustomer" TabIndex="23" class="form-control" TextMode="multiline" Columns="50" Rows="5" runat="server" placeholder="Enter Notes For Customer" />
                         </div>
                     </div>
                 </div>
@@ -267,7 +267,7 @@
                 </div>--%>
 
                 <div class="form-group col-lg-12">
-                    <button id="CreateBill" tabindex="29" class="btn btn-primary mb-2"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Generate Invoice</button>
+                    <button id="CreateBill" tabindex="24" class="btn btn-primary mb-2"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Generate Invoice</button>
                 </div>
             </div>
         </div>

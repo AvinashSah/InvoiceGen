@@ -1,6 +1,7 @@
 ﻿using InvoiceGen.Entities;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Configuration;
 using System.Data;
 using System.Data.OleDb;
@@ -13,6 +14,8 @@ namespace InvoiceGen
 {
     public partial class ImportData : System.Web.UI.Page
     {
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (HttpContext.Current.User != null)
@@ -51,14 +54,22 @@ namespace InvoiceGen
                              "Content type: " +
                              productsDataFile.PostedFile.ContentType;
                         productsDataFileLabel.Text = "File Uploaded successfully";
-                        if (UploadProducts(FilePath, Extension))
-                        {
-                            productsDataFileLabel.Text = "Product Uploaded successfully";
-                        }
-                        else
-                        {
-                            productsDataFileLabel.Text = "File Uploaded successfully but somehow not uploaded to data server ! Please try uploading again";
-                        }
+
+                        Requester requester = new Requester();
+                        requester.Name = Convert.ToString(HttpContext.Current.User.Identity.Name);
+
+                        List<object> arguments = new List<object>();
+                        arguments.Add(FilePath);
+                        arguments.Add(Extension);
+                        arguments.Add(requester);
+
+
+                        this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+                        this.backgroundWorker1.DoWork += new System.ComponentModel.DoWorkEventHandler(this.backgroundWorker1_DoWork);
+                        this.backgroundWorker1.RunWorkerCompleted += new RunWorkerCompletedEventHandler(backgroundWorker1_RunWorkerCompleted);
+                        this.backgroundWorker1.RunWorkerAsync(arguments);
+
+                        productsDataFileLabel.Text = "Product Uploaded successfully";
                     }
                     else
                     {
@@ -75,6 +86,22 @@ namespace InvoiceGen
             }
         }
 
+        private void backgroundWorker1_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            BAL.BAL_Products bAL_Products = new BAL.BAL_Products();
+            List<ProductsMaster> productList = new List<ProductsMaster>();
+            productList = bAL_Products.GetAllProductList();
+            BindDatatoTable(productList);
+        }
+
+        private void backgroundWorker1_DoWork(object sender, DoWorkEventArgs e)
+        {
+            List<object> genericlist = e.Argument as List<object>;
+            Requester requester = new Requester();
+            requester = (Requester)genericlist[2];
+            UploadProducts(requester, genericlist[0].ToString(), genericlist[1].ToString());
+        }
+
         /// <summary>
         /// Upload Product Information to DB
         /// </summary>
@@ -82,8 +109,9 @@ namespace InvoiceGen
         /// <param name="Extension"></param>
         /// <param name="isHDR"></param>
         /// <returns></returns>
-        private bool UploadProducts(string FilePath, string Extension, string isHDR = "Yes")
+        private bool UploadProducts(Requester requester, string FilePath, string Extension, string isHDR = "Yes")
         {
+
             string conStr = "";
             switch (Extension)
 
@@ -112,11 +140,11 @@ namespace InvoiceGen
             cmdExcel.CommandText = "SELECT * From [" + SheetName + "]";
             oda.SelectCommand = cmdExcel;
             oda.Fill(dt);
+
             List<ProductsMaster> productList = new List<ProductsMaster>();
             if (dt != null && dt.Rows.Count > 0)
             {
-                productList = SaveProductsData(dt);
-                BindDatatoTable(productList);
+                productList = SaveProductsData(dt, requester);
                 connExcel.Close();
                 return true;
             }
@@ -125,6 +153,8 @@ namespace InvoiceGen
                 throw new Exception("No data found in excel to upload !");
             }
         }
+
+
 
         private void BindDatatoTable(List<ProductsMaster> productList)
         {
@@ -156,10 +186,8 @@ namespace InvoiceGen
         /// </summary>
         /// <param name="dt"></param>
         /// <returns></returns>
-        private List<ProductsMaster> SaveProductsData(DataTable dt)
+        private List<ProductsMaster> SaveProductsData(DataTable dt, Requester requester)
         {
-            Requester requester = new Requester();
-            requester.Name = Convert.ToString(HttpContext.Current.User.Identity.Name);
             BAL.BAL_Products bAL_Products = new BAL.BAL_Products();
             return bAL_Products.SaveProductsData(dt, requester);
         }

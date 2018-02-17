@@ -39,13 +39,13 @@ namespace InvoiceGen
                                     GenerateInvoice.Attributes.Add("style", "display:block");
                                     break;
                                 case "ManageBills":
-                                    ViewBills.Attributes.Add("style", "display:block");
+                                    ManageBills.Attributes.Add("style", "display:block");
                                     break;
                                 case "ManageClient":
-                                    ViewClient.Attributes.Add("style", "display:block");
+                                    ManageClient.Attributes.Add("style", "display:block");
                                     break;
                                 case "Dashboard":
-                                    homeMenu.Attributes.Add("style", "display:block");
+                                    Dashboard.Attributes.Add("style", "display:block");
                                     break;
                                 default:
                                     ShowAllControls();
@@ -57,18 +57,18 @@ namespace InvoiceGen
                         switch (pageName)
                         {
                             case "Home":
-                                homeMenu.Attributes.Add("class", "active");
-                                ViewClient.Attributes["class"].Replace("active", "");
-                                ViewBills.Attributes["class"].Replace("active", "");
+                                Dashboard.Attributes.Add("class", "active");
+                                ManageClient.Attributes["class"].Replace("active", "");
+                                ManageBills.Attributes["class"].Replace("active", "");
                                 GenerateInvoice.Attributes["class"].Replace("active", "");
                                 ImportProducts.Attributes["class"].Replace("active", "");
                                 settingsMainli.Attributes["class"].Replace("active", "dropdown");
                                 servicesMainli.Attributes["class"].Replace("active", "dropdown");
                                 break;
                             case "Invoice":
-                                ViewBills.Attributes.Add("class", "active");
-                                ViewClient.Attributes["class"].Replace("active", "");
-                                homeMenu.Attributes["class"].Replace("active", "");
+                                ManageBills.Attributes.Add("class", "active");
+                                ManageClient.Attributes["class"].Replace("active", "");
+                                Dashboard.Attributes["class"].Replace("active", "");
                                 GenerateInvoice.Attributes["class"].Replace("active", "");
                                 ImportProducts.Attributes["class"].Replace("active", "");
                                 settingsMainli.Attributes["class"].Replace("active", "dropdown");
@@ -76,28 +76,28 @@ namespace InvoiceGen
                                 break;
                             case "ImportData":
                                 ImportProducts.Attributes.Add("class", "active");
-                                ViewClient.Attributes["class"].Replace("active", "");
-                                homeMenu.Attributes["class"].Replace("active", "");
+                                ManageClient.Attributes["class"].Replace("active", "");
+                                Dashboard.Attributes["class"].Replace("active", "");
                                 GenerateInvoice.Attributes["class"].Replace("active", "");
-                                ViewBills.Attributes["class"].Replace("active", "");
+                                ManageBills.Attributes["class"].Replace("active", "");
                                 servicesMainli.Attributes["class"].Replace("active", "dropdown");
                                 settingsMainli.Attributes.Add("class", "dropdown active");
                                 break;
                             case "AddInvoice":
                                 GenerateInvoice.Attributes.Add("class", "active");
-                                ViewClient.Attributes["class"].Replace("active", "");
-                                homeMenu.Attributes["class"].Replace("active", "");
+                                ManageClient.Attributes["class"].Replace("active", "");
+                                Dashboard.Attributes["class"].Replace("active", "");
                                 ImportProducts.Attributes["class"].Replace("active", "");
-                                ViewBills.Attributes["class"].Replace("active", "");
+                                ManageBills.Attributes["class"].Replace("active", "");
                                 servicesMainli.Attributes["class"].Replace("active", "dropdown");
                                 settingsMainli.Attributes.Add("class", "dropdown active");
                                 break;
                             //case "Clients":
                             //    break;
                             default:
-                                homeMenu.Attributes.Add("class", "active");
-                                ViewClient.Attributes["class"].Replace("active", "");
-                                ViewBills.Attributes["class"].Replace("active", "");
+                                Dashboard.Attributes.Add("class", "active");
+                                ManageClient.Attributes["class"].Replace("active", "");
+                                ManageBills.Attributes["class"].Replace("active", "");
                                 GenerateInvoice.Attributes["class"].Replace("active", "");
                                 ImportProducts.Attributes["class"].Replace("active", "");
                                 settingsMainli.Attributes["class"].Replace("active", "dropdown");
@@ -129,19 +129,18 @@ namespace InvoiceGen
         {
             ImportProducts.Attributes.Add("style", "display:block");
             GenerateInvoice.Attributes.Add("style", "display:block");
-            ViewBills.Attributes.Add("style", "display:block");
-            ViewClient.Attributes.Add("style", "display:block");
-            homeMenu.Attributes.Add("style", "display:block");
+            ManageBills.Attributes.Add("style", "display:block");
+            ManageClient.Attributes.Add("style", "display:block");
+            Dashboard.Attributes.Add("style", "display:block");
         }
 
         private void HideControls()
         {
             ImportProducts.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
             GenerateInvoice.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
-            ViewBills.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
-            ViewClient.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
-            ViewClient.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
-            homeMenu.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
+            ManageBills.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
+            ManageClient.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
+            Dashboard.Attributes.CssStyle[HtmlTextWriterStyle.Display] = "none";
         }
 
         protected void logout(object sender, EventArgs e)

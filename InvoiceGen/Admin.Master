@@ -43,15 +43,15 @@
                 <div class="navbar-collapse collapse">
                     <!-- Left nav -->
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="active" runat="server" id="homeMenu"><a href="Home.aspx" runat="server"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a></li>
+                        <li class="active" runat="server" id="Dashboard"><a href="Home.aspx" runat="server"><i class="fa fa-home" style="padding-right: 10px"></i>Home</a></li>
                         <li class="dropdown" id="servicesMainli" runat="server">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown"
                                 role="button" aria-haspopup="true" aria-expanded="false" runat="server"><i class="fa fa-gear" style="padding-right: 10px"></i>Services<span class="caret"
                                     runat="server"></span>
                             </a>
                             <ul class="dropdown-menu" data-dropdown-in="fadeInUp" data-dropdown-out="fadeOutDown">
-                                <li id="ViewClient" class="" runat="server"><a href="#" runat="server"><i class="fa fa-user" style="padding-right: 10px"></i>Clients</a></li>
-                                <li id="ViewBills" class="" runat="server"><a href="Invoice.aspx" runat="server"><i class="fa fa-sticky-note" style="padding-right: 10px"></i>Bills</a></li>
+                                <li id="ManageClient" class="" runat="server"><a href="#" runat="server"><i class="fa fa-user" style="padding-right: 10px"></i>Clients</a></li>
+                                <li id="ManageBills" class="" runat="server"><a href="Invoice.aspx" runat="server"><i class="fa fa-sticky-note" style="padding-right: 10px"></i>Bills</a></li>
                                 <li id="GenerateInvoice" class="" runat="server"><a href="AddInvoice.aspx" runat="server"><i class="fa fa-pagelines" style="padding-right: 10px"></i>Create Invoice</a></li>
                             </ul>
                         </li>

@@ -22,13 +22,13 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
         
         /// <summary>
-        /// homeMenu control.
+        /// Dashboard control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl homeMenu;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl Dashboard;
         
         /// <summary>
         /// servicesMainli control.
@@ -40,22 +40,22 @@ namespace InvoiceGen {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl servicesMainli;
         
         /// <summary>
-        /// ViewClient control.
+        /// ManageClient control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewClient;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ManageClient;
         
         /// <summary>
-        /// ViewBills control.
+        /// ManageBills control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ViewBills;
+        protected global::System.Web.UI.HtmlControls.HtmlGenericControl ManageBills;
         
         /// <summary>
         /// GenerateInvoice control.

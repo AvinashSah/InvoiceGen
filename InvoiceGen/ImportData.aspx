@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ImportData.aspx.cs" Inherits="InvoiceGen.ImportData" %>
+﻿<%@ Page Title="" Language="C#" Async="true" MasterPageFile="~/Admin.Master" AutoEventWireup="true" CodeBehind="ImportData.aspx.cs" Inherits="InvoiceGen.ImportData" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div class="padding100" id="blog">
